@@ -178,6 +178,25 @@ class RepositoryContract(unittest.TestCase):
                 self.assertFalse((package / "scripts").exists())
                 self.assertFalse((package / "agents").exists())
 
+    def test_no_description_names_another_skill(self):
+        """A routing description decides one skill's own trigger, nothing else.
+
+        Naming a sibling couples the decision to what happens to be installed,
+        and the description is read to choose the skill, not to plan a
+        composition.
+        """
+        names = self.skill_names()
+        for name in names:
+            page = ROOT / "skills" / name / "SKILL.md"
+            description = next(
+                line
+                for line in page.read_text(encoding="utf-8").splitlines()
+                if line.startswith("description:")
+            )
+            for other in names - {name}:
+                with self.subTest(skill=name, names=other):
+                    self.assertNotIn(other, description)
+
     def test_every_reference_is_reachable_and_one_level_deep(self):
         """A package routes to all of its own depth, and never deeper than one hop.
 
