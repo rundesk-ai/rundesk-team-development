@@ -1,6 +1,6 @@
 ---
 name: using-mysql
-description: Use when creating or changing MySQL tables, columns, indexes, or queries; when planning a MySQL schema migration or online DDL; or when diagnosing slow queries, bad execution plans, lock contention, deadlocks, replication lag, or connection exhaustion on MySQL or InnoDB. It supplies engine-specific schema, indexing, transaction, and operational rules with the evidence that proves each change. Do not use for PostgreSQL, SQLite, or engine-independent data modelling.
+description: Use when creating or changing MySQL tables, columns, indexes, or queries; when planning a MySQL schema migration or online DDL; when reviewing an existing schema, index set, or query, or checking whether a claimed improvement actually holds; or when diagnosing slow queries, bad execution plans, lock contention, deadlocks, replication lag, or connection exhaustion on MySQL or InnoDB. It supplies engine-specific schema, indexing, transaction, and operational rules with the evidence that proves each change. Do not use for PostgreSQL, SQLite, or engine-independent data modelling.
 ---
 
 # Use MySQL

@@ -1,6 +1,6 @@
 ---
 name: using-postgres
-description: Use when creating or altering PostgreSQL tables and columns, choosing types, writing migrations, designing indexes, writing row-level-security policies, granting privileges, configuring connection limits or a pooler, or writing SQL; and when diagnosing slow queries, bad EXPLAIN plans, timeouts, connection exhaustion, lock contention, bloat or vacuum problems, or rows visible to the wrong tenant. Do not use for MySQL, SQLite, or engine-independent data modelling.
+description: Use when creating or altering PostgreSQL tables and columns, choosing types, writing migrations, designing indexes, writing row-level-security policies, granting privileges, configuring connection limits or a pooler, or writing SQL; when reviewing an existing schema, index set, or policy, or checking whether a claimed improvement actually holds; and when diagnosing slow queries, bad EXPLAIN plans, timeouts, connection exhaustion, lock contention, bloat or vacuum problems, or rows visible to the wrong tenant. Do not use for MySQL, SQLite, or engine-independent data modelling.
 ---
 
 # Use PostgreSQL

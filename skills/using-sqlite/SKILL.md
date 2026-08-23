@@ -1,6 +1,6 @@
 ---
 name: using-sqlite
-description: Use when designing, querying, migrating, tuning, backing up, or diagnosing an application that stores data in SQLite, including the embedded file lifecycle, type affinity and strict tables, foreign keys, transactions, WAL and single-writer behavior, integrity checks, FTS, lock contention, and filesystem constraints. It supplies the rules that follow from SQLite being a file-backed, dynamically typed, single-writer engine. Do not use for a client/server database or for engine-independent data modelling.
+description: Use when designing, querying, reviewing, migrating, tuning, backing up, verifying, or diagnosing an application that stores data in SQLite, including the embedded file lifecycle, type affinity and strict tables, foreign keys, transactions, WAL and single-writer behavior, integrity checks, FTS, lock contention, and filesystem constraints. It supplies the rules that follow from SQLite being a file-backed, dynamically typed, single-writer engine. Do not use for a client/server database or for engine-independent data modelling.
 ---
 
 # Use SQLite
