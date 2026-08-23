@@ -48,6 +48,10 @@ MEMBER_NAMES = {"forge", "piper", "trace", "vera"}
 ALLOWED_PACKAGE_ROOTS = {"SKILL.md", "references"}
 FORBIDDEN_PACKAGE_FILES = {"README.md", "CHANGELOG.md", "rundesk.json"}
 
+#: Upstream licenses this catalog has adapted material under. An attribution that
+#: names none of them is not a complete citation.
+LICENCES = ("MIT License", "Unlicense", "Apache License")
+
 #: Rundesk owns these two skill names and refuses a team that allowlists either.
 PRODUCT_OWNED = {"managing-rundesk", "delegating-work"}
 
@@ -372,7 +376,10 @@ class RepositoryContract(unittest.TestCase):
             with self.subTest(skill=name):
                 self.assertIn("## Attribution", text)
                 self.assertRegex(text, r"`[0-9a-f]{40}`")
-                self.assertIn("MIT License", text)
+                self.assertTrue(
+                    any(licence in text for licence in LICENCES),
+                    f"{name} cites an upstream without naming its license",
+                )
 
     def test_text_files_are_clean_and_never_executable(self):
         for artifact, _ in texts():

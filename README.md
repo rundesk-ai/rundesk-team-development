@@ -42,6 +42,8 @@ its released successor.
 - `using-python` — Own Python language and project practice: runtime compatibility, public APIs, modules, typing, errors, resources, concurrency, performance evidence, security, documentation, and Python-focused tests.
 - `using-cpp` — Own modern C++ language and build correctness: ownership and lifetime, undefined behavior, headers and organization, toolchains and CMake targets, warnings, sanitizers, stale builds, and platform variation.
 - `using-axmol` — Own Axmol engine behavior: pinned engine version contracts, engine-object lifetime, scenes, input, UI, rendering, shaders, atlases, extensions, migration, CMake integration, and platform builds.
+- `designing-databases` — Own the engine-independent data model: normalization, identity, relationships, constraints, history and deletion, concurrency, pagination, and choosing a shape against the queries and growth it must serve.
+- `designing-apis` — Own HTTP and RESTful interface design: resources and naming, method and status-code semantics, payloads and error formats, collections and pagination, idempotency and concurrency, security boundaries, versioning and deprecation, and the OpenAPI contract.
 
 ## Install
 
