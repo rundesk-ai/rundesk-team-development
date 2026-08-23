@@ -67,6 +67,16 @@ def texts():
         yield artifact, artifact.read_text(encoding="utf-8", errors="ignore")
 
 
+def prose(text):
+    """Markdown with fenced and inline code removed.
+
+    Code samples contain link-shaped text that is not a link -- Python's
+    ``def f[T](...)`` is the case that first broke the link check.
+    """
+    text = re.sub(r"(?ms)^```.*?^```", "", text)
+    return re.sub(r"`[^`\n]*`", "", text)
+
+
 class RepositoryContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -266,7 +276,7 @@ class RepositoryContract(unittest.TestCase):
         for page in ROOT.rglob("*.md"):
             if ".git" in page.parts:
                 continue
-            text = page.read_text(encoding="utf-8")
+            text = prose(page.read_text(encoding="utf-8"))
             for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", text):
                 if target.startswith(("http://", "https://", "mailto:", "#")):
                     continue

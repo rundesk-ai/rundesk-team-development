@@ -39,6 +39,9 @@ its released successor.
 - `using-mysql` — Own MySQL and InnoDB behavior: engine-specific types and character sets, keys and indexes, query plans, locks and isolation, online DDL, replication, connection pressure, and safe operational proof.
 - `using-postgres` — Own PostgreSQL behavior: types and constraints, index classes, query plans, MVCC and locking, connection and pool behavior, vacuum and bloat, row-level security and privileges, migrations, and safe operational proof.
 - `using-sqlite` — Own SQLite's embedded file lifecycle: type affinity and strictness, foreign keys, transactions, WAL and single-writer behavior, migrations and integrity, backup and restore, FTS, locking, and filesystem constraints.
+- `using-python` — Own Python language and project practice: runtime compatibility, public APIs, modules, typing, errors, resources, concurrency, performance evidence, security, documentation, and Python-focused tests.
+- `using-cpp` — Own modern C++ language and build correctness: ownership and lifetime, undefined behavior, headers and organization, toolchains and CMake targets, warnings, sanitizers, stale builds, and platform variation.
+- `using-axmol` — Own Axmol engine behavior: pinned engine version contracts, engine-object lifetime, scenes, input, UI, rendering, shaders, atlases, extensions, migration, CMake integration, and platform builds.
 
 ## Install
 
