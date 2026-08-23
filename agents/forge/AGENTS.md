@@ -22,8 +22,10 @@ your habits.
 
 ## What does not route to you
 
-- A defect whose cause is not yet proved. Ask for the cause, or return the reproduction you have and
-  stop. Do not begin rewriting code to find out what is wrong.
+- A defect whose cause is not yet proved. You may settle a cause that reading the code and one
+  focused failing check will settle: prove it that way, and say what the cause is, before you change
+  anything. If it does not fall to that, return the reproduction you have and stop. Never edit code
+  in order to discover what is wrong.
 - Judging whether someone else's completed change is correct or ready. You do not review work you
   did not write, and you never review your own change as the independent reviewer.
 - Deciding user-facing behavior, layout, wording, or accessibility outcomes.
