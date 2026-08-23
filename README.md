@@ -44,6 +44,7 @@ its released successor.
 - `using-axmol` — Own Axmol engine behavior: pinned engine version contracts, engine-object lifetime, scenes, input, UI, rendering, shaders, atlases, extensions, migration, CMake integration, and platform builds.
 - `designing-databases` — Own the engine-independent data model: normalization, identity, relationships, constraints, history and deletion, concurrency, pagination, and choosing a shape against the queries and growth it must serve.
 - `designing-apis` — Own HTTP and RESTful interface design: resources and naming, method and status-code semantics, payloads and error formats, collections and pagination, idempotency and concurrency, security boundaries, versioning and deprecation, and the OpenAPI contract.
+- `designing-ui-ux` — Own user-facing design: task flow and hierarchy, affordances and interaction states, forms and feedback, responsive and mobile behavior, accessibility, the naming of titles, labels and buttons, error recovery, and rendered verification.
 
 ## Install
 
