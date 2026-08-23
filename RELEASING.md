@@ -6,9 +6,10 @@ update detection, while the matching tag and GitHub Release provide an auditable
 ## Prepare
 
 1. Put every intended catalog change in one pull request against `main`.
-2. Update `manifest.json` with semantic versioning: patch for compatible corrections, minor for a
-   new skill or backward-compatible capability, and major for an incompatible catalog or package
-   contract.
+2. Before the first `v0.1.0` publication, keep unreleased iteration at `0.1.0`. After a version has
+   been published, update `manifest.json` with semantic versioning: patch for compatible
+   corrections, minor for a new skill or backward-compatible capability, and major for an
+   incompatible catalog or package contract.
 3. Run `python3 -m unittest discover -s tests -v` and wait for the `build` workflow on the exact head.
 4. Review the complete package tree, README skill list, compatibility impact, sources, and licenses.
 

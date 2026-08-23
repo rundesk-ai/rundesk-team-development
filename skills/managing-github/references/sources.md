@@ -32,6 +32,16 @@ are labeled separately.
 - The current [`gh pr create` reference](https://cli.github.com/manual/gh_pr_create) documents
   explicit base and head selection, body files, drafts, user-qualified fork heads, the lack of
   organization-qualified fork heads, and default-branch closing keywords.
+- The current [`gh pr review` reference](https://cli.github.com/manual/gh_pr_review) documents comment,
+  approve, and request-changes decisions plus review bodies read from files. The current
+  [`gh pr view` reference](https://cli.github.com/manual/gh_pr_view) documents hosted review,
+  review-decision, check-rollup, and head fields. Together they support explicit review-effect
+  selection and stored-state readback.
+- GitHub's [About pull request reviews](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews)
+  distinguishes comments, approvals, and requests for changes and notes that later code-modifying
+  commits can invalidate approvals under repository policy. This supports tying a technical review
+  and submitted decision to the inspected head rather than treating a prior review as permanently
+  current.
 - GitHub's [Linking a pull request to an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
   documents closing keywords and the requirement that the pull request target the default branch for
   automatic closure.

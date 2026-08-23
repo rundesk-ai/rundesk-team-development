@@ -57,9 +57,10 @@ do not depend on those role names.
 │   ├── ISSUE_TEMPLATE/
 │   ├── pull_request_template.md
 │   └── workflows/
+├── docs/
 ├── skills/<name>/
 │   ├── SKILL.md
-│   └── references/sources.md
+│   └── references/
 ├── team/
 │   ├── team.json
 │   └── roles/
@@ -86,7 +87,8 @@ git diff --check
 ```
 
 Skill changes also require verification of every relied-on source link and a realistic forward test
-when guidance materially changes.
+when guidance materially changes. [Validating Skills](docs/validation.md) defines the shared method;
+each skill keeps its current cases and provider evidence in `references/validation.md`.
 
 ## Creating a skill catalog
 
@@ -114,8 +116,9 @@ identifiers, or owner-specific paths.
 
 ## Releases
 
-Published skill behavior follows [RELEASING.md](RELEASING.md). Content changes update the manifest
-version in the same pull request; repository-process-only corrections do not require a version bump.
+Published skill behavior follows [RELEASING.md](RELEASING.md). Iteration may remain at `0.1.0` until
+that version is first published. After publication, content changes update the manifest version in
+the same pull request; repository-process-only corrections do not require a version bump.
 
 ## License
 

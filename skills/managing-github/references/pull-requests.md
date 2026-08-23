@@ -44,6 +44,43 @@ Confirm one coherent outcome, no credentials or generated clutter, no unrelated 
 unexplained change outside the accepted boundary. Run repository-required validation. Report only
 checks observed for the current head and name each required check that remains unrun.
 
+## Separate review judgment from hosted review state
+
+Use the applicable technical review workflow to inspect the diff for defects, regressions, security,
+and maintainability. This GitHub workflow owns the hosted pull-request context around that judgment:
+the explicit repository and pull request, base and head, template compliance, requested reviewers,
+existing reviews, check state, and any authorized review submission.
+
+Inspect the current hosted state before calling a pull request ready or deciding what kind of review
+is appropriate:
+
+```sh
+gh pr view <number> --repo <owner/repo> \
+  --json url,title,body,baseRefName,headRefName,headRefOid,isDraft,reviewDecision,reviewRequests,reviews,statusCheckRollup
+gh pr checks <number> --repo <owner/repo>
+```
+
+Do not infer code quality from a filled template, green checks, or an existing approval. Conversely,
+do not submit a GitHub review merely because a technical reviewer returned findings: confirm the
+review applies to the pull request's current head, sanitize the body, and require authority for the
+exact `comment`, `approve`, or `request changes` effect.
+
+Record the current `headRefOid`, submit a prepared review body from a file, and select exactly one
+decision:
+
+```sh
+gh pr review <number> --repo <owner/repo> --comment --body-file <review.md>
+gh pr review <number> --repo <owner/repo> --approve --body-file <review.md>
+gh pr review <number> --repo <owner/repo> --request-changes --body-file <review.md>
+```
+
+After submission, read `reviews`, `latestReviews`, `reviewDecision`, and the current head OID back.
+Verify the stored author, decision, and body, and confirm the head still equals the recorded OID. If
+the head changed, report that the technical judgment may be stale; do not silently resubmit or
+change the decision.
+Requesting or removing reviewers, dismissing a review, resolving threads, merging, or enabling
+auto-merge are separate mutations and require their own authority.
+
 ## Write the merge case
 
 A pull-request body is a scan-friendly review map, not an implementation diary, design archive, or
@@ -104,7 +141,7 @@ Read the stored pull request and checks:
 
 ```sh
 gh pr view <number> --repo <owner/repo> \
-  --json url,title,body,baseRefName,headRefName,headRepository,headRepositoryOwner,isDraft,closingIssuesReferences
+  --json url,title,body,baseRefName,headRefName,headRefOid,headRepository,headRepositoryOwner,isDraft,closingIssuesReferences,latestReviews,reviewDecision,reviews
 gh pr checks <number> --repo <owner/repo>
 ```
 

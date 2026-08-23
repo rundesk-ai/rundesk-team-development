@@ -1,6 +1,6 @@
 ---
 name: managing-github
-description: "Use whenever a workflow needs GitHub-hosted repository state or delivery, whether the user names GitHub directly or development and repository policy reach that step: investigate, triage, create, update, comment on, close, or verify issues; prepare, open, update, inspect, or verify pull requests; follow a repository's release and tag workflow; reconcile a live deployment branch; or inspect the repository rules, templates, checks, and stored state required for those outcomes. It owns explicit target and account selection, mutation authority, and stored-result proof. Do not use it for local implementation, generic Git work, GitHub Actions authoring, or repository administration."
+description: "Use when work reaches a GitHub-hosted issue, pull request or review, release, tag, or live deployment-branch boundary, including indirectly after investigation, completed development, or repository policy requires delivery. Also trigger when work discovers a repository defect that may need duplicate search or an issue even without a filing request; selection does not authorize creation. Covers templates, submission, updates, reviews, and stored-result proof. Never trigger for repository or organization administration such as branch protection, rulesets, settings, permissions, secrets, or webhooks; local implementation or Git; GitHub Actions authoring; or technical code review with no hosted PR operation."
 ---
 
 # Manage GitHub
@@ -9,9 +9,10 @@ Use one safety contract, then load only the operation reference required by the 
 
 ## Keep the ownership boundary explicit
 
-This skill owns externally stored GitHub issues, pull requests, releases, and their readback. It does
-not own local implementation, development planning, code review, generic branch maintenance, GitHub
-Actions design, repository settings, permissions, rulesets, secrets, or organization administration.
+This skill owns externally stored GitHub issues, pull requests, pull-request reviews, releases, and
+their readback. It does not own local implementation, development planning, technical code-review
+judgment, generic branch maintenance, GitHub Actions design, repository settings, permissions,
+rulesets, secrets, or organization administration.
 
 The agent responsible for the overall outcome retains every GitHub mutation. A specialist may return
 a local branch, diff, commit, issue draft, pull-request draft, release recommendation, and evidence;
@@ -26,7 +27,8 @@ Load this skill when the active work reaches a GitHub-hosted boundary, including
   closure decision;
 - verified development work is ready for the repository's required branch push or pull-request
   path;
-- an existing pull request needs stored-state inspection, an authorized update, or check follow-up;
+- an existing pull request needs stored-state inspection, template or readiness review, an
+  authorized review submission or update, or check follow-up;
 - a versioned change reaches the repository's release, tag, notes, asset, or branch-reconciliation
   contract; or
 - another in-scope repository workflow requires reading GitHub templates, rules, checks, or the
@@ -82,7 +84,8 @@ silently.
   an issue; select a repository template, existing label, and supported issue type; search
   duplicates; route security reports.
 - [Pull requests](references/pull-requests.md): inspect the review range, prepare or open a pull
-  request, select explicit base and head, link issues, and verify stored content and checks.
+  request, select explicit base and head, apply its template, inspect hosted review state, submit an
+  authorized comment, approval, or change request, link issues, and verify stored content and checks.
 - [Releases](references/releases.md): discover the repository release contract, choose a compatible
   version and exact tag, prepare or publish a release, verify its target and assets, recover from a
   failed attempt, or reconcile a live deployment branch.

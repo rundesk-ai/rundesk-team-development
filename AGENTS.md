@@ -38,9 +38,10 @@ depend on instructions, packages, or files from another repository.
 │   ├── ISSUE_TEMPLATE/
 │   ├── pull_request_template.md
 │   └── workflows/
+├── docs/
 ├── skills/<name>/
 │   ├── SKILL.md
-│   └── references/sources.md
+│   └── references/
 ├── team/
 │   ├── team.json
 │   └── roles/
@@ -64,8 +65,9 @@ or a second catalog or team definition.
 
 - `manifest.json` contains exactly `schema`, `name`, `version`, and `description`. Rundesk discovers
   packages under `skills/`; do not add a manually maintained skill index.
-- Every package is entirely under `skills/<name>/`, contains `SKILL.md` and
-  `references/sources.md`, and remains useful without another repository checkout.
+- Every package is entirely under `skills/<name>/`, contains `SKILL.md`,
+  `references/sources.md`, and `references/validation.md`, and remains useful without another
+  repository checkout.
 - Skill frontmatter contains only `name` and `description`. The directory and name match, use
   lowercase hyphenated identifiers, and remain at most 64 characters.
 - This is guidance-only content. No script, executable, `rundesk.json`, credential, service adapter,
@@ -135,6 +137,12 @@ Adding, removing, or renaming a skill updates `README.md`, package tests, and co
 Changing the team schema, role list, entry role, path, purpose, or delegation graph updates
 `team/team.json`, every affected role document, README claims, and focused tests together.
 
+Keep reusable validation method under `docs/` and each skill's cases plus current provider evidence
+in its own `references/validation.md`. Validation records are maintainer artifacts, not operational
+skill references; do not route agents to them from `SKILL.md`. Do not create dated run logs. Stable
+case IDs preserve comparability; add or supersede a materially different case instead of silently
+changing its meaning.
+
 ## Build, test, and run
 
 The complete offline validation is:
@@ -156,10 +164,11 @@ Use `.github/pull_request_template.md` for every pull request. Preserve its head
 fill it with exact-head evidence, and mark a check complete only when observed. Required CI must pass
 for that exact head.
 
-Follow `RELEASING.md`. Skill content changes use the documented semantic-version policy. Changes to
-the proposed team contract also require a version bump because they change distributed content, even
-though current Rundesk does not execute it. Never tag unmerged content, reuse a published tag, or
-claim team-mode availability from publication alone.
+Follow `RELEASING.md`. Before the first `v0.1.0` publication, iterative catalog changes may remain at
+`0.1.0`. After a version is published, later skill-content changes use the documented
+semantic-version policy. Changes to the proposed team contract also require the applicable version
+bump because they change distributed content, even though current Rundesk does not execute it. Never
+tag unmerged content, reuse a published tag, or claim team-mode availability from publication alone.
 
 ## Definition of done
 

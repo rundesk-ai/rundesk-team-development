@@ -106,6 +106,7 @@ class RepositoryContract(unittest.TestCase):
                 self.assertLessEqual(len(frontmatter[1]), 1024)
                 self.assertLessEqual(len(page.splitlines()), 500)
                 self.assertTrue((package / "references" / "sources.md").is_file())
+                self.assertTrue((package / "references" / "validation.md").is_file())
                 for forbidden in FORBIDDEN_PACKAGE_FILES:
                     self.assertFalse((package / forbidden).exists())
                 self.assertFalse((package / "scripts").exists())
@@ -144,22 +145,13 @@ class RepositoryContract(unittest.TestCase):
                 if name != "piper":
                     self.assertEqual([], role["delegates_to"])
 
-    def test_skill_and_team_ownership_do_not_overlap(self):
-        development = (ROOT / "skills" / "managing-development-work" / "SKILL.md").read_text(
-            encoding="utf-8"
-        )
-        github = (ROOT / "skills" / "managing-github" / "SKILL.md").read_text(
-            encoding="utf-8"
-        )
-        self.assertIn("GitHub handoff", development)
-        self.assertIn("does not own GitHub", development)
-        self.assertIn("Do not use it for local implementation", github)
-        self.assertIn("whether the user names GitHub directly", github)
-        self.assertNotIn("description: Use when asked", github)
-        for skill in (development, github):
-            self.assertNotIn("team/team.json", skill)
-            self.assertNotIn("team/roles/", skill)
-            self.assertNotIn("entry_role", skill)
+    def test_skill_packages_do_not_depend_on_the_team_contract(self):
+        for name in self.skill_names():
+            skill = (ROOT / "skills" / name / "SKILL.md").read_text(encoding="utf-8")
+            with self.subTest(skill=name):
+                self.assertNotIn("team/team.json", skill)
+                self.assertNotIn("team/roles/", skill)
+                self.assertNotIn("entry_role", skill)
 
     def test_repository_guides_are_identical_and_ordered(self):
         agents = (ROOT / "AGENTS.md").read_bytes()
