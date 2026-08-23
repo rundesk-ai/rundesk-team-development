@@ -34,6 +34,8 @@ Cases use stable IDs. `LIFE-##` covers the installed lifecycle.
 | LIFE-13 | A newer catalog version changes instructions, allowed skills, delegation, and description | A confirmed update moves all four together; a skill dropped from the allowlist is revoked; outbound delegation gains Rundesk's conditional delegation skill and inbound-only members never do |
 | LIFE-14 | An owner wants to uninstall the team | **There is no way to do it.** `teams` registers only `install`, `list` and `update`, and `skills remove` refuses a team catalog |
 | LIFE-15 | A member agent removed by hand | Recreated by the next confirmed update, because the catalog still declares it |
+| LIFE-16 | A member's gateway refuses to start | Reported as incomplete activation with the exact retry command and a failing exit, never as success; everything reconciled before it was asked stays written, and the retry completes |
+| LIFE-17 | The catalog fetched the way GitHub sends it — a tarball under one wrapper directory | Unpacks, resolves the tree below the wrapper, and installs every member; a subsequent unchanged fetch still reconciles local drift rather than skipping |
 
 ## Prove the member instructions govern behavior
 
@@ -88,13 +90,14 @@ log and not proof for untested future models.
 Last verified: 2026-08-23. Client: Claude Code 2.1.241. Model reported by the client:
 `claude-sonnet-5`. Rundesk CLI at the head named in `AGENTS.md`, driven from a separate checkout.
 
-**Lifecycle.** All fifteen `LIFE` cases pass. Isolation: a throwaway `RUNDESK_HOME` per case, proved
+**Lifecycle.** All seventeen `LIFE` cases pass. Isolation: a throwaway `RUNDESK_HOME` per case, proved
 to be the resolved root before the case ran; the gateway supervisor replaced by a stand-in that
 records which members were asked and starts nothing; no network; the catalog supplied as a local
 directory so nothing was fetched. The owner's login items were compared before and after every case
 and were unchanged. Each guarantee was confirmed by mutation: flipping a member's `self_improve`,
 widening its `delegates_to`, breaking an `instructions` path, emptying a member's `AGENTS.md`, and
-adding an unknown member key were each caught by the cases that claim to cover them.
+adding an unknown member key, a gateway that stops refusing, and a fetch that unpacks nothing were
+each caught by the cases that claim to cover them.
 
 **Member instructions.** All twenty-four `R`/`B` cases behave as intended. Each ran in its own fresh
 session, in a temporary copy of a small neutral project, with the member's `AGENTS.md` as the only
@@ -138,7 +141,8 @@ worked around in catalog data.
 
 These are lifecycle and instruction-behavior tests. They do not prove a released user path: the
 installing CLI contract is an open pull request, not merged and not in a published release, and this
-catalog has no published release. No gateway was started, no provider was contacted for a member
+catalog has no published release. No real gateway process was started — `LIFE-16` proves the failure is reported and the
+retry works, but only through the injected supervisor. No provider was contacted for a member
 turn, and turn-admission reconciliation was exercised through its function rather than through a
 real turn. Because no gateway ran, `LIFE-15` removed a member agent that had none; against a live
 gateway `rundesk agents remove` would have refused until it was stopped. Member behavior was checked on one client and one model; other clients and later models
