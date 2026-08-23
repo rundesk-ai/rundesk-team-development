@@ -4,7 +4,7 @@
   "members": [
     {
       "name": "forge",
-      "description": "Delegate a settled change to implement \u2014 code, schema, migrations, and the tests proving it \u2014 and get back a diff with the checks that ran.",
+      "description": "Implements code: features, fixes, refactors, schema and migrations, and the tests that prove them, returning the diff and the checks that ran.",
       "instructions": "agents/forge/AGENTS.md",
       "skills": [
         "debugging-code",
@@ -27,7 +27,7 @@
     },
     {
       "name": "piper",
-      "description": "Delegate finished work for an independent verdict on whether it is correct, safe, and ready, returned as ranked findings with evidence.",
+      "description": "Reviews finished work independently and returns ranked findings with evidence and a verdict on whether it is correct, safe, and ready to ship.",
       "instructions": "agents/piper/AGENTS.md",
       "skills": [
         "designing-apis",
@@ -51,7 +51,7 @@
     },
     {
       "name": "trace",
-      "description": "Delegate a failure nobody can explain yet to get a reproduction and a located cause, with nothing in the product changed.",
+      "description": "Investigates failures nobody can explain yet and returns a reproduction and a located cause, changing nothing in the product.",
       "instructions": "agents/trace/AGENTS.md",
       "skills": [
         "debugging-code",
@@ -73,7 +73,7 @@
     },
     {
       "name": "vera",
-      "description": "Delegate user-facing behavior to specify or judge \u2014 flows, states, wording, accessibility, recovery \u2014 and get the required behavior, not code.",
+      "description": "Defines and judges user-facing behavior, including flows, states, wording, accessibility, and recovery, returning required behavior rather than code.",
       "instructions": "agents/vera/AGENTS.md",
       "skills": [
         "designing-ui-ux",

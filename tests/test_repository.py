@@ -313,6 +313,15 @@ class RepositoryContract(unittest.TestCase):
                 self.assertLessEqual(set(delegates), MEMBER_NAMES - {name})
                 self.assertIsInstance(member["self_improve"], bool)
 
+    def test_the_team_declaration_is_written_as_text_not_escapes(self):
+        """A serializer defaulting to ASCII turns punctuation into \\uXXXX.
+
+        The file is read and reviewed by people; an escaped em dash is correct
+        JSON and unreadable in a diff.
+        """
+        raw = (ROOT / "team.json").read_text(encoding="utf-8")
+        self.assertNotIn("\\u", raw)
+
     def test_allowed_skills_are_reviewable_and_earned(self):
         """A grant list is read in review, so it stays sorted and stays a subset.
 
