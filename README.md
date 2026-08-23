@@ -9,20 +9,20 @@
 </p>
 
 <p align="center">
-  <a href="#team"><strong>👥 Team</strong></a>
+  <a href="#-team"><strong>👥 Team</strong></a>
   &nbsp;·&nbsp;
-  <a href="#skills"><strong>🧠 Skills</strong></a>
+  <a href="#-skills"><strong>🧠 Skills</strong></a>
   &nbsp;·&nbsp;
-  <a href="#install"><strong>🚀 Install</strong></a>
+  <a href="#-install"><strong>🚀 Install</strong></a>
   &nbsp;·&nbsp;
-  <a href="#development"><strong>🛠️ Development</strong></a>
+  <a href="#-development"><strong>🛠️ Development</strong></a>
 </p>
 
 A versioned Rundesk development team: four specialists, their canonical instructions, and the
 skills they use. Built for the [Rundesk CLI](https://github.com/rundesk-ai/rundesk-cli) agent
 system, this repository is both an installable skill catalog and a team declaration.
 
-## Team
+## 👥 Team
 
 | Member | Responsibility |
 |---|---|
@@ -34,16 +34,9 @@ system, this repository is both an installable skill catalog and a team declarat
 A domain agent calls the right specialist directly, keeps ownership of the outcome, and integrates
 the result.
 
-Rundesk reconciles each member from `team.json`: instructions, allowed skills, delegation, and
-weekly upkeep. The catalog replaces `AGENTS.md` and `CLAUDE.md`, removes `MEMORY.md`, and revokes
-skills outside the member's allowlist. Weekly upkeep is disabled for all four members.
+Rundesk keeps each member's instructions and skill access aligned with this catalog.
 
-**Availability:** Team installation depends on Rundesk CLI pull request #451 at tested head
-`3f46868`. It has not been merged into CLI `main` and is in no published CLI release. This catalog
-also has no published release. Its skills install today with the current CLI; its team declaration
-requires that pull request or a released successor.
-
-## Skills
+## 🧠 Skills
 
 ### Orchestration
 
@@ -82,30 +75,31 @@ requires that pull request or a released successor.
 - `using-cpp` — Build correct modern C++ across toolchains and platforms.
 - `using-axmol` — Build Axmol scenes, rendering, UI, and platform targets.
 
-## Install
+## 🚀 Install
 
 Preview first, then confirm.
 
 ### Complete team
 
-Install all skills and four managed agents with a CLI that carries the team lifecycle:
+Install all skills and four managed agents:
 
 ```sh
 rundesk teams install https://github.com/rundesk-ai/rundesk-team-development --provider <provider>
 rundesk teams install https://github.com/rundesk-ai/rundesk-team-development --provider <provider> --confirm
-rundesk teams update rundesk-team-development --confirm
 ```
 
 Team installation creates the agents with their gateways stopped. Start only the agents you want to
 use:
 
 ```sh
-rundesk gateways start forge
-rundesk gateways start piper
+rundesk gateways start <agent>
 ```
 
-Installation refuses an existing member name and any confirmed operation run from inside an agent
-turn. Apply it from an owner-controlled terminal.
+Run installation from your terminal. To update the team later:
+
+```sh
+rundesk teams update rundesk-team-development --confirm
+```
 
 ### Skills only
 
@@ -114,41 +108,20 @@ Install the catalog without creating agents:
 ```sh
 rundesk skills install https://github.com/rundesk-ai/rundesk-team-development
 rundesk skills install https://github.com/rundesk-ai/rundesk-team-development --confirm
-rundesk skills grant ava rundesk-team-development/managing-development-work
+rundesk skills grant <agent> rundesk-team-development/managing-development-work
 ```
 
-This mode creates no agents, starts no gateways, and follows the ordinary skill catalog lifecycle.
-You can add the complete team later with the team install command above; Rundesk promotes the same
-catalog in place and keeps its installed skills.
+This installs only the skills. You can add the complete team later without reinstalling them.
 
-## Requirements
+## ✅ Requirements
 
 - A supported Rundesk CLI.
 - Public GitHub access to this repository.
 - For complete-team installation: a provider and an unused local name for every team member.
 
-Skills are guidance-only. They add no executable, credential, dependency, service adapter, network
-integration, or repository hook. Each package works without another catalog checkout.
+Skills are self-contained guidance that agents load when relevant.
 
-## Repository layout
-
-```text
-.
-├── agents/<member>/AGENTS.md
-├── assets/readme/
-├── docs/
-├── skills/<name>/
-│   ├── SKILL.md
-│   └── references/
-├── tests/test_repository.py
-├── AGENTS.md
-├── README.md
-├── RELEASING.md
-├── manifest.json
-└── team.json
-```
-
-## Development
+## 🛠️ Development
 
 Read [AGENTS.md](AGENTS.md), then run the complete offline gate:
 
@@ -160,13 +133,7 @@ git diff --check
 Skill changes also require verified source links and realistic forward tests. See
 [skill validation](docs/validation.md) and [team validation](docs/team-validation.md).
 
-## Creating a skill catalog
-
-`manifest.json` identifies the catalog, `skills/<name>/SKILL.md` defines each package, `team.json`
-declares members and allowlists, and `agents/<member>/AGENTS.md` supplies canonical instructions.
-Keep every package self-contained, guidance-only, and distinct from neighboring skills.
-
-## Contributing
+## 🤝 Contributing
 
 Use the repository templates:
 
@@ -175,15 +142,8 @@ Use the repository templates:
 - [Prepare a pull request](.github/pull_request_template.md)
 
 Keep the README, manifest, tests, team declaration, member instructions, and package tree in sync.
-Never publish credentials, customer data, private-project language, personal identifiers, or
-owner-specific paths.
 
-## Releases
-
-See [RELEASING.md](RELEASING.md). Unpublished work may remain at `0.1.0`; after the first release,
-catalog changes follow semantic versioning. Publishing requires separate authorization.
-
-## License
+## 📄 License
 
 MIT, except material in `designing-ui-ux` adapted under Apache License 2.0. See that package's
 [source basis](skills/designing-ui-ux/references/sources.md).

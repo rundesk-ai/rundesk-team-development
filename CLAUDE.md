@@ -15,8 +15,9 @@ do not depend on instructions, packages, or files from another repository.
 
 The installing contract is implemented by Rundesk CLI pull request #451, exact head `3f46868`.
 That work is open and unmerged: it is not in the CLI's main branch and not in any published CLI
-release, and this catalog itself has no published release. State that distinction accurately
-everywhere; never describe an unmerged or unpublished capability as available.
+release, and this catalog itself has no published release. Keep that operational state in maintainer
+records and pull requests. `README.md` describes the product contract; never put pull-request heads,
+merge state, release readiness, validation evidence, or internal task memory in consumer copy.
 
 ## Before you work
 

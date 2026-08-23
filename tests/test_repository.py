@@ -23,16 +23,13 @@ AGENT_HEADINGS = (
     "## Definition of done",
 )
 README_HEADINGS = (
-    "## Team",
-    "## Skills",
-    "## Install",
-    "## Requirements",
-    "## Repository layout",
-    "## Development",
-    "## Creating a skill catalog",
-    "## Contributing",
-    "## Releases",
-    "## License",
+    "## 👥 Team",
+    "## 🧠 Skills",
+    "## 🚀 Install",
+    "## ✅ Requirements",
+    "## 🛠️ Development",
+    "## 🤝 Contributing",
+    "## 📄 License",
 )
 README_SKILL_HEADINGS = (
     "### Orchestration",
@@ -157,17 +154,29 @@ class RepositoryContract(unittest.TestCase):
                 if heading not in ("### Skills only", "### Complete team")
             ),
         )
-        self.assertIn("creates no agents, starts no gateways", readme)
         self.assertLess(readme.index("### Complete team"), readme.index("### Skills only"))
-        self.assertIn("Rundesk promotes the same\ncatalog in place", readme)
+        self.assertIn("This installs only the skills", readme)
         self.assertIn("gateways stopped", readme)
 
-    def test_readme_states_what_is_supported_without_claiming_a_release(self):
+    def test_readme_is_consumer_copy_not_maintainer_memory(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("pull request #451", readme)
-        self.assertIn("3f46868", readme)
-        self.assertIn("has not been merged", readme)
-        self.assertIn("no published release", readme)
+        forbidden = (
+            "pull request #",
+            "tested head",
+            "has not been merged",
+            "published release",
+            "unpublished work",
+            "release authorization",
+            "release readiness",
+            "validation evidence",
+            "merge state",
+            "MEMORY.md",
+            "CLAUDE.md",
+        )
+        for phrase in forbidden:
+            with self.subTest(phrase=phrase):
+                self.assertNotIn(phrase.lower(), readme.lower())
+        self.assertIsNone(re.search(r"(?<![a-z0-9])[0-9a-f]{7,40}(?![a-z0-9])", readme))
 
     def test_every_skill_is_complete_and_guidance_only(self):
         for name in self.skill_names():
