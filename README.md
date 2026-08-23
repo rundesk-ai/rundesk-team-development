@@ -41,7 +41,6 @@ Rundesk keeps each member's instructions and skill access aligned with this cata
 ### Orchestration
 
 - `managing-development-work` — Coordinate software changes through verified completion.
-- `managing-github` — Govern authorized GitHub delivery and verify stored results.
 
 ### Design
 

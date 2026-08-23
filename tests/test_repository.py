@@ -57,8 +57,8 @@ FORBIDDEN_PACKAGE_FILES = {"README.md", "CHANGELOG.md", "rundesk.json"}
 #: names none of them is not a complete citation.
 LICENCES = ("MIT License", "Unlicense", "Apache License")
 
-#: Rundesk owns these two skill names and refuses a team that allowlists either.
-PRODUCT_OWNED = {"managing-rundesk", "delegating-work"}
+#: Rundesk owns these skill names and refuses a team that ships or allowlists them.
+PRODUCT_OWNED = {"managing-rundesk", "delegating-work", "managing-github"}
 
 #: What an agent is for travels in every other agent's prompt, so Rundesk caps it.
 DESCRIBES_AT_MOST = 200
