@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "name": "rundesk-team-development",
+  "members": [
+    {
+      "name": "forge",
+      "description": "Implements bounded software changes across languages and frameworks, and returns the diff and the checks that prove it.",
+      "instructions": "agents/forge/AGENTS.md",
+      "skills": [],
+      "delegates_to": [],
+      "self_improve": false
+    },
+    {
+      "name": "piper",
+      "description": "Independently reviews code, tests, compatibility, security, maintainability, and release readiness, and does not implement the change it judges.",
+      "instructions": "agents/piper/AGENTS.md",
+      "skills": [],
+      "delegates_to": [],
+      "self_improve": false
+    },
+    {
+      "name": "trace",
+      "description": "Investigates unproved causes read-only, reproduces failures, maps architecture and contracts, and returns reproducible evidence without changing the product.",
+      "instructions": "agents/trace/AGENTS.md",
+      "skills": [],
+      "delegates_to": [],
+      "self_improve": false
+    },
+    {
+      "name": "vera",
+      "description": "Defines and reviews user-facing behavior, usability, accessibility, states, and recovery, and does not write production code.",
+      "instructions": "agents/vera/AGENTS.md",
+      "skills": [],
+      "delegates_to": [],
+      "self_improve": false
+    }
+  ]
+}

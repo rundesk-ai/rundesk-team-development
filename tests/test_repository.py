@@ -1,4 +1,4 @@
-"""The development team package is internally complete and safely bounded."""
+"""The development team catalog is internally complete and safely bounded."""
 
 import json
 import re
@@ -23,6 +23,7 @@ AGENT_HEADINGS = (
     "## Definition of done",
 )
 README_HEADINGS = (
+    "## Team",
     "## Skills",
     "## Install",
     "## Requirements",
@@ -33,16 +34,44 @@ README_HEADINGS = (
     "## Releases",
     "## License",
 )
-ROLE_NAMES = {"forge", "piper", "trace", "vera"}
+MEMBER_HEADINGS = (
+    "## Mission",
+    "## What routes to you",
+    "## What does not route to you",
+    "## How to size the work",
+    "## Authority and stop conditions",
+    "## Working with the agent that called you",
+    "## What to return",
+    "## Boundaries",
+)
+MEMBER_NAMES = {"forge", "piper", "trace", "vera"}
 ALLOWED_PACKAGE_ROOTS = {"SKILL.md", "references"}
 FORBIDDEN_PACKAGE_FILES = {"README.md", "CHANGELOG.md", "rundesk.json"}
+
+#: Rundesk owns these two skill names and refuses a team that allowlists either.
+PRODUCT_OWNED = {"managing-rundesk", "delegating-work"}
+
+#: What an agent is for travels in every other agent's prompt, so Rundesk caps it.
+DESCRIBES_AT_MOST = 200
+
+
+def texts():
+    """Every tracked text file in the repository, with its path."""
+    for artifact in sorted(ROOT.rglob("*")):
+        if (
+            not artifact.is_file()
+            or ".git" in artifact.parts
+            or "__pycache__" in artifact.parts
+        ):
+            continue
+        yield artifact, artifact.read_text(encoding="utf-8", errors="ignore")
 
 
 class RepositoryContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
-        cls.team = json.loads((ROOT / "team" / "team.json").read_text(encoding="utf-8"))
+        cls.team = json.loads((ROOT / "team.json").read_text(encoding="utf-8"))
 
     def skill_names(self):
         return {
@@ -50,6 +79,9 @@ class RepositoryContract(unittest.TestCase):
             for path in (ROOT / "skills").iterdir()
             if path.is_dir() and (path / "SKILL.md").is_file()
         }
+
+    def members(self):
+        return {member["name"]: member for member in self.team["members"]}
 
     def test_manifest_is_a_current_standalone_catalog(self):
         self.assertEqual(
@@ -68,18 +100,25 @@ class RepositoryContract(unittest.TestCase):
 
     def test_readme_lists_exactly_the_discovered_skills(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        listed = set(re.findall(r"(?m)^- `([a-z0-9-]+)`", readme))
+        listed = set(re.findall(r"(?m)^- `([a-z0-9-]+)` —", readme))
         self.assertEqual(self.skill_names(), listed)
         self.assertEqual(
             README_HEADINGS,
             tuple(re.findall(r"^## .+$", readme, re.MULTILINE)),
         )
-        self.assertIn("does not yet read `team/team.json`", readme)
+
+    def test_readme_states_what_is_supported_without_claiming_a_release(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("pull request #451", readme)
+        self.assertIn("dd2778d5", readme)
+        self.assertIn("has not been merged", readme)
+        self.assertIn("no published release", readme)
 
     def test_every_skill_is_complete_and_guidance_only(self):
         for name in self.skill_names():
             with self.subTest(skill=name):
                 self.assertRegex(name, NAME)
+                self.assertNotIn(name, PRODUCT_OWNED)
                 package = ROOT / "skills" / name
                 self.assertLessEqual(
                     {path.name for path in package.iterdir()},
@@ -111,47 +150,109 @@ class RepositoryContract(unittest.TestCase):
                     self.assertFalse((package / forbidden).exists())
                 self.assertFalse((package / "scripts").exists())
                 self.assertFalse((package / "agents").exists())
-                for artifact in package.rglob("*"):
-                    if artifact.is_file():
-                        self.assertEqual(0, artifact.stat().st_mode & 0o111)
 
-    def test_team_contract_and_role_graph_are_closed(self):
-        self.assertEqual(
-            {"schema", "name", "description", "entry_role", "roles"},
-            set(self.team),
-        )
+    def test_team_declaration_matches_the_installing_contract(self):
+        self.assertEqual({"schema", "name", "members"}, set(self.team))
         self.assertEqual(1, self.team["schema"])
-        self.assertEqual("development", self.team["name"])
-        self.assertEqual("piper", self.team["entry_role"])
-        roles = self.team["roles"]
-        names = [role["name"] for role in roles]
-        self.assertEqual(ROLE_NAMES, set(names))
+        self.assertEqual(self.manifest["name"], self.team["name"])
+        members = self.team["members"]
+        names = [member["name"] for member in members]
+        self.assertEqual(MEMBER_NAMES, set(names))
         self.assertEqual(len(names), len(set(names)))
-        by_name = {role["name"]: role for role in roles}
-        self.assertEqual(["forge", "trace", "vera"], by_name["piper"]["delegates_to"])
-        for name, role in by_name.items():
-            with self.subTest(role=name):
+        self.assertEqual(sorted(names), names)
+        skills = self.skill_names()
+        for member in members:
+            with self.subTest(member=member["name"]):
                 self.assertEqual(
-                    {"name", "path", "purpose", "delegates_to"},
-                    set(role),
+                    {
+                        "name",
+                        "description",
+                        "instructions",
+                        "skills",
+                        "delegates_to",
+                        "self_improve",
+                    },
+                    set(member),
                 )
+                name = member["name"]
                 self.assertRegex(name, NAME)
-                self.assertEqual(f"roles/{name}.md", role["path"])
-                self.assertTrue(role["purpose"].strip())
-                self.assertLessEqual(set(role["delegates_to"]), ROLE_NAMES - {name})
-                role_file = ROOT / "team" / role["path"]
-                self.assertTrue(role_file.is_file())
-                self.assertIn(f"# {name.title()}", role_file.read_text(encoding="utf-8"))
-                if name != "piper":
-                    self.assertEqual([], role["delegates_to"])
+                description = member["description"]
+                self.assertTrue(description.strip())
+                self.assertEqual(description, description.strip())
+                self.assertLessEqual(len(description), DESCRIBES_AT_MOST)
+                self.assertEqual(f"agents/{name}/AGENTS.md", member["instructions"])
+                page = ROOT / member["instructions"]
+                self.assertTrue(page.is_file())
+                self.assertTrue(page.read_text(encoding="utf-8").strip())
+                allowed = member["skills"]
+                self.assertEqual(len(allowed), len(set(allowed)))
+                self.assertLessEqual(set(allowed), skills)
+                self.assertEqual(set(), set(allowed) & PRODUCT_OWNED)
+                delegates = member["delegates_to"]
+                self.assertEqual(len(delegates), len(set(delegates)))
+                self.assertLessEqual(set(delegates), MEMBER_NAMES - {name})
+                self.assertIsInstance(member["self_improve"], bool)
+
+    def test_no_member_leads_the_team_or_keeps_weekly_upkeep(self):
+        for name, member in self.members().items():
+            with self.subTest(member=name):
+                self.assertEqual([], member["delegates_to"])
+                self.assertIs(False, member["self_improve"])
+
+    def test_every_member_has_executable_always_on_instructions(self):
+        declared = {member["instructions"] for member in self.team["members"]}
+        found = {
+            str(page.relative_to(ROOT))
+            for page in (ROOT / "agents").rglob("AGENTS.md")
+        }
+        self.assertEqual(declared, found)
+        self.assertEqual(
+            MEMBER_NAMES,
+            {path.name for path in (ROOT / "agents").iterdir() if path.is_dir()},
+        )
+        for name in MEMBER_NAMES:
+            with self.subTest(member=name):
+                home = ROOT / "agents" / name
+                self.assertEqual({"AGENTS.md"}, {p.name for p in home.iterdir()})
+                page = home / "AGENTS.md"
+                text = page.read_text(encoding="utf-8")
+                self.assertEqual(0, page.stat().st_mode & 0o111)
+                headings = tuple(re.findall(r"^#{1,2} .+$", text, re.MULTILINE))
+                self.assertEqual((f"# {name.title()}",) + MEMBER_HEADINGS, headings)
+                self.assertLessEqual(len(text.splitlines()), 200)
+                for skill in self.skill_names():
+                    self.assertNotIn(skill, text)
+
+    def test_member_instructions_forbid_self_governance_and_onward_handoff(self):
+        required = (
+            "you do not delegate",
+            "never edit, install, update, or publish",
+        )
+        for name in MEMBER_NAMES:
+            page = (ROOT / "agents" / name / "AGENTS.md").read_text(encoding="utf-8")
+            for phrase in required:
+                with self.subTest(member=name, phrase=phrase):
+                    self.assertIn(phrase, page.lower())
+
+    def test_the_superseded_role_model_is_gone(self):
+        stale = (
+            "_".join(("entry", "role")),
+            " ".join(("entry", "role")),
+            "/".join(("team", "roles")),
+            " ".join(("team", "lead")),
+            "/".join(("team", "team.json")),
+        )
+        for artifact, text in texts():
+            for phrase in stale:
+                with self.subTest(artifact=artifact.relative_to(ROOT), phrase=phrase):
+                    self.assertNotIn(phrase, text.lower())
 
     def test_skill_packages_do_not_depend_on_the_team_contract(self):
         for name in self.skill_names():
             skill = (ROOT / "skills" / name / "SKILL.md").read_text(encoding="utf-8")
             with self.subTest(skill=name):
-                self.assertNotIn("team/team.json", skill)
-                self.assertNotIn("team/roles/", skill)
-                self.assertNotIn("entry_role", skill)
+                self.assertNotIn("team.json", skill)
+                self.assertNotIn("agents/", skill)
 
     def test_repository_guides_are_identical_and_ordered(self):
         agents = (ROOT / "AGENTS.md").read_bytes()
@@ -162,8 +263,9 @@ class RepositoryContract(unittest.TestCase):
         )
 
     def test_markdown_local_links_resolve(self):
-        markdown_files = list(ROOT.rglob("*.md"))
-        for page in markdown_files:
+        for page in ROOT.rglob("*.md"):
+            if ".git" in page.parts:
+                continue
             text = page.read_text(encoding="utf-8")
             for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", text):
                 if target.startswith(("http://", "https://", "mailto:", "#")):
@@ -179,30 +281,18 @@ class RepositoryContract(unittest.TestCase):
             "/".join(("feat", "managing-development-work")),
             "_".join(("THIRD", "PARTY", "NOTICES.md")),
         )
-        for artifact in ROOT.rglob("*"):
-            if (
-                not artifact.is_file()
-                or ".git" in artifact.parts
-                or "__pycache__" in artifact.parts
-            ):
-                continue
-            text = artifact.read_text(encoding="utf-8", errors="ignore")
+        for artifact, text in texts():
             for phrase in forbidden:
                 with self.subTest(artifact=artifact.relative_to(ROOT), phrase=phrase):
                     self.assertNotIn(phrase, text)
 
-    def test_text_files_have_clean_whitespace(self):
-        for artifact in ROOT.rglob("*"):
-            if (
-                not artifact.is_file()
-                or ".git" in artifact.parts
-                or "__pycache__" in artifact.parts
-            ):
-                continue
-            text = artifact.read_text(encoding="utf-8")
+    def test_text_files_are_clean_and_never_executable(self):
+        for artifact, _ in texts():
             with self.subTest(artifact=artifact.relative_to(ROOT)):
+                text = artifact.read_text(encoding="utf-8")
                 self.assertTrue(text.endswith("\n"))
                 self.assertFalse(re.search(r"[ \t]+$", text, re.MULTILINE))
+                self.assertEqual(0, artifact.stat().st_mode & 0o111)
 
     def test_release_workflow_ties_tag_to_manifest(self):
         workflow = (ROOT / ".github" / "workflows" / "release.yml").read_text(
