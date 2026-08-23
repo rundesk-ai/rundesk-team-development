@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "name": "development",
+  "description": "Proposed Rundesk team for planning, implementing, validating, and delivering software changes.",
+  "entry_role": "piper",
+  "roles": [
+    {
+      "name": "piper",
+      "path": "roles/piper.md",
+      "purpose": "Coordinates scope, decisions, integration, proof, and delivery.",
+      "delegates_to": [
+        "forge",
+        "trace",
+        "vera"
+      ]
+    },
+    {
+      "name": "forge",
+      "path": "roles/forge.md",
+      "purpose": "Implements bounded software changes and returns local evidence.",
+      "delegates_to": []
+    },
+    {
+      "name": "trace",
+      "path": "roles/trace.md",
+      "purpose": "Investigates failures and independently evaluates evidence without mutating the product.",
+      "delegates_to": []
+    },
+    {
+      "name": "vera",
+      "path": "roles/vera.md",
+      "purpose": "Defines product and interface behavior and reviews user-facing outcomes.",
+      "delegates_to": []
+    }
+  ]
+}
