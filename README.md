@@ -32,9 +32,12 @@ its released successor.
 
 - `managing-development-work` — Scope and coordinate a software change from request through verified local completion.
 - `managing-github` — Route and verify GitHub-hosted issue, pull-request, release, and repository-delivery workflows, whether reached directly or from development work.
+- `designing-databases` — Own the engine-independent data model: normalization, identity, relationships, constraints, history and deletion, concurrency, pagination, and choosing a shape against the queries and growth it must serve.
+- `designing-apis` — Own HTTP and RESTful interface design: resources and naming, method and status-code semantics, payloads and error formats, collections and pagination, idempotency and concurrency, security boundaries, versioning and deprecation, and the OpenAPI contract.
+- `designing-ui-ux` — Own user-facing design: task flow and hierarchy, affordances and interaction states, forms and feedback, responsive and mobile behavior, accessibility, the naming of titles, labels and buttons, error recovery, and rendered verification.
+- `using-laravel` — Own Laravel backend conventions and traps: request lifecycle, validation and authorization, Eloquent, migrations, queues, caching, events, mail, scheduling, testing integration, and deployment-sensitive behavior.
 - `using-inertia` — Own the Inertia protocol seam: page responses and props, partial, deferred, once, and shared data, authorization exposure, history, assets, SSR, and adapter compatibility.
 - `using-vuejs` — Own Vue 3 and Nuxt semantics: reactivity, components, composables, Pinia and Router, SSR and hydration, rendering performance, and Vue-focused tests.
-- `using-laravel` — Own Laravel backend conventions and traps: request lifecycle, validation and authorization, Eloquent, migrations, queues, caching, events, mail, scheduling, testing integration, and deployment-sensitive behavior.
 - `using-reactjs` — Own modern React semantics: rendering purity, state ownership, effects and their alternatives, refs, context, external stores, concurrency, server and client boundaries, performance, and React-focused tests.
 - `using-mysql` — Own MySQL and InnoDB behavior: engine-specific types and character sets, keys and indexes, query plans, locks and isolation, online DDL, replication, connection pressure, and safe operational proof.
 - `using-postgres` — Own PostgreSQL behavior: types and constraints, index classes, query plans, MVCC and locking, connection and pool behavior, vacuum and bloat, row-level security and privileges, migrations, and safe operational proof.
@@ -42,9 +45,6 @@ its released successor.
 - `using-python` — Own Python language and project practice: runtime compatibility, public APIs, modules, typing, errors, resources, concurrency, performance evidence, security, documentation, and Python-focused tests.
 - `using-cpp` — Own modern C++ language and build correctness: ownership and lifetime, undefined behavior, headers and organization, toolchains and CMake targets, warnings, sanitizers, stale builds, and platform variation.
 - `using-axmol` — Own Axmol engine behavior: pinned engine version contracts, engine-object lifetime, scenes, input, UI, rendering, shaders, atlases, extensions, migration, CMake integration, and platform builds.
-- `designing-databases` — Own the engine-independent data model: normalization, identity, relationships, constraints, history and deletion, concurrency, pagination, and choosing a shape against the queries and growth it must serve.
-- `designing-apis` — Own HTTP and RESTful interface design: resources and naming, method and status-code semantics, payloads and error formats, collections and pagination, idempotency and concurrency, security boundaries, versioning and deprecation, and the OpenAPI contract.
-- `designing-ui-ux` — Own user-facing design: task flow and hierarchy, affordances and interaction states, forms and feedback, responsive and mobile behavior, accessibility, the naming of titles, labels and buttons, error recovery, and rendered verification.
 
 ## Install
 
@@ -84,6 +84,13 @@ owner applies it from a terminal.
 coordination, and proof. `managing-github` owns GitHub-hosted delivery: issues, pull requests,
 releases, and the stored-object readback after an authorized mutation. The first may hand a verified
 local result to the second; neither duplicates the other's workflow.
+
+The `designing-` packages own decisions made before implementation — the data model, the interface
+contract, and the user-facing experience — and the `using-` packages own a specific technology's
+behavior and traps. They compose along their seams and none of them requires another to be
+installed: `designing-databases` names an index consequence and the matching engine package answers
+it, `using-inertia` owns the protocol between a server framework and a client one, and `using-cpp`
+and `using-axmol` cover the language and the engine separately. Each package is useful alone.
 
 ## Repository layout
 
@@ -157,4 +164,8 @@ version in the same pull request; repository-process-only corrections do not req
 
 ## License
 
-This catalog is available under the [MIT License](LICENSE).
+This catalog is available under the [MIT License](LICENSE), with one exception:
+`designing-ui-ux` contains material modified from Anthropic's `frontend-design` Agent Skill and is
+covered by the Apache License 2.0. That package carries its own notice, the statement of
+modifications, and the full license text in
+[its source basis](skills/designing-ui-ux/references/sources.md).
