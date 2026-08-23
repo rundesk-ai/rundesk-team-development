@@ -412,4 +412,3 @@ charts, empty states, validation, conflict, system and partial-failure errors, a
 confirmation — are carried here and rewritten for a design audience, so an interface can be named
 correctly without a second package installed. That package's wider scope, covering code identifiers,
 stored data, and the product lexicon, is deliberately not reproduced.
-

@@ -66,6 +66,7 @@ def texts():
             not artifact.is_file()
             or ".git" in artifact.parts
             or "__pycache__" in artifact.parts
+            or artifact.suffix == ".png"
         ):
             continue
         yield artifact, artifact.read_text(encoding="utf-8", errors="ignore")
@@ -132,6 +133,13 @@ class RepositoryContract(unittest.TestCase):
         self.assertEqual(
             README_HEADINGS,
             tuple(re.findall(r"^## .+$", readme, re.MULTILINE)),
+        )
+        self.assertIn(
+            f"catalog-v{self.manifest['version']}-blue",
+            readme,
+        )
+        self.assertTrue(
+            (ROOT / "assets/readme/rundesk-team-development-banner.png").is_file()
         )
 
     def test_readme_states_what_is_supported_without_claiming_a_release(self):
