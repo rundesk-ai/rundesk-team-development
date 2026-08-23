@@ -68,13 +68,26 @@ def texts():
 
 
 def prose(text):
-    """Markdown with fenced and inline code removed.
+    """Markdown with code samples neutralized.
 
-    Code samples contain link-shaped text that is not a link -- Python's
-    ``def f[T](...)`` is the case that first broke the link check.
+    Code contains link-shaped text that is not a link -- Python's
+    ``def f[T](...)`` is the case that first broke the link check. Inline code
+    becomes an inert placeholder rather than being deleted, because link text
+    is frequently code: ``[`references/core.md`](references/core.md)``.
     """
     text = re.sub(r"(?ms)^```.*?^```", "", text)
-    return re.sub(r"`[^`\n]*`", "", text)
+    return re.sub(r"`[^`\n]*`", "code", text)
+
+
+def targets(page):
+    """The file names a markdown page links to, ignoring anchors and code."""
+    text = prose(page.read_text(encoding="utf-8"))
+    found = set()
+    for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", text):
+        if target.startswith(("http://", "https://", "mailto:", "#")):
+            continue
+        found.add(target.split("#", 1)[0].rsplit("/", 1)[-1])
+    return found
 
 
 class RepositoryContract(unittest.TestCase):
@@ -160,6 +173,40 @@ class RepositoryContract(unittest.TestCase):
                     self.assertFalse((package / forbidden).exists())
                 self.assertFalse((package / "scripts").exists())
                 self.assertFalse((package / "agents").exists())
+
+    def test_every_reference_is_reachable_and_one_level_deep(self):
+        """A package routes to all of its own depth, and never deeper than one hop.
+
+        An unreachable reference is dead weight the agent never loads; a
+        reference reachable only through a third file is the nesting the
+        package contract rules out.
+        """
+        for name in self.skill_names():
+            package = ROOT / "skills" / name
+            references = {
+                path.name
+                for path in (package / "references").iterdir()
+                if path.suffix == ".md"
+            } - {"validation.md"}
+            direct = references & targets(package / "SKILL.md")
+            reachable = set(direct)
+            for ref in direct:
+                reachable |= references & targets(package / "references" / ref)
+            with self.subTest(skill=name):
+                self.assertEqual(references, reachable)
+
+    def test_no_skill_routes_an_agent_to_a_validation_record(self):
+        """Validation records are maintainer artifacts, not operational references."""
+        for name in self.skill_names():
+            package = ROOT / "skills" / name
+            pages = [package / "SKILL.md"] + [
+                path
+                for path in (package / "references").iterdir()
+                if path.suffix == ".md" and path.name != "validation.md"
+            ]
+            for page in pages:
+                with self.subTest(page=page.relative_to(ROOT)):
+                    self.assertNotIn("validation.md", targets(page))
 
     def test_team_declaration_matches_the_installing_contract(self):
         self.assertEqual({"schema", "name", "members"}, set(self.team))
