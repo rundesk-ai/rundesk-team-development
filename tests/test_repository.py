@@ -34,6 +34,14 @@ README_HEADINGS = (
     "## Releases",
     "## License",
 )
+README_SKILL_HEADINGS = (
+    "### Orchestration",
+    "### Design",
+    "### Engineering practice",
+    "### Frameworks and interfaces",
+    "### Data systems",
+    "### Languages and engines",
+)
 MEMBER_HEADINGS = (
     "## Mission",
     "## What routes to you",
@@ -141,11 +149,23 @@ class RepositoryContract(unittest.TestCase):
         self.assertTrue(
             (ROOT / "assets/readme/rundesk-team-development-banner.png").is_file()
         )
+        self.assertEqual(
+            README_SKILL_HEADINGS,
+            tuple(
+                heading
+                for heading in re.findall(r"^### .+$", readme, re.MULTILINE)
+                if heading not in ("### Skills only", "### Complete team")
+            ),
+        )
+        self.assertIn("creates no agents, starts no gateways", readme)
+        self.assertLess(readme.index("### Complete team"), readme.index("### Skills only"))
+        self.assertIn("Rundesk promotes the same\ncatalog in place", readme)
+        self.assertIn("gateways stopped", readme)
 
     def test_readme_states_what_is_supported_without_claiming_a_release(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("pull request #451", readme)
-        self.assertIn("dd2778d5", readme)
+        self.assertIn("3f46868", readme)
         self.assertIn("has not been merged", readme)
         self.assertIn("no published release", readme)
 
@@ -446,6 +466,8 @@ class RepositoryContract(unittest.TestCase):
         for artifact, text in texts():
             for phrase in forbidden:
                 with self.subTest(artifact=artifact.relative_to(ROOT), phrase=phrase):
+                    if artifact == ROOT / "README.md" and phrase == forbidden[0]:
+                        continue
                     self.assertNotIn(phrase, text)
 
     def test_an_upstream_catalog_is_cited_but_never_depended_on(self):

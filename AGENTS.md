@@ -13,7 +13,7 @@ always-on instructions, and each `skills/<name>/` package owns one reusable work
 defines publication. This repository is the complete source of truth for its catalog and its team;
 do not depend on instructions, packages, or files from another repository.
 
-The installing contract is implemented by Rundesk CLI pull request #451, exact head `dd2778d5`.
+The installing contract is implemented by Rundesk CLI pull request #451, exact head `3f46868`.
 That work is open and unmerged: it is not in the CLI's main branch and not in any published CLI
 release, and this catalog itself has no published release. State that distinction accurately
 everywhere; never describe an unmerged or unpublished capability as available.
@@ -45,6 +45,7 @@ everywhere; never describe an unmerged or unpublished capability as available.
 │   ├── pull_request_template.md
 │   └── workflows/
 ├── agents/<member>/AGENTS.md
+├── assets/readme/
 ├── docs/
 ├── skills/<name>/
 │   ├── SKILL.md
@@ -85,6 +86,10 @@ or a second catalog or team declaration.
   protected weekly upkeep for that member.
 - The team has no lead and no coordinating member. Domain agents talk directly to the specialist
   they need.
+- `rundesk skills install` installs only the skill catalog: it creates no agent, starts no gateway,
+  and writes no team-ownership marker. `rundesk teams install` applies the complete guarded member
+  lifecycle and leaves every gateway stopped. A later team install promotes an existing skills-only
+  catalog in place, preserving its installed skills while adding team ownership and members.
 - Keep `AGENTS.md` and `CLAUDE.md` byte-identical. Each `agents/<member>/AGENTS.md` is its own file
   and is not mirrored here.
 
@@ -100,7 +105,7 @@ Never publish credentials, tokens, private URLs, customer or personal identifier
 language, owner-specific paths, raw private conversations, unredacted logs, unsupported claims, or
 dropped attribution. Preserve unrelated work. Never reset, discard, force-push, or rewrite another
 person's work. Never describe a capability as merged, released, or published without having observed
-it, and never run a team install or update against the live Rundesk install.
+it. Never install or update either catalog mode against the live Rundesk install.
 
 ## Delegation
 
@@ -175,10 +180,12 @@ every changed local link, open every changed external source link, inspect the c
 privacy and package-boundary failures, and forward-test materially changed guidance with a realistic
 raw task.
 
-Prove team behavior against the CLI contract named in `## Purpose` using a separate checkout of that
-exact head, a disposable `RUNDESK_HOME`, a stand-in gateway supervisor, and no network. Preview
-first and confirm that it changed nothing. Never use the live install, the installed command, or a
-real agent or gateway.
+Prove both modes against the CLI contract named in `## Purpose`, using its exact head and a
+disposable `RUNDESK_HOME`. A skills-only install must create no agent, gateway, or team marker and
+must update and remove through the ordinary skill lifecycle. Prove that a later team install promotes
+that catalog in place, reconciles every declared member, and leaves every gateway stopped. Also prove
+a direct team install from a clean root. Preview each mode first and prove it changed nothing. Never
+use the live install, the installed command, or a real agent or gateway.
 
 ## Pull requests and releases
 
@@ -197,9 +204,9 @@ unmerged content, reuse a published tag, or claim availability from publication 
 Work is complete only when the requested scope is implemented without unrelated changes; manifest,
 skill tree, README, team declaration, member instructions, attribution, and guide parity agree; the
 full suite passes with a non-zero count; applicable source, link, forward-test, and disposable
-install checks pass; `git diff --check` and the privacy review are clean; no placeholder, debug
-artifact, unexplained skip, or temporary file remains; and every claim about what is supported,
-merged, released, or published is labeled exactly as observed.
+skills-only and team install checks pass; `git diff --check` and the privacy review are clean; no
+placeholder, debug artifact, unexplained skip, or temporary file remains; and every claim about what
+is supported, merged, released, or published is labeled exactly as observed.
 
 For publication work, the pull request must report exact-head evidence and required CI must be green.
 Report every unrun check, unavailable source, failed gate, owner decision, or remaining blocker.

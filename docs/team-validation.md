@@ -12,8 +12,7 @@ an `agents/<member>/AGENTS.md`, and do not create dated run logs. Update it in p
 
 Never use the live Rundesk install, the installed command, or a real agent or gateway. Take a
 separate checkout of the CLI head named in `AGENTS.md`, point `RUNDESK_HOME` at a throwaway
-directory, close the network, and pass a stand-in gateway supervisor through the command's own
-injection point. Give the catalog as a local directory so nothing is fetched.
+directory, close the network, and give the catalog as a local directory so nothing is fetched.
 
 Cases use stable IDs. `LIFE-##` covers the installed lifecycle.
 
@@ -21,7 +20,7 @@ Cases use stable IDs. `LIFE-##` covers the installed lifecycle.
 |---|---|---|
 | LIFE-01 | The repository is read as a team declaration | Recognized as a team; four members with the declared descriptions, instructions, allowlists, empty delegation, and upkeep off |
 | LIFE-02 | Install without `--confirm` | Every member effect previewed; no agent, no catalog, and no file created |
-| LIFE-03 | Install with `--confirm` | Four agents created; `AGENTS.md` and `CLAUDE.md` byte-equal to the catalog's member file; no `MEMORY.md`; descriptions, allowed skills, empty delegation scope, and upkeep off recorded; a gateway requested for every member |
+| LIFE-03 | Install with `--confirm` | Four agents created; `AGENTS.md` and `CLAUDE.md` byte-equal to the catalog's member file; no `MEMORY.md`; descriptions, allowed skills, empty delegation scope, and upkeep off recorded; all gateways remain stopped and the manual start command is named |
 | LIFE-04 | A member name already exists as an agent | Refused, naming the exact removal command for each collision; the existing agent and the install are unchanged |
 | LIFE-05 | A grant outside the positive allowlist | Revoked on reconciliation; Rundesk's own required skill survives |
 | LIFE-06 | Deliberate local drift in instructions, memory, description, delegation, upkeep, and grants | A confirmed update repairs every one of them |
@@ -29,13 +28,14 @@ Cases use stable IDs. `LIFE-##` covers the installed lifecycle.
 | LIFE-08 | A second confirmed update with no source change | Idempotent; nothing further reported as changed |
 | LIFE-09 | A confirmed install or update from inside an agent turn | Refused; nothing installed or changed |
 | LIFE-10 | An ordinary skill catalog, including one carrying an unrelated `team.json` | Installs and updates through the ordinary skill lifecycle, unaffected |
-| LIFE-11 | This catalog offered to the ordinary skill lifecycle | Refused, redirecting to the team command |
+| LIFE-11 | This repository installed through the ordinary skill lifecycle | Skills install, update, and remove normally; no agent, gateway, or team marker is created |
 | LIFE-12 | A member's declared weekly upkeep changes | Reconciliation follows the declaration in both directions, off to on and on to off |
 | LIFE-13 | A newer catalog version changes instructions, allowed skills, delegation, and description | A confirmed update moves all four together; a skill dropped from the allowlist is revoked; outbound delegation gains Rundesk's conditional delegation skill and inbound-only members never do |
 | LIFE-14 | An owner wants to uninstall the team | **There is no way to do it.** `teams` registers only `install`, `list` and `update`, and `skills remove` refuses a team catalog |
 | LIFE-15 | A member agent removed by hand | Recreated by the next confirmed update, because the catalog still declares it |
-| LIFE-16 | A member's gateway refuses to start | Reported as incomplete activation with the exact retry command and a failing exit, never as success; everything reconciled before it was asked stays written, and the retry completes |
+| LIFE-16 | Superseded: automatic gateway activation | Not applicable; team installation and update no longer start gateways |
 | LIFE-17 | The catalog fetched the way GitHub sends it — a tarball under one wrapper directory | Unpacks, resolves the tree below the wrapper, and installs every member; a subsequent unchanged fetch still reconciles local drift rather than skipping |
+| LIFE-18 | Skills-only installation followed by complete-team installation | The catalog is promoted in place; its skills remain installed; four agents are reconciled; the team marker is added; every gateway remains stopped |
 
 ## Prove the member instructions govern behavior
 
@@ -90,13 +90,12 @@ log and not proof for untested future models.
 Last verified: 2026-08-23. Client: Claude Code 2.1.241. Model reported by the client:
 `claude-sonnet-5`. Rundesk CLI at the head named in `AGENTS.md`, driven from a separate checkout.
 
-**Lifecycle.** All seventeen `LIFE` cases pass. Isolation: a throwaway `RUNDESK_HOME` per case, proved
-to be the resolved root before the case ran; the gateway supervisor replaced by a stand-in that
-records which members were asked and starts nothing; no network; the catalog supplied as a local
-directory so nothing was fetched. The owner's login items were compared before and after every case
-and were unchanged. Each guarantee was confirmed by mutation: flipping a member's `self_improve`,
-widening its `delegates_to`, breaking an `instructions` path, emptying a member's `AGENTS.md`, and
-adding an unknown member key, a gateway that stops refusing, and a fetch that unpacks nothing were
+**Lifecycle.** LIFE-01 through LIFE-15, LIFE-17, and LIFE-18 pass; LIFE-16 is superseded. Isolation:
+a throwaway `RUNDESK_HOME` per case, proved to be the resolved root before the case ran; no network;
+the catalog supplied as a local directory so nothing was fetched. The owner's login items were
+compared before and after every case and were unchanged. Each guarantee was confirmed by mutation:
+flipping a member's `self_improve`, widening its `delegates_to`, breaking an `instructions` path,
+emptying a member's `AGENTS.md`, adding an unknown member key, and a fetch that unpacks nothing were
 each caught by the cases that claim to cover them.
 
 **Member instructions.** All twenty-four `R`/`B` cases behave as intended. Each ran in its own fresh
@@ -129,20 +128,17 @@ a member agent by hand succeeds, but the next confirmed update recreates it, bec
 still declares it. So there is no supported path to stand a team down, and no point at which an
 owner is asked whether the agents should be kept or removed.
 
-Nothing in the team lifecycle stops a gateway either. The command's supervisor boundary declares
-only `up`; `down` exists on the real supervisor but is called solely by the update and backup paths,
-never by a team operation. `rundesk agents remove` does not stop a gateway either — it refuses while
-one is running and tells the owner to run `rundesk gateways stop <agent>` first.
+Team installation and update leave gateways stopped. `rundesk agents remove` refuses while a
+gateway is running and tells the owner to run `rundesk gateways stop <agent>` first.
 
-Closing this needs a change to the CLI, not to this repository, so it is recorded here rather than
-worked around in catalog data.
+Closing the uninstall gap needs a change to the CLI, not to this repository, so it is recorded here
+rather than worked around in catalog data.
 
 ## Limits
 
 These are lifecycle and instruction-behavior tests. They do not prove a released user path: the
 installing CLI contract is an open pull request, not merged and not in a published release, and this
-catalog has no published release. No real gateway process was started — `LIFE-16` proves the failure is reported and the
-retry works, but only through the injected supervisor. No provider was contacted for a member
+catalog has no published release. No real gateway process was started. No provider was contacted for a member
 turn, and turn-admission reconciliation was exercised through its function rather than through a
 real turn. Because no gateway ran, `LIFE-15` removed a member agent that had none; against a live
 gateway `rundesk agents remove` would have refused until it was stopped. Member behavior was checked on one client and one model; other clients and later models

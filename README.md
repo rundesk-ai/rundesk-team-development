@@ -9,17 +9,18 @@
 </p>
 
 <p align="center">
-  <a href="#team"><strong>Team</strong></a>
+  <a href="#team"><strong>👥 Team</strong></a>
   &nbsp;·&nbsp;
-  <a href="#skills"><strong>Skills</strong></a>
+  <a href="#skills"><strong>🧠 Skills</strong></a>
   &nbsp;·&nbsp;
-  <a href="#install"><strong>Install</strong></a>
+  <a href="#install"><strong>🚀 Install</strong></a>
   &nbsp;·&nbsp;
-  <a href="#development"><strong>Development</strong></a>
+  <a href="#development"><strong>🛠️ Development</strong></a>
 </p>
 
 A versioned Rundesk development team: four specialists, their canonical instructions, and the
-skills they use. The repository is both an installable skill catalog and a team declaration.
+skills they use. Built for the [Rundesk CLI](https://github.com/rundesk-ai/rundesk-cli) agent
+system, this repository is both an installable skill catalog and a team declaration.
 
 ## Team
 
@@ -30,58 +31,64 @@ skills they use. The repository is both an installable skill catalog and a team 
 | `trace` | Investigates unknown failures and returns reproducible evidence without changing code. |
 | `vera` | Defines and validates user-facing behavior, usability, accessibility, and recovery. |
 
-There is no development lead. A domain agent calls the right specialist directly, keeps ownership
-of the outcome, and integrates the result. Team members do not delegate or publish externally.
+A domain agent calls the right specialist directly, keeps ownership of the outcome, and integrates
+the result.
 
 Rundesk reconciles each member from `team.json`: instructions, allowed skills, delegation, and
 weekly upkeep. The catalog replaces `AGENTS.md` and `CLAUDE.md`, removes `MEMORY.md`, and revokes
 skills outside the member's allowlist. Weekly upkeep is disabled for all four members.
 
 **Availability:** Team installation depends on Rundesk CLI pull request #451 at tested head
-`dd2778d5`. It has not been merged into CLI `main` and is in no published CLI release. This catalog
+`3f46868`. It has not been merged into CLI `main` and is in no published CLI release. This catalog
 also has no published release. Its skills install today with the current CLI; its team declaration
 requires that pull request or a released successor.
 
 ## Skills
 
-### Workflow and design
+### Orchestration
 
-- `managing-development-work` — Scope and coordinate a software change through verified local completion.
-- `managing-github` — Handle authorized GitHub issues, pull requests, releases, and delivery verification.
-- `designing-apis` — Design HTTP interfaces, resources, contracts, errors, evolution, and security boundaries.
-- `designing-databases` — Design data models, constraints, relationships, history, concurrency, and growth.
-- `designing-ui-ux` — Design task flows, states, responsive behavior, accessibility, interface text, and recovery.
-- `debugging-code` — Reproduce a failure, isolate its cause, and prove the smallest safe correction.
-- `reviewing-code` — Judge a completed change and return ranked findings with a readiness verdict.
-- `testing-code` — Choose trustworthy test boundaries and prove that tests detect the behavior they cover.
+- `managing-development-work` — Coordinate software changes through verified completion.
+- `managing-github` — Govern authorized GitHub delivery and verify stored results.
 
-### Technology
+### Design
 
-- `using-laravel` — Laravel requests, Eloquent, migrations, queues, caching, testing, and deployment behavior.
-- `using-inertia` — Inertia page responses, props, data loading, history, SSR, and adapter compatibility.
-- `using-vuejs` — Vue 3 and Nuxt reactivity, components, state, routing, SSR, performance, and tests.
-- `using-reactjs` — React rendering, state, effects, refs, concurrency, server boundaries, performance, and tests.
-- `using-tailwindcss` — CSS behavior, layout, themes, responsive states, and Tailwind v4 composition.
-- `using-mysql` — MySQL and InnoDB types, indexes, plans, locks, DDL, replication, and operations.
-- `using-postgres` — PostgreSQL types, indexes, plans, MVCC, vacuum, security, migrations, and operations.
-- `using-sqlite` — SQLite types, transactions, WAL, migrations, integrity, backups, FTS, and file constraints.
-- `using-python` — Python APIs, typing, errors, resources, concurrency, performance, security, and tests.
-- `using-cpp` — Modern C++ ownership, lifetime, undefined behavior, CMake, warnings, and platform builds.
-- `using-axmol` — Axmol lifetime, scenes, input, UI, rendering, migration, CMake, and platform builds.
+- `designing-apis` — Design HTTP resources, contracts, errors, evolution, and security.
+- `designing-databases` — Design data models, constraints, relationships, and growth.
+- `designing-ui-ux` — Design flows, states, accessibility, interface text, and recovery.
+
+### Engineering practice
+
+- `debugging-code` — Reproduce failures, isolate causes, and prove safe corrections.
+- `reviewing-code` — Judge completed changes and return ranked findings.
+- `testing-code` — Choose reliable test boundaries and prove test sensitivity.
+
+### Frameworks and interfaces
+
+- `using-laravel` — Apply Laravel conventions across backend development and operations.
+- `using-inertia` — Handle the Inertia protocol, data loading, history, and SSR.
+- `using-vuejs` — Build and test Vue 3 and Nuxt applications correctly.
+- `using-reactjs` — Build and test modern React applications correctly.
+- `using-tailwindcss` — Apply CSS behavior and Tailwind v4 composition correctly.
+
+### Data systems
+
+- `using-mysql` — Work safely with MySQL and InnoDB behavior.
+- `using-postgres` — Work safely with PostgreSQL behavior and operations.
+- `using-sqlite` — Work safely with SQLite's embedded database lifecycle.
+
+### Languages and engines
+
+- `using-python` — Build reliable, typed, secure, and tested Python software.
+- `using-cpp` — Build correct modern C++ across toolchains and platforms.
+- `using-axmol` — Build Axmol scenes, rendering, UI, and platform targets.
 
 ## Install
 
 Preview first, then confirm.
 
-Install the skill catalog with the current CLI:
+### Complete team
 
-```sh
-rundesk skills install https://github.com/rundesk-ai/rundesk-team-development
-rundesk skills install https://github.com/rundesk-ai/rundesk-team-development --confirm
-rundesk skills grant ava rundesk-team-development/managing-development-work
-```
-
-Install the team with a CLI that carries the team lifecycle:
+Install all skills and four managed agents with a CLI that carries the team lifecycle:
 
 ```sh
 rundesk teams install https://github.com/rundesk-ai/rundesk-team-development --provider <provider>
@@ -89,14 +96,36 @@ rundesk teams install https://github.com/rundesk-ai/rundesk-team-development --p
 rundesk teams update rundesk-team-development --confirm
 ```
 
-Team installation refuses an existing member name and any confirmed operation run from inside an
-agent turn. Apply it from an owner-controlled terminal.
+Team installation creates the agents with their gateways stopped. Start only the agents you want to
+use:
+
+```sh
+rundesk gateways start forge
+rundesk gateways start piper
+```
+
+Installation refuses an existing member name and any confirmed operation run from inside an agent
+turn. Apply it from an owner-controlled terminal.
+
+### Skills only
+
+Install the catalog without creating agents:
+
+```sh
+rundesk skills install https://github.com/rundesk-ai/rundesk-team-development
+rundesk skills install https://github.com/rundesk-ai/rundesk-team-development --confirm
+rundesk skills grant ava rundesk-team-development/managing-development-work
+```
+
+This mode creates no agents, starts no gateways, and follows the ordinary skill catalog lifecycle.
+You can add the complete team later with the team install command above; Rundesk promotes the same
+catalog in place and keeps its installed skills.
 
 ## Requirements
 
-- A supported Rundesk CLI and provider.
+- A supported Rundesk CLI.
 - Public GitHub access to this repository.
-- An unused local agent name for every team member.
+- For complete-team installation: a provider and an unused local name for every team member.
 
 Skills are guidance-only. They add no executable, credential, dependency, service adapter, network
 integration, or repository hook. Each package works without another catalog checkout.
