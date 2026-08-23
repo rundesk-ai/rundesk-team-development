@@ -36,6 +36,9 @@ its released successor.
 - `using-vuejs` — Own Vue 3 and Nuxt semantics: reactivity, components, composables, Pinia and Router, SSR and hydration, rendering performance, and Vue-focused tests.
 - `using-laravel` — Own Laravel backend conventions and traps: request lifecycle, validation and authorization, Eloquent, migrations, queues, caching, events, mail, scheduling, testing integration, and deployment-sensitive behavior.
 - `using-reactjs` — Own modern React semantics: rendering purity, state ownership, effects and their alternatives, refs, context, external stores, concurrency, server and client boundaries, performance, and React-focused tests.
+- `using-mysql` — Own MySQL and InnoDB behavior: engine-specific types and character sets, keys and indexes, query plans, locks and isolation, online DDL, replication, connection pressure, and safe operational proof.
+- `using-postgres` — Own PostgreSQL behavior: types and constraints, index classes, query plans, MVCC and locking, connection and pool behavior, vacuum and bloat, row-level security and privileges, migrations, and safe operational proof.
+- `using-sqlite` — Own SQLite's embedded file lifecycle: type affinity and strictness, foreign keys, transactions, WAL and single-writer behavior, migrations and integrity, backup and restore, FTS, locking, and filesystem constraints.
 
 ## Install
 
