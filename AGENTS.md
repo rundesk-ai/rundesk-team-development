@@ -13,11 +13,9 @@ always-on instructions, and each `skills/<name>/` package owns one reusable work
 defines publication. This repository is the complete source of truth for its catalog and its team;
 do not depend on instructions, packages, or files from another repository.
 
-The installing contract is implemented by Rundesk CLI pull request #451, exact head `8da43a3`.
-That work is open and unmerged: it is not in the CLI's main branch and not in any published CLI
-release, and this catalog itself has no published release. Keep that operational state in maintainer
-records and pull requests. `README.md` describes the product contract; never put pull-request heads,
-merge state, release readiness, validation evidence, or internal task memory in consumer copy.
+Rundesk CLI owns the installing contract. Keep operational state in maintainer records and pull
+requests. `README.md` describes the product contract; never put pull-request heads, merge state,
+release readiness, validation evidence, or internal task memory in consumer copy.
 
 ## Before you work
 
@@ -140,10 +138,6 @@ Separate always-on responsibility from optional capability:
   permanently active merely because they exist, and they do not assume this team's topology.
 - `managing-development-work` owns local delivery orchestration: outcome, scope, engagement mode,
   risk response, coordination, integration, and completion proof.
-- `managing-github` owns GitHub-hosted artifacts and mutations: issues, pull requests, releases,
-  deployment-branch reconciliation, target selection, authorization, and stored-object readback.
-  It does not own local implementation or generic Git work.
-
 Give every future skill a distinct trigger, decisions, workflow, and proof. Framework, language,
 database, design, planning, documentation, debugging, review, and testing skills own their domain
 method; the development-work skill may route to them but must not reproduce their manuals.
