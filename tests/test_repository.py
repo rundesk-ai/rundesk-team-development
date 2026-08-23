@@ -276,7 +276,6 @@ class RepositoryContract(unittest.TestCase):
 
     def test_repository_is_self_contained(self):
         forbidden = (
-            "/".join(("rundesk-ai", "rundesk-skills")),
             "/".join(("rundesk-ai", "rundesk-cli")),
             "/".join(("feat", "managing-development-work")),
             "_".join(("THIRD", "PARTY", "NOTICES.md")),
@@ -285,6 +284,38 @@ class RepositoryContract(unittest.TestCase):
             for phrase in forbidden:
                 with self.subTest(artifact=artifact.relative_to(ROOT), phrase=phrase):
                     self.assertNotIn(phrase, text)
+
+    def test_an_upstream_catalog_is_cited_but_never_depended_on(self):
+        """Adapted packages must credit their upstream without importing it.
+
+        MIT requires the notice to travel with adapted material, so a package's own
+        ``references/sources.md`` may name the catalog it came from. Nothing else may:
+        a sibling checkout is not part of this repository's contract.
+        """
+        upstream = "/".join(("rundesk-ai", "rundesk-skills"))
+        for artifact, text in texts():
+            provenance = (
+                artifact.parent.name == "references"
+                and artifact.name == "sources.md"
+                and artifact.parent.parent.parent.name == "skills"
+            )
+            with self.subTest(artifact=artifact.relative_to(ROOT)):
+                if provenance:
+                    continue
+                self.assertNotIn(upstream, text)
+
+    def test_every_adapted_package_records_complete_provenance(self):
+        """A citation is only honest when it names commit, path, and license."""
+        upstream = "/".join(("rundesk-ai", "rundesk-skills"))
+        for name in self.skill_names():
+            sources = ROOT / "skills" / name / "references" / "sources.md"
+            text = sources.read_text(encoding="utf-8")
+            if upstream not in text:
+                continue
+            with self.subTest(skill=name):
+                self.assertIn("## Attribution", text)
+                self.assertRegex(text, r"`[0-9a-f]{40}`")
+                self.assertIn("MIT License", text)
 
     def test_text_files_are_clean_and_never_executable(self):
         for artifact, _ in texts():

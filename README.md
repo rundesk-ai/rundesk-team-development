@@ -32,6 +32,10 @@ its released successor.
 
 - `managing-development-work` — Scope and coordinate a software change from request through verified local completion.
 - `managing-github` — Route and verify GitHub-hosted issue, pull-request, release, and repository-delivery workflows, whether reached directly or from development work.
+- `using-inertia` — Own the Inertia protocol seam: page responses and props, partial, deferred, once, and shared data, authorization exposure, history, assets, SSR, and adapter compatibility.
+- `using-vuejs` — Own Vue 3 and Nuxt semantics: reactivity, components, composables, Pinia and Router, SSR and hydration, rendering performance, and Vue-focused tests.
+- `using-laravel` — Own Laravel backend conventions and traps: request lifecycle, validation and authorization, Eloquent, migrations, queues, caching, events, mail, scheduling, testing integration, and deployment-sensitive behavior.
+- `using-reactjs` — Own modern React semantics: rendering purity, state ownership, effects and their alternatives, refs, context, external stores, concurrency, server and client boundaries, performance, and React-focused tests.
 
 ## Install
 
