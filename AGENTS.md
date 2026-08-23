@@ -13,7 +13,7 @@ always-on instructions, and each `skills/<name>/` package owns one reusable work
 defines publication. This repository is the complete source of truth for its catalog and its team;
 do not depend on instructions, packages, or files from another repository.
 
-The installing contract is implemented by Rundesk CLI pull request #451, exact head `3f46868`.
+The installing contract is implemented by Rundesk CLI pull request #451, exact head `8da43a3`.
 That work is open and unmerged: it is not in the CLI's main branch and not in any published CLI
 release, and this catalog itself has no published release. Keep that operational state in maintainer
 records and pull requests. `README.md` describes the product contract; never put pull-request heads,
