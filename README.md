@@ -42,6 +42,7 @@ its released successor.
 - `using-inertia` — Own the Inertia protocol seam: page responses and props, partial, deferred, once, and shared data, authorization exposure, history, assets, SSR, and adapter compatibility.
 - `using-vuejs` — Own Vue 3 and Nuxt semantics: reactivity, components, composables, Pinia and Router, SSR and hydration, rendering performance, and Vue-focused tests.
 - `using-reactjs` — Own modern React semantics: rendering purity, state ownership, effects and their alternatives, refs, context, external stores, concurrency, server and client boundaries, performance, and React-focused tests.
+- `using-tailwindcss` — Own CSS and styling: the cascade, layers and custom properties, layout and stacking, theming and design tokens, dark mode, responsive and container behaviour, focus and state, plus Tailwind class detection, composition, and v4 migration.
 - `using-mysql` — Own MySQL and InnoDB behavior: engine-specific types and character sets, keys and indexes, query plans, locks and isolation, online DDL, replication, connection pressure, and safe operational proof.
 - `using-postgres` — Own PostgreSQL behavior: types and constraints, index classes, query plans, MVCC and locking, connection and pool behavior, vacuum and bloat, row-level security and privileges, migrations, and safe operational proof.
 - `using-sqlite` — Own SQLite's embedded file lifecycle: type affinity and strictness, foreign keys, transactions, WAL and single-writer behavior, migrations and integrity, backup and restore, FTS, locking, and filesystem constraints.
