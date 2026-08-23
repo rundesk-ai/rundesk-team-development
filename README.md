@@ -1,125 +1,149 @@
-# Rundesk Team Development
+<h1 align="center">
+  <img src="assets/readme/rundesk-team-development-banner.png" alt="Rundesk Development Team — Forge, Piper, Vera, and Trace." width="100%">
+</h1>
 
-Rundesk's development-team package. It combines a current-format, guidance-only skill catalog with
-the proposed team definition that will prepare a future Rundesk team mode. Current Rundesk can
-install and grant the skills; it does not yet read `team/team.json` or create the four roles.
+<p align="center">
+  <a href="https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml?query=branch%3Amain"><img src="https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml/badge.svg?branch=main" alt="Build and tests"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/catalog-v0.1.0-blue?style=flat-square" alt="Catalog version 0.1.0"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/rundesk-ai/rundesk-team-development?style=flat-square" alt="MIT License"></a>
+</p>
 
-## Skills
+<p align="center">
+  <a href="#-team"><strong>👥 Team</strong></a>
+  &nbsp;·&nbsp;
+  <a href="#-skills"><strong>🧠 Skills</strong></a>
+  &nbsp;·&nbsp;
+  <a href="#-install"><strong>🚀 Install</strong></a>
+  &nbsp;·&nbsp;
+  <a href="#-development"><strong>🛠️ Development</strong></a>
+</p>
 
-- `managing-development-work` — Scope and coordinate a software change from request through verified local completion.
-- `managing-github` — Route and verify GitHub-hosted issue, pull-request, release, and repository-delivery workflows, whether reached directly or from development work.
+A versioned Rundesk development team: four specialists, their canonical instructions, and the
+skills they use. Built for the [Rundesk CLI](https://github.com/rundesk-ai/rundesk-cli) agent
+system, this repository is both an installable skill catalog and a team declaration.
 
-## Install
+## 👥 Team
 
-Preview the catalog before changing an install, then confirm it and grant only the skills an agent
-needs:
+| Member | Responsibility |
+|---|---|
+| `forge` | Implements bounded changes and the tests that prove them. |
+| `piper` | Reviews completed work for correctness, safety, compatibility, and readiness. |
+| `trace` | Investigates unknown failures and returns reproducible evidence without changing code. |
+| `vera` | Defines and validates user-facing behavior, usability, accessibility, and recovery. |
+
+A domain agent calls the right specialist directly, keeps ownership of the outcome, and integrates
+the result.
+
+Rundesk keeps each member's instructions and skill access aligned with this catalog.
+
+## 🧠 Skills
+
+### Orchestration
+
+- `managing-development-work` — Coordinate software changes through verified completion.
+- `managing-github` — Govern authorized GitHub delivery and verify stored results.
+
+### Design
+
+- `designing-apis` — Design HTTP resources, contracts, errors, evolution, and security.
+- `designing-databases` — Design data models, constraints, relationships, and growth.
+- `designing-ui-ux` — Design flows, states, accessibility, interface text, and recovery.
+
+### Engineering practice
+
+- `debugging-code` — Reproduce failures, isolate causes, and prove safe corrections.
+- `reviewing-code` — Judge completed changes and return ranked findings.
+- `testing-code` — Choose reliable test boundaries and prove test sensitivity.
+
+### Frameworks and interfaces
+
+- `using-laravel` — Apply Laravel conventions across backend development and operations.
+- `using-inertia` — Handle the Inertia protocol, data loading, history, and SSR.
+- `using-vuejs` — Build and test Vue 3 and Nuxt applications correctly.
+- `using-reactjs` — Build and test modern React applications correctly.
+- `using-tailwindcss` — Apply CSS behavior and Tailwind v4 composition correctly.
+
+### Data systems
+
+- `using-mysql` — Work safely with MySQL and InnoDB behavior.
+- `using-postgres` — Work safely with PostgreSQL behavior and operations.
+- `using-sqlite` — Work safely with SQLite's embedded database lifecycle.
+
+### Languages and engines
+
+- `using-python` — Build reliable, typed, secure, and tested Python software.
+- `using-cpp` — Build correct modern C++ across toolchains and platforms.
+- `using-axmol` — Build Axmol scenes, rendering, UI, and platform targets.
+
+## 🚀 Install
+
+Preview first, then confirm.
+
+### Complete team
+
+Install all skills and four managed agents:
+
+```sh
+rundesk teams install https://github.com/rundesk-ai/rundesk-team-development --provider <provider>
+rundesk teams install https://github.com/rundesk-ai/rundesk-team-development --provider <provider> --confirm
+```
+
+Team installation creates the agents with their gateways stopped. Start only the agents you want to
+use:
+
+```sh
+rundesk gateways start <agent>
+```
+
+Run installation from your terminal. To update the team later:
+
+```sh
+rundesk teams update rundesk-team-development --confirm
+```
+
+### Skills only
+
+Install the catalog without creating agents:
 
 ```sh
 rundesk skills install https://github.com/rundesk-ai/rundesk-team-development
 rundesk skills install https://github.com/rundesk-ai/rundesk-team-development --confirm
-rundesk skills grant ava rundesk-team-development/managing-development-work
+rundesk skills grant <agent> rundesk-team-development/managing-development-work
 ```
 
-Installation grants no skills automatically. The catalog name owns updates; each skill name owns
-grants:
+This installs only the skills. You can add the complete team later without reinstalling them.
 
-```sh
-rundesk skills update rundesk-team-development
-rundesk skills update rundesk-team-development --confirm
-rundesk skills grant ava rundesk-team-development/managing-github
-```
+## ✅ Requirements
 
-## Requirements
+- A supported Rundesk CLI.
+- Public GitHub access to this repository.
+- For complete-team installation: a provider and an unused local name for every team member.
 
-- The catalog is public and installs from its GitHub repository with the current Rundesk CLI.
-- Packages are guidance-only. They ship no executable, credential, dependency, service adapter, or
-  network integration.
-- Skills may describe local development tools and GitHub CLI operations. The active task and target
-  repository rules still control whether any mutation is authorized.
-- Each package works without another catalog checkout. Related skills may compose when installed,
-  but no package makes another skill a runtime dependency.
+Skills are self-contained guidance that agents load when relevant.
 
-`managing-development-work` owns the local delivery contract: scope, mode, risk response,
-coordination, and proof. `managing-github` owns GitHub-hosted delivery: issues, pull requests,
-releases, and the stored-object readback after an authorized mutation. The first may hand a verified
-local result to the second; neither duplicates the other's workflow.
+## 🛠️ Development
 
-The proposed team starts with Piper as its accountable entry role. Piper may hand bounded work to
-Forge for implementation, Trace for read-only investigation and review, or Vera for product and
-interface design. The role files define responsibility and handoff; the skills remain reusable and
-do not depend on those role names.
-
-## Repository layout
-
-```text
-.
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   ├── pull_request_template.md
-│   └── workflows/
-├── docs/
-├── skills/<name>/
-│   ├── SKILL.md
-│   └── references/
-├── team/
-│   ├── team.json
-│   └── roles/
-│       ├── forge.md
-│       ├── piper.md
-│       ├── trace.md
-│       └── vera.md
-├── tests/test_repository.py
-├── AGENTS.md
-├── CLAUDE.md
-├── README.md
-├── RELEASING.md
-├── LICENSE
-└── manifest.json
-```
-
-## Development
-
-Read [AGENTS.md](AGENTS.md) before changing the repository. The complete offline gate is:
+Read [AGENTS.md](AGENTS.md), then run the complete offline gate:
 
 ```sh
 python3 -m unittest discover -s tests -v
 git diff --check
 ```
 
-Skill changes also require verification of every relied-on source link and a realistic forward test
-when guidance materially changes. [Validating Skills](docs/validation.md) defines the shared method;
-each skill keeps its current cases and provider evidence in `references/validation.md`.
+Skill changes also require verified source links and realistic forward tests. See
+[skill validation](docs/validation.md) and [team validation](docs/team-validation.md).
 
-## Creating a skill catalog
+## 🤝 Contributing
 
-This repository is the complete catalog contract: `manifest.json` identifies the installable
-catalog, `skills/<name>/SKILL.md` supplies provider-compatible `name` and `description` frontmatter,
-and the offline suite validates discovery, package boundaries, role structure, and documentation
-parity. No sibling checkout or external catalog guide is required to develop or install it.
+Use the repository templates:
 
-The catalog contains researched judgment rather than condensed manuals. Search existing packages
-before adding one, make routing descriptions discriminate between neighboring skills, keep one
-source of truth per rule, and record the evidence behind each material lesson in
-`references/sources.md`.
-
-## Contributing
-
-Use the repository templates to keep work bounded and reviewable:
-
-- [Report a reproducible bug](.github/ISSUE_TEMPLATE/bug-report.md)
+- [Report a bug](.github/ISSUE_TEMPLATE/bug-report.md)
 - [Propose a change](.github/ISSUE_TEMPLATE/change-proposal.md)
 - [Prepare a pull request](.github/pull_request_template.md)
 
-Adding, removing, or renaming a skill updates this README, the package tree, tests, and compatibility
-notes together. Never publish credentials, customer data, private-project language, personal
-identifiers, or owner-specific paths.
+Keep the README, manifest, tests, team declaration, member instructions, and package tree in sync.
 
-## Releases
+## 📄 License
 
-Published skill behavior follows [RELEASING.md](RELEASING.md). Iteration may remain at `0.1.0` until
-that version is first published. After publication, content changes update the manifest version in
-the same pull request; repository-process-only corrections do not require a version bump.
-
-## License
-
-This catalog is available under the [MIT License](LICENSE).
+MIT, except material in `designing-ui-ux` adapted under Apache License 2.0. See that package's
+[source basis](skills/designing-ui-ux/references/sources.md).

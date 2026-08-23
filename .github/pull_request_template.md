@@ -46,7 +46,7 @@
 - [ ] Every skill remains guidance-only: no script, executable, `rundesk.json`, credential, service adapter, or network call was added.
 - [ ] Each touched skill's name, routing description, core guidance, references, and package layout follow `AGENTS.md`.
 - [ ] Each touched `references/sources.md` maps concrete claims to verified sources and separates source facts from catalog conclusions.
-- [ ] `README.md`, `manifest.json`, `tests/test_repository.py`, `skills/`, and `team/` agree.
+- [ ] `README.md`, `manifest.json`, `tests/test_repository.py`, `skills/`, `team.json`, and `agents/` agree.
 - [ ] Any required semantic `manifest.json` version change follows `RELEASING.md` and is stated below.
 
 ## Release
@@ -65,6 +65,6 @@
 
 ## Agent
 
-<!-- Replace the placeholder with the filing agent's display name. Do not add provider, model, tool, session, or generated-by branding. -->
+<!-- Only for a named agent: replace the placeholder with its name and keep this section. Anyone else deletes the section entirely. Never add provider, model, tool, session, or generated-by branding. -->
 
 🤖 by <Agent>
