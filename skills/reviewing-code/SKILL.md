@@ -107,3 +107,10 @@ verdict:
 
 If there are no findings, say `No material findings` and name any material area not validated. This
 means no demonstrated defect was found in scope; it does not prove correctness.
+
+## Load the depth the task needs
+
+- [test-adequacy.md](references/test-adequacy.md) — judging what a suite proves, what it misses, and
+  reporting a coverage gap as a finding rather than a preference.
+- [compatibility-and-migrations.md](references/compatibility-and-migrations.md) — reviewing a change
+  to stored data or a published contract, where both versions run at once.

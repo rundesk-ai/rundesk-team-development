@@ -83,4 +83,13 @@ Coverage locates unexercised code; it does not prove assertions or justify an in
 Report the behavior, boundary, command, result, counts, real dependencies, and unresolved paths. Do
 not claim more than the evidence covers.
 
+## Load the depth the task needs
+
+- [boundaries-and-doubles.md](references/boundaries-and-doubles.md) — the double vocabulary, stub
+  versus mock, and which dependencies to keep real.
+- [flaky-diagnosis.md](references/flaky-diagnosis.md) — reproducing a flake, isolating which axis
+  causes it, and fixing by category.
+- [proving-teeth.md](references/proving-teeth.md) — breaking the code to prove the test detects it,
+  safely, and what a false pass looks like.
+
 Read [the source map](references/sources.md) when auditing, changing, or extending these rules.

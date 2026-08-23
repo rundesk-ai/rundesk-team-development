@@ -1,7 +1,5 @@
 # Typing
 
-Read this when adding, reviewing, or arguing about type annotations.
-
 Annotations are static metadata. The `typing` docs are explicit: "the Python runtime does not enforce
 function and variable type annotations." Nothing here changes behaviour at run time unless a library
 such as Pydantic reads the annotations and validates deliberately.
@@ -155,11 +153,3 @@ Types that nothing checks are comments that drift.
 - **`@runtime_checkable` does not check signatures**, only attribute presence.
 - **Deferred annotation evaluation changed in 3.14** (PEP 649). Code that reads `__annotations__`
   directly should go through `inspect.get_annotations()` or `typing.get_type_hints()`.
-
-## Sources
-
-- [`typing` — support for type hints](https://docs.python.org/3/library/typing.html) — deprecated aliases, `Protocol`, `@runtime_checkable` limits, `TypedDict`, `Self`, `Literal`, `Final`, `NewType`, and the runtime-enforcement note
-- [Typing best practices](https://typing.python.org/en/latest/reference/best_practices.html) — the typing council's guidance
-- [mypy documentation](https://mypy.readthedocs.io/) — `--strict` as a goal, incremental adoption flags, unannotated bodies going unchecked, `Any` hiding bugs, duck-typed parameters
-- [PEP 484 — Type hints](https://peps.python.org/pep-0484/) · [PEP 544 — Protocols](https://peps.python.org/pep-0544/) · [PEP 604 — Union types](https://peps.python.org/pep-0604/) · [PEP 649 — Deferred annotation evaluation](https://peps.python.org/pep-0649/) · [PEP 695 — Type parameter syntax](https://peps.python.org/pep-0695/)
-- [Ruff `flake8-type-checking` (TC)](https://docs.astral.sh/ruff/rules/#flake8-type-checking-tc) · [`flake8-annotations` (ANN)](https://docs.astral.sh/ruff/rules/#flake8-annotations-ann)

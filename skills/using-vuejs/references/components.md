@@ -1,7 +1,5 @@
 # Components
 
-Read this for a component's inputs, outputs, list identity, composition, or styles.
-
 ## Keep ownership visible
 
 Declare typed or runtime-validated props and emits. Props are read-only bindings; nested objects are
@@ -63,5 +61,3 @@ loop variable. Filter with a computed, or move `v-if` to a wrapper when hiding t
   prefer a class strategy so consumers can override styles.
 - In `scoped` CSS, prefer classes over large numbers of element selectors; Vue documents the latter
   as slower after attribute rewriting.
-
-Evidence: [component lessons in sources.md](sources.md#components).

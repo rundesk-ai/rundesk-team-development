@@ -1,8 +1,7 @@
 # Naming stored data
 
-Read this whenever you add or rename a table, column, key, enum value, or timestamp. These names
-outlive every screen built on them: a column survives three interface redesigns and four engineers.
-Name it for the person reading it in 2031 with no context.
+These names outlive every screen built on them: a column survives three interface redesigns and
+four engineers. Name it for the person reading it in 2031 with no context.
 
 Naming is part of designing the schema, not a tidy-up pass afterwards. A column you cannot name is
 usually a column you have not finished modelling.
@@ -178,5 +177,3 @@ expand, migrate, deprecate, contract — rather than renaming in place.
 
 Prefer getting the name right for new work, and assess migrations, reports, integrations, and
 rollback before renaming stable owned data.
-
-Claim-to-source mapping is in [sources.md](sources.md).

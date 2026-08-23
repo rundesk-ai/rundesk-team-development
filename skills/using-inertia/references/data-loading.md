@@ -1,8 +1,5 @@
 # Inertia data loading
 
-Read this when a page sends too much, runs avoidable queries, or needs secondary data after the first
-render.
-
 ## Choose prop evaluation deliberately
 
 | Server form | Standard visit | Partial reload | Evaluation |
@@ -94,6 +91,3 @@ both the requested props and the expensive closures that should not run.
 Inertia already throttles polling by 90% in background tabs. Prefetch on `mount`, `hover`, or `click`
 according to actual navigation intent and choose a finite cache lifetime; do not add every strategy
 by default.
-
-The evaluation rules and practitioner evidence for repeated shared payloads are mapped in
-[`sources.md`](sources.md).

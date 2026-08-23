@@ -1,7 +1,7 @@
 # C++ review checklist
 
-Read this for a broad review. Rank UB, lifetime, races, and wrong results above idiom or style. Each
-row names the cheapest useful proof; use the focused reference when the trigger needs more depth.
+Rank UB, lifetime, races, and wrong results above idiom or style. Each row names the cheapest
+useful proof; use the focused reference when the trigger needs more depth.
 
 ## Ownership and classes
 
@@ -58,6 +58,3 @@ row names the cheapest useful proof; use the focused reference when the trigger 
 Do not modernize beyond the configured standard, reformat unrelated code, or broaden a fix while
 collecting evidence. Use [ownership](ownership-and-lifetime.md), [undefined behavior](undefined-behavior.md),
 [tooling](tooling.md), and [build-loop diagnostics](build-loop-traps.md) when a row triggers.
-
-The [source basis](sources.md) maps these practices to the C++ Core Guidelines, cppreference,
-toolchain documentation, analyzer catalogs, and practitioner guidance.

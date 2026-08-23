@@ -1,8 +1,5 @@
 # React concurrency and Suspense
 
-Read this when an update blocks typing, a spinner flashes, a boundary catches the wrong thing, or
-two components disagree within one commit.
-
 ## Know which behavior concurrency actually changes
 
 Concurrent rendering means React may start a render, pause it, discard it, or run it again before
@@ -82,5 +79,3 @@ line up.
 Verification is the input remaining responsive while the expensive region lags, the fallback
 appearing exactly where intended, and no torn value across components in one commit. A green unit
 test that renders the component once proves none of that.
-
-Claim-to-source mapping is in [sources.md](sources.md).

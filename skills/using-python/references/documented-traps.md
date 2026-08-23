@@ -271,15 +271,3 @@ repository still pinned to either is worth flagging — but do not raise its flo
 3. Anything that leaks — `lru_cache` on methods, unowned tasks, unclosed resources.
 4. Anything that will stop working — deprecations against the declared floor.
 5. Style and simplification last.
-
-## Sources
-
-- [Python Programming FAQ](https://docs.python.org/3/faq/programming.html) — mutable defaults, late binding, assignment semantics, `is` vs `==`, scope, `+=` on tuple members, string-concatenation cost, circular imports
-- [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) — the `B0xx` catalog quoted throughout
-- [Ruff rules](https://docs.astral.sh/ruff/rules/) — `B`, `DTZ`, `LOG`, `G`, `ASYNC`, `S`, `SIM`, `PERF`, `PTH`, `TRY` families
-- [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) — default-factory, field ordering, `eq`/`frozen`/`hash`, `slots`, `replace`, `__post_init__`
-- [`asyncio` coroutines and tasks](https://docs.python.org/3/library/asyncio-task.html) and [Developing with asyncio](https://docs.python.org/3/library/asyncio-dev.html) — weak task references, blocking calls, un-awaited coroutines
-- [Deprecations index](https://docs.python.org/3/deprecations/index.html) — the removal schedule
-- [What's new in Python 3.13](https://docs.python.org/3/whatsnew/3.13.html) — the PEP 594 removals
-- [Facts and myths about Python names and values](https://nedbatchelder.com/text/names.html) — **Ned Batchelder**; the canonical model and the "mutable presto-chango"
-- [hasattr() — a dangerous misnomer](https://hynek.me/articles/hasattr/) · [Please fix your decorators](https://hynek.me/articles/decorators/) · [Subclassing in Python redux](https://hynek.me/articles/python-subclassing-redux/) — **Hynek Schlawack**, author of `attrs` and `structlog`

@@ -1,7 +1,5 @@
 # Separation of concerns
 
-Read this when logic is difficult to test or a component coordinates several unrelated effects.
-
 ## Put logic at its narrowest useful scope
 
 | Logic | Default home | Escalate when |
@@ -43,5 +41,3 @@ component merely to satisfy a folder pattern.
 These are correctness constraints. File layout, component naming beyond the essential style rules,
 and container/presentational splits are team conventions unless a demonstrated dependency problem
 makes them necessary.
-
-Evidence: [design-boundary lessons in sources.md](sources.md#separation-and-determinism).

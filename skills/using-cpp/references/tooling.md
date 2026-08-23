@@ -1,7 +1,5 @@
 # Tooling
 
-Read this before debugging suspected memory corruption, UB, races, or a native process by hand.
-
 ## Match the diagnostic to the failure
 
 | Symptom | First tool | What success looks like |
@@ -79,6 +77,4 @@ time, Clang’s `-ftime-trace` can identify expensive translation units and head
 4. Run TSan separately when shared-memory concurrency exists.
 5. Ratchet clang-tidy and formatting over changed code.
 
-See [the source basis](sources.md#undefined-behavior-and-diagnostics) for sanitizer contracts and
-[tooling-and-practitioner-guidance](sources.md#tooling-and-practitioner-guidance) for analyzer,
 debugger, and community practice.

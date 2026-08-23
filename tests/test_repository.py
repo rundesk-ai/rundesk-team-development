@@ -199,6 +199,46 @@ class RepositoryContract(unittest.TestCase):
             with self.subTest(skill=name):
                 self.assertEqual(references, reachable)
 
+    def test_only_the_source_map_carries_sources(self):
+        """Citations live in one file per package, and references never repeat them.
+
+        A reference is already loaded by the time it is read, so a per-page
+        source list is duplicated context the agent pays for twice.
+        """
+        for name in self.skill_names():
+            package = ROOT / "skills" / name
+            self.assertIn(
+                "references/sources.md",
+                (package / "SKILL.md").read_text(encoding="utf-8"),
+                f"{name} must point at its source map once, from SKILL.md",
+            )
+            for page in (package / "references").iterdir():
+                if page.suffix != ".md" or page.name in ("sources.md", "validation.md"):
+                    continue
+                text = page.read_text(encoding="utf-8")
+                with self.subTest(page=page.relative_to(ROOT)):
+                    self.assertNotIn("## Sources", text)
+                    self.assertNotIn("sources.md", targets(page))
+
+    def test_a_reference_opens_with_content_not_routing(self):
+        """SKILL.md says when to read a reference; the reference does not repeat it."""
+        for name in self.skill_names():
+            for page in (ROOT / "skills" / name / "references").iterdir():
+                if page.suffix != ".md" or page.name in ("sources.md", "validation.md"):
+                    continue
+                body = [
+                    line
+                    for line in page.read_text(encoding="utf-8").splitlines()[1:]
+                    if line.strip()
+                ]
+                if not body:
+                    continue
+                with self.subTest(page=page.relative_to(ROOT)):
+                    self.assertFalse(
+                        re.match(r"^(Read this|Read it|Read these)\b", body[0]),
+                        "an opener that only restates the routing row is duplicated context",
+                    )
+
     def test_no_skill_routes_an_agent_to_a_validation_record(self):
         """Validation records are maintainer artifacts, not operational references."""
         for name in self.skill_names():

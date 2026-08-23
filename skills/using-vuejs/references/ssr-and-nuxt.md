@@ -1,7 +1,5 @@
 # SSR and Nuxt
 
-Read this for hydration warnings, server-only failures, request-state leaks, or Nuxt fetching.
-
 ## Diagnose hydration instead of suppressing it
 
 | Symptom source | Cause | Preferred replacement |
@@ -61,5 +59,3 @@ same explicit key when the data should be shared.
 Private runtime-config keys remain server-only; `runtimeConfig.public` is the application namespace
 for values intentionally exposed to the client. Consume credentials from server routes; never move a
 secret under `public` to make browser code see it.
-
-Evidence: [SSR and Nuxt lessons in sources.md](sources.md#ssr-and-nuxt).

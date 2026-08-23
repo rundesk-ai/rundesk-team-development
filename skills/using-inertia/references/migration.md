@@ -1,7 +1,5 @@
 # Inertia v2 to v3 migration
 
-Read this before upgrading or applying an online example that names an unavailable API.
-
 ## Identify both installed halves
 
 The client package and server adapter version independently. Record both before interpreting advice:
@@ -58,5 +56,4 @@ function layout components assigned directly to `.layout` must be wrapped in an 
 Translate older advice only after checking the v3 guide. The protocol's prop evaluation and redirect
 model remain useful; identifiers and configuration may not.
 
-See [`sources.md`](sources.md) for the upgrade guide, registries, release coverage, and exact claim
 mapping.

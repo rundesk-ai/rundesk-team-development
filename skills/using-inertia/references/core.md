@@ -1,6 +1,5 @@
 # Inertia core
 
-Read this for page props, mutations, validation, authorization, history, assets, SSR, and tests.
 Read [`data-loading.md`](data-loading.md) when the failure is payload or query cost.
 
 ## Make the prop contract public on purpose
@@ -105,6 +104,3 @@ Assert the component, required prop shape, and forbidden fields. For Laravel, us
 fields that must never ship, `reloadOnly()` or `reloadExcept()` for partial reloads, and
 `loadDeferredProps()` for deferred data. For SSR, verify returned HTML rather than only client
 hydration.
-
-The exact contracts, community failure reports, and version boundary are mapped in
-[`sources.md`](sources.md).

@@ -190,6 +190,83 @@ live with the language:
 - Version-specific screenshots and UI walkthroughs, which age faster than the tools.
 - "Top N debugging tips" posts with no mechanism behind the advice.
 
+
+## Herd
+
+- Herd command line for [macOS](https://herd.laravel.com/docs/macos/advanced-usage/herd-cli) and
+  [Windows](https://herd.laravel.com/docs/windows/advanced-usage/command-line) — site, PHP, TLS,
+  debugging, logging, and service commands; verified against Herd 1.28.0 on August 7, 2026
+- [Sites](https://herd.laravel.com/docs/macos/getting-started/sites) and
+  [managing sites](https://herd.laravel.com/docs/macos/sites/managing-sites) — parked versus linked
+  directories, per-site isolation, and the destructive Site Manager delete action; the
+  [changelog](https://herd.laravel.com/docs/macos/changelog/index) records `herd link` updating
+  `.env` `APP_URL` and later adding `--update-env` to force that rewrite
+- [macOS common issues](https://herd.laravel.com/docs/macos/troubleshooting/common-issues) and
+  [Windows common issues](https://herd.laravel.com/docs/windows/troubleshooting/common-issues) —
+  platform-specific 404, bad gateway, DNS, helper, and log evidence
+- [Dumps](https://herd.laravel.com/docs/macos/debugging/dumps) — early PHP extension injection and
+  capture-feature isolation
+- [Browser-versus-CLI PHP mismatch](https://github.com/beyondcode/herd-community/issues/831) and
+  [CLI ini mismatch](https://github.com/beyondcode/herd-community/issues/267) — Herd maintainer
+  diagnoses of real failures caused by a different PHP or ini on the command path
+
+## Laravel
+
+- [Error handling](https://laravel.com/docs/13.x/errors) — the `bootstrap/app.php` handler, `report()`, log context, log levels, throttling, and the `APP_DEBUG` production warning
+- [Logging](https://laravel.com/docs/13.x/logging) · [Telescope](https://laravel.com/docs/13.x/telescope) — "not recommended for production environments" · [Pulse](https://laravel.com/docs/13.x/pulse)
+- [Queues](https://laravel.com/docs/13.x/queues) — failed jobs, `failed()`, `afterCommit`, timeout vs retry_after
+- [Configuration](https://laravel.com/docs/13.x/configuration) — the `config:cache` / `env()` warning
+- [Eloquent](https://laravel.com/docs/13.x/eloquent) — `preventLazyLoading`, and mass operations not firing events
+- [Nightwatch vs Telescope](https://nightwatch.laravel.com/nightwatch-vs-telescope) — which tool answers which question
+- [Debugging and logging in Laravel applications](https://laravel-news.com/debugging-and-logging-in-laravel-applications) — Laravel News
+- `using-laravel` in this catalog for the underlying rules these symptoms violate
+
+## Python
+
+- [`pdb`](https://docs.python.org/3/library/pdb.html) — `breakpoint()`, `PYTHONBREAKPOINT`, post-mortem, conditional breakpoints, `display`, `interact`, `-m pdb -p`
+- [Python Development Mode](https://docs.python.org/3/library/devmode.html) — every check `-X dev` enables, and the faulthandler caveat about hangs
+- [`faulthandler`](https://docs.python.org/3/library/faulthandler.html) · [`tracemalloc`](https://docs.python.org/3/library/tracemalloc.html) — snapshot comparison for leaks
+- [`traceback`](https://docs.python.org/3/library/traceback.html) · [`logging`](https://docs.python.org/3/library/logging.html) — `logger.exception`
+- [`profile` and `cProfile`](https://docs.python.org/3/library/profile.html) — measure before optimizing
+- [py-spy](https://github.com/benfred/py-spy) — `dump` for hung processes, `--locals`, production safety
+- [Python Programming FAQ](https://docs.python.org/3/faq/programming.html) — circular imports, `importlib.reload` and stale instances
+- [pytest — how to invoke](https://docs.pytest.org/en/stable/how-to/usage.html) — `-x`, `--lf`, `--pdb`
+- `using-python` in this catalog, especially `documented-traps.md`, for the failures behind these symptoms
+
+## React
+
+- [React Developer Tools](https://react.dev/learn/react-developer-tools) and
+  [`<Profiler>`](https://react.dev/reference/react/Profiler) establish the Components and Profiler
+  panels, render attribution, and that profiling adds overhead.
+- [`<StrictMode>`](https://react.dev/reference/react/StrictMode) establishes exactly what is
+  double-invoked and that it is development-only.
+- [`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore) establishes the
+  cached-snapshot requirement, the `getSnapshot should be cached` error and its loop, and the
+  server-snapshot contract behind the hydration case.
+- [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot) establishes hydration
+  mismatch reporting and per-element suppression.
+- [`createRoot`](https://react.dev/reference/react-dom/client/createRoot) establishes
+  `onUncaughtError` and `onCaughtError`, and the
+  [React 19 upgrade guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) establishes that
+  render errors are no longer re-thrown and now reach `window.reportError` or `console.error`.
+- [Error boundaries](https://react.dev/reference/react/Component#static-getderivedstatefromerror)
+  establish fallback capture, which is why a boundary can hide a failure.
+- The [error decoder](https://react.dev/errors) maps a minified production error code to its message.
+
+The symptom-ordering tables and the trap list are this package's operational conclusions, not claims
+made by those pages. Links checked 23 August 2026.
+
+## Vue
+
+- [Vue DevTools features](https://devtools.vuejs.org/getting-started/features) — what each tab answers
+- [Vue DevTools FAQ](https://devtools-v6.vuejs.org/guide/faq) — lazy reactivity and force refresh
+- [Reactivity in depth](https://vuejs.org/guide/extras/reactivity-in-depth) — `onRenderTracked` / `onRenderTriggered` and the `debugger` technique
+- [Composition API lifecycle hooks](https://vuejs.org/api/composition-api-lifecycle) · [Watchers](https://vuejs.org/guide/essentials/watchers.html) — `onTrack` / `onTrigger`
+- [Server-side rendering](https://vuejs.org/guide/scaling-up/ssr.html) — the three documented mismatch causes and the automatic-recovery cost
+- [Performance](https://vuejs.org/guide/best-practices/performance.html) — `app.config.performance`, prop stability
+- [Nuxt data fetching](https://nuxt.com/docs/4.x/getting-started/data-fetching) — the double-fetch warning
+- [Debugging guide: why your Vue component isn't updating](https://michaelnthiessen.com/debugging-guide-why-your-component-isnt-updating) — **Michael Thiessen**; the practical checklist this page's first table is built on
+- `using-vuejs` in this catalog for the underlying rules these symptoms violate
 ## Attribution
 
 This package adapts `skills/debugging-code/` from the Rundesk skills catalog at

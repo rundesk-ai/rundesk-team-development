@@ -1,7 +1,5 @@
 # Composables
 
-Read this when extracting or reviewing reusable stateful logic.
-
 ## Make inputs stay reactive
 
 Accept `MaybeRefOrGetter<T>` when callers may pass a value, ref, or getter. Normalize with `toValue`
@@ -45,5 +43,3 @@ self-cleaning. A function with no reactivity or lifecycle does not gain anything
 
 Do not hoist user-specific refs to module scope in an SSR application. The module is reused between
 requests; create app-scoped state with `createX` plus provide/inject, or use Pinia.
-
-Evidence: [composable lessons in sources.md](sources.md#composables-and-effect-lifetimes).

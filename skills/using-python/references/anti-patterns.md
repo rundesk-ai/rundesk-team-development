@@ -114,13 +114,3 @@ language-neutral concern.
 4. If the repository already does it this way consistently, say so and defer. PEP 8 is explicit that
    consistency with surrounding code can outweigh a general recommendation, and an isolated
    "improvement" is just a second convention.
-
-## Sources
-
-- [PEP 8](https://peps.python.org/pep-0008/) and [PEP 20](https://peps.python.org/pep-0020/) — the readability and consistency baseline
-- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) — explicit dos and don'ts on mutable global state, nesting, properties, focused functions, and import-safe entry points
-- [Python anti-patterns catalog](https://docs.quantifiedcode.com/python-anti-patterns/) — the community catalog behind the idiom and maintainability tables
-- [Stop Writing Classes](https://www.youtube.com/watch?v=o9pEzgHorH0) — **Jack Diederich**, PyCon 2012; the class-that-should-be-a-function case
-- [Subclassing in Python redux](https://hynek.me/articles/python-subclassing-redux/) — **Hynek Schlawack** on composition over inheritance
-- [Python Programming FAQ](https://docs.python.org/3/faq/programming.html) — string-concatenation cost, mutation semantics
-- [Ruff rules](https://docs.astral.sh/ruff/rules/) — `SIM`, `PERF`, `PTH`, `RET`, `ARG`, `PIE` encode much of the idiom table as checkable rules

@@ -1,7 +1,5 @@
 # Setup and build
 
-Read this for engine setup, axslcc failures, CMake configuration, extensions, or slow rebuilds.
-
 ## Configure cannot find axslcc
 
 **Cause:** the engine checkout's setup has not populated its gitignored tools, or the tools belong to
@@ -70,5 +68,4 @@ afterward to reduce unavoidable compile cost; do not let it hide a reconfigure l
 For corrupted/raced build directories, duplicate macOS bundles, and stale artifacts, use
 the build-loop guidance in `using-cpp` instead of duplicating it here.
 
-See [the source basis](sources.md#setup-build-and-extensions) for DevSetup, FAQ, template options,
 extension documentation, and the community build discussion.

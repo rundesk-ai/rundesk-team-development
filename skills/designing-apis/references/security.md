@@ -1,8 +1,6 @@
 # API security boundaries
 
-Read this when designing authentication, authorization, or any endpoint that accepts an identifier
-or a URL from the caller. This page covers the design decisions; it does not replace a security
-review.
+This page covers the design decisions; it does not replace a security review.
 
 ## Authorize every object, on every request
 
@@ -70,5 +68,3 @@ redirects. Do not rely on a blocklist of private ranges alone.
 A response from a third-party API is untrusted input in exactly the way a user's request body is.
 Validate it, bound it, and time it out. Data arriving from a partner over TLS is still data an
 attacker may control.
-
-Claim-to-source mapping is in [sources.md](sources.md).

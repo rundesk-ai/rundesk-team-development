@@ -62,11 +62,9 @@ __all__ = ["Invoice", "read_invoice"]
 from dataclasses import dataclass
 from pathlib import Path
 
-
 @dataclass(frozen=True)
 class Invoice:
     number: str
-
 
 def read_invoice(path: Path) -> Invoice:
     """Read one invoice from path."""
@@ -81,7 +79,6 @@ imports, constants, then related definitions. Keep executable entry behavior at 
 def main() -> int:
     args = parse_args()
     return run(args)
-
 
 if __name__ == "__main__":
     raise SystemExit(main())
@@ -160,14 +157,12 @@ verbs (`handle`, `process`) when a concrete one exists, and ambiguous single let
 class InvoiceParseError(ValueError):
     pass
 
-
 def parse_invoice(source: str) -> Invoice:
     ...
 
 # Bad
 class invoice_parser_exception(Exception):
     pass
-
 
 def ParseInv(s):
     ...

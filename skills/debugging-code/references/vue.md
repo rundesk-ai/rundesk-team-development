@@ -1,8 +1,8 @@
 # Debugging Vue and Nuxt
 
-Mechanics for the workflow in `SKILL.md`. Most Vue bugs are one of three things: **state that is not
-reactive**, **an effect that runs at an unexpected time**, or **the server and client disagreeing**.
-Establish which before reading any component code.
+Most Vue bugs are one of three things: **state that is not reactive**, **an effect that runs at an
+unexpected time**, or **the server and client disagreeing**. Establish which before reading any
+component code.
 
 ## See what actually happened
 
@@ -133,15 +133,3 @@ not server-rendering that subtree, which is a different behaviour, not a fix.
 - Don't wrap in `<ClientOnly>` or `v-if="mounted"` to silence a hydration warning you have not
   diagnosed.
 - Don't leave `debugger`, `onRenderTracked`, or `app.config.performance` in the committed fix.
-
-## Sources
-
-- [Vue DevTools features](https://devtools.vuejs.org/getting-started/features) — what each tab answers
-- [Vue DevTools FAQ](https://devtools-v6.vuejs.org/guide/faq) — lazy reactivity and force refresh
-- [Reactivity in depth](https://vuejs.org/guide/extras/reactivity-in-depth) — `onRenderTracked` / `onRenderTriggered` and the `debugger` technique
-- [Composition API lifecycle hooks](https://vuejs.org/api/composition-api-lifecycle) · [Watchers](https://vuejs.org/guide/essentials/watchers.html) — `onTrack` / `onTrigger`
-- [Server-side rendering](https://vuejs.org/guide/scaling-up/ssr.html) — the three documented mismatch causes and the automatic-recovery cost
-- [Performance](https://vuejs.org/guide/best-practices/performance.html) — `app.config.performance`, prop stability
-- [Nuxt data fetching](https://nuxt.com/docs/4.x/getting-started/data-fetching) — the double-fetch warning
-- [Debugging guide: why your Vue component isn't updating](https://michaelnthiessen.com/debugging-guide-why-your-component-isnt-updating) — **Michael Thiessen**; the practical checklist this page's first table is built on
-- `using-vuejs` in this catalog for the underlying rules these symptoms violate

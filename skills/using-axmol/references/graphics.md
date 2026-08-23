@@ -1,7 +1,7 @@
 # Graphics
 
-Read this for Axmol 2 shaders, sprite batching, texture sampling, atlases, and SDF text. Axmol 3
-uses a different pipeline; follow its current shader guide instead of adapting these rules.
+Axmol 3 uses a different pipeline; follow its current shader guide instead of adapting these
+rules.
 
 ## Shader compiles on one backend and fails on another
 
@@ -81,5 +81,3 @@ change with a larger texture/performance budget.
 
 **Prove:** inspect small and large glyphs in the live target at each supported content scale. An
 offline bitmap cannot prove the runtime filter, blend mode, content scale, or batching behavior.
-
-See [the source basis](sources.md#graphics) for the Axmol wiki pages and v2.11.4 code used here.

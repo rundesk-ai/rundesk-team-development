@@ -1,7 +1,5 @@
 # Architecture
 
-Read this when engine headers leak into domain code or every test requires an Axmol application.
-
 ## Keep Axmol at the presentation edge
 
 Use a one-way dependency:
@@ -60,4 +58,3 @@ Keep engine-specific ownership in the adapter:
 
 This is a catalog architecture default, not an Axmol API requirement. It combines Axmol's documented
 ownership model with the decoupling and build-loop guidance in `using-cpp`; see
-[the source basis](sources.md#architecture-and-practitioner-evidence).

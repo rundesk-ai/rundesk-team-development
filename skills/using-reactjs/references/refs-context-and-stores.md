@@ -1,8 +1,5 @@
 # React refs, context, and external stores
 
-Read this when a value lives outside React's render, when context re-renders too much, or when a
-store read is inconsistent.
-
 ## Use a ref for what render must not depend on
 
 A ref holds a mutable value whose change does not trigger a render. That makes it right for timer
@@ -103,5 +100,3 @@ const getSnapshot = () => store.todos;
 
 If the underlying store is mutable, cache the snapshot inside the store and replace it only when the
 data changes.
-
-Claim-to-source mapping is in [sources.md](sources.md).

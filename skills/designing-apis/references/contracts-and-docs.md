@@ -1,8 +1,5 @@
 # The contract and its documentation
 
-Read this when writing the API description, or when deciding how to prove the implementation matches
-what was promised.
-
 ## Write the contract where it can be executed
 
 An API description that lives only in prose drifts, because nothing fails when it stops being true.
@@ -53,5 +50,3 @@ documentation one, per [security.md](security.md).
 
 Usage telemetry per client is also what makes the deprecation process in
 [evolution.md](evolution.md) possible. Without it, removal is a guess.
-
-Claim-to-source mapping is in [sources.md](sources.md).

@@ -1,8 +1,5 @@
 # React rendering and state
 
-Read this when a value is wrong on screen, a component holds state it should not, or a list
-re-renders or resets unexpectedly.
-
 ## Treat render as a pure function of props, state, and context
 
 React may render a component more than once for one update, and Strict Mode deliberately
@@ -101,5 +98,3 @@ index keys attach the wrong state and DOM to the wrong item.
 
 Keys must be unique among siblings and stable across renders. Generating one during render — a
 random value or a counter — defeats reconciliation entirely and remounts every item every time.
-
-Claim-to-source mapping is in [sources.md](sources.md).

@@ -1,7 +1,7 @@
 # Forms and feedback
 
 Use these patterns when a flow collects data, waits on work, reports a result, or recovers from a
-failure. The evidence for each pair is mapped in [sources.md](sources.md).
+failure.
 
 ## Ask only what the task needs
 

@@ -1,9 +1,9 @@
 # Naming an API
 
-Read this before choosing a path, a field, an enum value, an error code, or an event name. An API
-name is a published vocabulary: once a client depends on it, renaming it is a breaking change no
-matter how the server is written. Names matter more here than almost anywhere else in a system,
-because you cannot fix them later without a migration your consumers have to participate in.
+An API name is a published vocabulary: once a client depends on it, renaming it is a breaking
+change no matter how the server is written. Names matter more here than almost anywhere else in a
+system, because you cannot fix them later without a migration your consumers have to participate
+in.
 
 Naming is part of designing the interface, not a formatting pass at the end.
 
@@ -117,5 +117,3 @@ replacement alongside the old name, mark the old one deprecated in the contract,
 window, and remove it only after that window — the sequence in
 [evolution.md](evolution.md). Never repurpose an existing name to mean something new; that is the
 one change no client can detect until it is already wrong.
-
-Claim-to-source mapping is in [sources.md](sources.md).

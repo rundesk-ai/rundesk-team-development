@@ -1,7 +1,6 @@
 # Undefined behavior
 
-Read this when behavior changes with optimization, differs by compiler, or appears impossible. Run
-the relevant sanitizer before relying on inspection; see [tooling](tooling.md).
+Run the relevant sanitizer before relying on inspection; see [tooling](tooling.md).
 
 Undefined behavior does not promise a crash or a diagnostic. The optimizer may assume it cannot
 occur, so the visible failure can be far from its cause.
@@ -90,5 +89,4 @@ executed access triggered a report.
 3. Reduce to the invalid operation and record the diagnostic.
 4. Compare optimization levels only as a clue. A difference raises suspicion; it does not prove UB.
 
-See [the source basis](sources.md#undefined-behavior-and-diagnostics) for the language, container,
 ODR, and sanitizer contracts.

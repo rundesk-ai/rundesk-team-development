@@ -1,7 +1,7 @@
 # Evolving an API
 
-Read this before adding a field, changing a response, or planning a version. Decide the compatibility
-rules before the first client exists — the moment there are two, changing them is negotiation.
+Decide the compatibility rules before the first client exists — the moment there are two, changing
+them is negotiation.
 
 ## Know what is actually breaking
 
@@ -58,5 +58,3 @@ An internal API with known callers can move faster than a public one. What does 
 order: replacement first, signal second, removal last.
 
 Renaming rules for published names are in [naming.md](naming.md).
-
-Claim-to-source mapping is in [sources.md](sources.md).

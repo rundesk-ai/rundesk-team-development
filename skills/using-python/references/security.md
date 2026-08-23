@@ -142,16 +142,3 @@ that breaks it is set somewhere else entirely.
 
 State the concrete failure — what an attacker sends, and what happens — rather than naming a rule
 code. A finding nobody can picture does not get fixed.
-
-## Sources
-
-- [Ruff `flake8-bandit` (S) rules](https://docs.astral.sh/ruff/rules/#flake8-bandit-s) — the full rule catalog cited above
-- [Bandit](https://bandit.readthedocs.io/) — the original test set and its rationale
-- [`subprocess` — security considerations](https://docs.python.org/3/library/subprocess.html#security-considerations) — the `shell=True` warning, quoted
-- [`pickle`](https://docs.python.org/3/library/pickle.html) — the arbitrary-code warning
-- [`secrets`](https://docs.python.org/3/library/secrets.html) — "the most secure randomness" for tokens and secrets
-- [`hashlib`](https://docs.python.org/3/library/hashlib.html) — `scrypt`, `pbkdf2_hmac`, `usedforsecurity`
-- [`tempfile`](https://docs.python.org/3/library/tempfile.html) — why `mktemp` is deprecated
-- [`tarfile` extraction filters](https://docs.python.org/3/library/tarfile.html#extraction-filters) — the traversal fix
-- [`defusedxml`](https://pypi.org/project/defusedxml/) — the XML attack surface, enumerated
-- [Ruff `flake8-use-pathlib` (PTH)](https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth)

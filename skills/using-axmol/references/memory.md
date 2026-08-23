@@ -1,7 +1,7 @@
 # Memory
 
-Read this before creating or storing an Axmol engine object. Most engine classes derive from
-`ax::Object` and use intrusive reference counting, not ordinary C++ ownership.
+Most engine classes derive from `ax::Object` and use intrusive reference counting, not ordinary
+C++ ownership.
 
 ## A child leaks after scene teardown
 
@@ -65,5 +65,3 @@ the objects must remain valid until the clear and disappear afterward.
 Use `ax::RefPtr` and Axmol containers at the engine seam. Use RAII, values, and standard smart
 pointers for domain code. Deriving domain types from `ax::Object` spreads manual lifetime rules into
 code that could otherwise compile and test without the engine; see [Architecture](architecture.md).
-
-See [the source basis](sources.md#memory) for the official ownership rules and diagnostics.

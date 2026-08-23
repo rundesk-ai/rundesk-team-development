@@ -1,8 +1,5 @@
 # Collections
 
-Read this when an endpoint returns a list, or when a list has grown past the point where returning
-all of it is reasonable.
-
 ## Bound every collection from the first release
 
 An unbounded list endpoint is a resource-exhaustion path: one caller asking for everything can
@@ -55,5 +52,3 @@ interpolated into a query is an injection, no different from any other untrusted
 
 Empty results are `200` with an empty list, never `404`. The collection exists; it currently has no
 matching members.
-
-Claim-to-source mapping is in [sources.md](sources.md).

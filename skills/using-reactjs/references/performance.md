@@ -1,6 +1,6 @@
 # React performance
 
-Read this when something is measurably slow. Do not read it to pre-emptively add memoization.
+Do not read it to pre-emptively add memoization.
 
 ## Measure before changing anything
 
@@ -57,5 +57,3 @@ memoization by hand.
 Re-measure the same interaction the same way and report both numbers. Confirm the behavior did not
 change: a memoized component with a stale dependency renders old data, which is a correctness
 regression bought with a performance win. Keep the profile or timing output as the evidence.
-
-Claim-to-source mapping is in [sources.md](sources.md).

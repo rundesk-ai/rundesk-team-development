@@ -1,7 +1,5 @@
 # Resources, methods, and status codes
 
-Read this when shaping URLs, choosing a method, or deciding which status code an outcome deserves.
-
 ## Model the resource before the URL
 
 A resource is a thing the client can name, fetch, and reason about — not a screen and not a database
@@ -87,5 +85,3 @@ Content-Type: application/problem+json
 
 The bad version defeats caching, client error handling, retry logic, monitoring, and every
 intermediary between the server and the caller — all of which read the status line and nothing else.
-
-Claim-to-source mapping is in [sources.md](sources.md).

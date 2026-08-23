@@ -1,7 +1,5 @@
 # Migration
 
-Read this before porting from Cocos2d-x or moving between Axmol major lines.
-
 ## A Cocos2d-x port inherits a broken build
 
 **Cause:** Axmol forked Cocos2d-x v4.0 but its CMake and platform files have diverged. A maintainer's
@@ -56,5 +54,3 @@ separate from unrelated changes so failures have a narrow cause.
 
 After switching the engine commit, re-run its `setup.ps1`; otherwise an axslcc mismatch can masquerade
 as a shader regression.
-
-See [the source basis](sources.md#migration) for the official guides and practitioner discussion.

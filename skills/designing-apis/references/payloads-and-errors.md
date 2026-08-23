@@ -1,8 +1,5 @@
 # Payloads and errors
 
-Read this when defining what a request accepts, what a response returns, or how failures are
-represented.
-
 ## Give every payload room to grow
 
 Make the top level of every JSON body an object, never a bare array or scalar. An array at the top
@@ -67,5 +64,3 @@ keep stack traces and internal messages out of the response entirely.
 
 Error code naming — the part clients branch on and can never be changed — is in
 [naming.md](naming.md).
-
-Claim-to-source mapping is in [sources.md](sources.md).

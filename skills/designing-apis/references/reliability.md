@@ -1,8 +1,5 @@
 # Reliability
 
-Read this when a call can be retried, when two clients can write the same resource, or when the work
-takes longer than a request should.
-
 ## Make unsafe writes safely repeatable
 
 A client that times out does not know whether the request arrived. It will retry. If the operation is
@@ -76,5 +73,3 @@ completion that has not happened.
 
 Say explicitly whether the operation is idempotent, whether submitting twice creates two jobs, and
 how long the status resource lives.
-
-Claim-to-source mapping is in [sources.md](sources.md).

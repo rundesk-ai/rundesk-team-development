@@ -1,7 +1,5 @@
 # State and routing
 
-Read this when choosing state scope or debugging Pinia and Vue Router behavior.
-
 ## Escalate state only when ownership widens
 
 | Owner or lifetime | Use |
@@ -60,5 +58,3 @@ experience instead of declaring all data fetching in guards wrong.
 
 Vue Router 5 merged typed routing from `unplugin-vue-router` without breaking the core v4 API. Check
 the installed major before giving migration advice.
-
-Evidence: [state and routing lessons in sources.md](sources.md#pinia-and-vue-router).

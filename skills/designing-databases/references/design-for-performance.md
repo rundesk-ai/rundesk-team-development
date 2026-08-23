@@ -1,9 +1,8 @@
 # Designing for performance
 
-Read this when choosing a shape that has to survive its own query load. This page is about the model:
-which access paths the schema must serve, what makes a shape indexable at all, and what a row's
-growth does to it. What index type serves a path, and what a planner does with it, belongs to the
-engine package you are running.
+This page is about the model: which access paths the schema must serve, what makes a shape
+indexable at all, and what a row's growth does to it. What index type serves a path, and what a
+planner does with it, belongs to the engine package you are running.
 
 Design-time performance is not tuning. Tuning changes the plan for a query the schema already
 supports; this page is about not building a shape that no plan can rescue.
@@ -101,5 +100,3 @@ A schema decision is verifiable before the application exists:
 
 If a measurement is not available yet, say so and state the assumption the shape rests on rather
 than presenting a prediction as evidence.
-
-Claim-to-source mapping is in [sources.md](sources.md).

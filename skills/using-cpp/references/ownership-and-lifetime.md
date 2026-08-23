@@ -1,8 +1,5 @@
 # Ownership and lifetime
 
-Read this when designing a resource-owning type or investigating a leak, double free, or dangling
-access.
-
 ## State ownership in the type
 
 | Type | Contract |
@@ -102,5 +99,4 @@ Return a named local without `std::move`; adding it can prevent named return-val
 Do use `std::move` when transferring a local into an owner or member after its old value is no longer
 needed.
 
-See [the source basis](sources.md#ownership-lifetime-and-classes) for I.11, RAII, smart-pointer,
 special-member, invalidation, and move contracts.

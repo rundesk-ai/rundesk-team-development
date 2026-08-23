@@ -1,7 +1,5 @@
 # Scene graph and UI
 
-Read this for resolution policies, layout timing, clipping, input, and physics-sized nodes.
-
 ## HUD, camera, and hit tests disagree
 
 **Cause:** frame size is in physical pixels while the scene normally works in design coordinates.
@@ -118,5 +116,4 @@ node instead of calling `setContentSize()` afterward.
 **Prove:** assert equal content sizes for every animation frame and exercise the complete animation
 with physics enabled.
 
-See [the source basis](sources.md#scene-input-and-physics) for the v2.11.4 implementation, engine
 tests, FAQ, and physics guidance.

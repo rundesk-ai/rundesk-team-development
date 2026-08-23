@@ -1,7 +1,7 @@
 # Debugging Python
 
-Mechanics for the workflow in `SKILL.md`. Python gives you an unusually good traceback and a debugger
-in the standard library — most Python debugging goes wrong by not using either.
+Python gives you an unusually good traceback and a debugger in the standard library — most Python
+debugging goes wrong by not using either.
 
 ## Read the traceback properly
 
@@ -150,15 +150,3 @@ ordering, not the test.
 - Don't paper over an intermittent test with a `sleep` or a retry unless the contract genuinely
   requires it.
 - Don't leave `breakpoint()` in committed code. Ruff's `T100` flags it; make the linter own this.
-
-## Sources
-
-- [`pdb`](https://docs.python.org/3/library/pdb.html) — `breakpoint()`, `PYTHONBREAKPOINT`, post-mortem, conditional breakpoints, `display`, `interact`, `-m pdb -p`
-- [Python Development Mode](https://docs.python.org/3/library/devmode.html) — every check `-X dev` enables, and the faulthandler caveat about hangs
-- [`faulthandler`](https://docs.python.org/3/library/faulthandler.html) · [`tracemalloc`](https://docs.python.org/3/library/tracemalloc.html) — snapshot comparison for leaks
-- [`traceback`](https://docs.python.org/3/library/traceback.html) · [`logging`](https://docs.python.org/3/library/logging.html) — `logger.exception`
-- [`profile` and `cProfile`](https://docs.python.org/3/library/profile.html) — measure before optimizing
-- [py-spy](https://github.com/benfred/py-spy) — `dump` for hung processes, `--locals`, production safety
-- [Python Programming FAQ](https://docs.python.org/3/faq/programming.html) — circular imports, `importlib.reload` and stale instances
-- [pytest — how to invoke](https://docs.pytest.org/en/stable/how-to/usage.html) — `-x`, `--lf`, `--pdb`
-- `using-python` in this catalog, especially `documented-traps.md`, for the failures behind these symptoms

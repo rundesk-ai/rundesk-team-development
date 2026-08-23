@@ -1,8 +1,5 @@
 # React tests
 
-Read this when adding or repairing component tests, or when a test passes while the feature is
-broken.
-
 ## Assert what the user observes
 
 Query by accessible role, label, and text. Those queries fail when the feature breaks and survive
@@ -68,5 +65,3 @@ cleanup, which a direct function call cannot reach.
 Before trusting a new test, break the code it covers and watch it fail. A test that passes against
 a deliberately broken implementation is worse than no test, because it advertises coverage that
 does not exist.
-
-Claim-to-source mapping is in [sources.md](sources.md).

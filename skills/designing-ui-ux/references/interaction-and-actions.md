@@ -1,7 +1,7 @@
 # Interaction and actions
 
 Use these patterns when a control's purpose, state, or activation is unclear. Each pair is mapped to
-the standards and practitioner evidence in [sources.md](sources.md).
+the standards and practitioner evidence in
 
 ## Match element to behavior
 

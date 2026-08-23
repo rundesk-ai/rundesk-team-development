@@ -1,7 +1,6 @@
 # Inertia symptom map
 
-Read this when reviewing an existing application or diagnosing an Inertia-specific failure. Follow
-the linked owner instead of treating the likely cause as proven.
+Follow the linked owner instead of treating the likely cause as proven.
 
 | Symptom | Inspect | Likely trap | Preferred direction |
 |---|---|---|---|
@@ -18,5 +17,3 @@ the linked owner instead of treating the likely cause as proven.
 | SSR tests pass but HTML is client-only | SSR logs and returned HTML | Silent client-render fallback hid an SSR exception | Throw on SSR errors in tests; see [`core.md`](core.md#make-ssr-failures-visible) |
 | `window` or `document` is undefined in SSR | Import-time and setup code | Browser API evaluated on the server | Move it behind a client lifecycle boundary; see [`core.md`](core.md#make-ssr-failures-visible) |
 | An example names a missing method or event | Both installed package versions | v2 advice applied to v3, or client/server versions conflated | Use the migration map and both changelogs in [`migration.md`](migration.md) |
-
-Source-to-lesson mappings are centralized in [`sources.md`](sources.md).

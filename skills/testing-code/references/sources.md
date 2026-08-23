@@ -74,6 +74,88 @@ field-tested replacements. Links were checked 7 August 2026.
   into preferences because the cited contracts and field reports document concrete safety or signal
   failures and usable replacements.
 
+
+## Boundaries and doubles
+
+- Martin Fowler, [Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html),
+  establishes the double vocabulary and the state-verification versus behavior-verification
+  distinction that decides between a stub and a mock.
+- Gerard Meszaros, [Test Double](http://xunitpatterns.com/Test%20Double.html) in *xUnit Test
+  Patterns*, is the origin of the five-term taxonomy — dummy, stub, spy, mock, fake — used in the
+  table above.
+- Google's [Know Your Test Doubles](https://testing.googleblog.com/2013/07/testing-on-toilet-know-your-test-doubles.html)
+  restates the same distinctions in short form and warns against over-specified interaction tests.
+- *Software Engineering at Google*, [Test Doubles](https://abseil.io/resources/swe-book/html/ch13.html),
+  is the source of the preference order — real implementation, then fake, then stubbing, then
+  interaction testing — and of the drift argument for maintained fakes over widespread mocking. It
+  reports one organization's practice at scale.
+- *Software Engineering at Google*, [Testing Overview](https://abseil.io/resources/swe-book/html/ch11.html)
+  and [Unit Testing](https://abseil.io/resources/swe-book/html/ch12.html), support preferring the
+  narrowest boundary and treating brittleness from over-specification as a maintenance cost.
+- Google's [Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+  argues from experience that broad end-to-end suites are slow, flaky, and poor at localizing
+  failure. It is an engineering opinion piece, not a study.
+- Martin Fowler, [Consumer-Driven Contracts](https://martinfowler.com/articles/consumerDrivenContracts.html),
+  and [Pact](https://docs.pact.io/) establish contract testing as the mechanism that catches a
+  double drifting from the real service.
+
+The dependency-default table and the "doubles you own" rule are this package's operational
+conclusions. Links checked 23 August 2026.
+
+## Flaky diagnosis
+
+- Luo, Hariri, Eloussi, and Marinov,
+  [An Empirical Analysis of Flaky Tests](https://mir.cs.illinois.edu/marinov/publications/LuoETAL14FlakyTestsAnalysis.pdf)
+  (FSE 2014), is the source of every number on this page: the study scope of 201 commits across 51
+  Apache projects, the ten-category classification and its counts in Table 2, and findings F.1–F.12
+  in Table 1 — including that 78% of flaky tests were flaky when written, 96% were
+  platform-independent, 54% of async-wait fixes used a wait-for construct, 74% of order-dependency
+  fixes cleaned shared state, and that 24% of fixes modified the code under test with 94% of those
+  fixing a real bug. Its scope is open-source Java projects at the Apache Software Foundation; the
+  proportions should be read as that population, not as a universal constant.
+- Martin Fowler,
+  [Eradicating Non-Determinism in Tests](https://martinfowler.com/articles/nonDeterminism.html),
+  supplies the remedies organized by cause — isolation and rebuilt state, callbacks or polling
+  instead of bare sleeps, test doubles for remote services with contract tests to catch drift,
+  wrapping the system clock, and sizing resource pools to one so a leak surfaces immediately. It is
+  also the source of the bounded-quarantine practice, including numeric and time limits.
+- Google's [Where do our flaky tests come from?](https://testing.googleblog.com/2017/04/where-do-our-flaky-tests-come-from.html)
+  reports, across 4.2 million tests, that larger tests are more prone to flakiness, and that one
+  team found a newly flaky test traced to a production bug about one time in six. It is an
+  engineering report on one codebase, not a controlled study.
+- Google's [Flaky Tests at Google and How We Mitigate Them](https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html)
+  describes rerunning a failing test to classify it as flaky. Treat that as detection, not as a fix:
+  the same practice used as a pass condition is the retry trap above.
+- [`pytest-randomly`](https://github.com/pytest-dev/pytest-randomly) is one concrete implementation
+  of seeded order randomization, cited as an example of the facility to look for in whichever runner
+  is in use.
+
+The ordering of the isolation table, the reproduction-rate step, and the do-not list are this
+package's operational conclusions. Links checked 23 August 2026.
+
+## Proving teeth
+
+- Martin Fowler, [TestCoverage](https://martinfowler.com/bliki/TestCoverage.html), argues that
+  coverage is useful for finding untested code and misleading as a target, and describes deleting a
+  test and checking whether anything fails as a way to see whether it was doing work. It supports
+  both the coverage caveat here and the probe itself.
+- Google's [Code Coverage Best Practices](https://testing.googleblog.com/2020/08/code-coverage-best-practices.html)
+  states that coverage measures execution rather than verification, and cautions against treating a
+  coverage number as a quality goal.
+- Petrović and Ivanković,
+  [State of Mutation Testing at Google](https://research.google/pubs/state-of-mutation-testing-at-google/),
+  reports mutation testing applied at scale, including the cost of the technique and the handling of
+  equivalent and unproductive mutants. It is an industrial experience report on one codebase.
+- [PIT](https://pitest.org/) and [Stryker](https://stryker-mutator.io/) are maintained mutation
+  testing implementations, cited as evidence that the technique is available in practice rather than
+  only in research.
+- Luo et al., [An Empirical Analysis of Flaky Tests](https://mir.cs.illinois.edu/marinov/publications/LuoETAL14FlakyTestsAnalysis.pdf)
+  (FSE 2014), reports that 24% of flaky-test fixes changed the code under test and 94% of those
+  fixed a real bug — the reason a test that passes for the wrong reason is treated here as a
+  correctness risk rather than a tidiness one.
+
+The break/observe/restore ordering, the false-pass table, and the copy-not-`git checkout` rule are
+this package's operational conclusions. Links checked 23 August 2026.
 ## Attribution
 
 This package adapts `skills/testing-code/` from the Rundesk skills catalog at

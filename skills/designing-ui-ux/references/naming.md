@@ -1,8 +1,7 @@
 # Naming what the user reads
 
-Read this whenever you write a title, a label, a button, a column header, an empty state, an error,
-or a confirmation. Interface text is not decoration applied at the end — a control the user cannot
-name is usually a control whose behavior is not decided.
+Interface text is not decoration applied at the end — a control the user cannot name is usually a
+control whose behavior is not decided.
 
 Every string below occupies a **slot**, and each slot has one job. Most bad interface copy is a
 string doing two jobs at once: a label trying to also explain, or a button trying to also reassure.
@@ -176,5 +175,3 @@ vocabulary.
 3. **Canonical term.** Does this concept already have a word in this product? Reuse it.
 4. **Fortieth time.** Read it as the operator who sees it for the fortieth time. Does it help them
    scan, or make them read?
-
-Claim-to-source mapping is in [sources.md](sources.md).

@@ -1,7 +1,6 @@
 # Debugging Laravel
 
-Mechanics for the workflow in `SKILL.md`. The hypothesis loop does not change; this is where to look
-and what already recorded the answer.
+The hypothesis loop does not change; this is where to look and what already recorded the answer.
 
 If Laravel is served by Herd, load `herd.md` first to prove the site mapping and PHP runtime. Return
 here after the request is known to enter the intended application.
@@ -117,14 +116,3 @@ config, so you can call the action or the query directly with no HTTP layer in t
 - Don't debug against production data or run `migrate:fresh` anywhere you cannot afford to lose.
 - Don't conclude from a green test suite. If the suite uses `sync`/`array` drivers, it cannot see the
   class of bug you are chasing.
-
-## Sources
-
-- [Error handling](https://laravel.com/docs/13.x/errors) — the `bootstrap/app.php` handler, `report()`, log context, log levels, throttling, and the `APP_DEBUG` production warning
-- [Logging](https://laravel.com/docs/13.x/logging) · [Telescope](https://laravel.com/docs/13.x/telescope) — "not recommended for production environments" · [Pulse](https://laravel.com/docs/13.x/pulse)
-- [Queues](https://laravel.com/docs/13.x/queues) — failed jobs, `failed()`, `afterCommit`, timeout vs retry_after
-- [Configuration](https://laravel.com/docs/13.x/configuration) — the `config:cache` / `env()` warning
-- [Eloquent](https://laravel.com/docs/13.x/eloquent) — `preventLazyLoading`, and mass operations not firing events
-- [Nightwatch vs Telescope](https://nightwatch.laravel.com/nightwatch-vs-telescope) — which tool answers which question
-- [Debugging and logging in Laravel applications](https://laravel-news.com/debugging-and-logging-in-laravel-applications) — Laravel News
-- `using-laravel` in this catalog for the underlying rules these symptoms violate

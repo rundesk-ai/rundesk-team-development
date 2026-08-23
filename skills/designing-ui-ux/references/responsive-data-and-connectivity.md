@@ -1,7 +1,7 @@
 # Responsive data and connectivity
 
 Use these patterns for dense information on narrow screens or work that continues across slow,
-interrupted, or offline connections. Each pair is mapped in [sources.md](sources.md).
+interrupted, or offline connections.
 
 ## Recompose dense data by comparison task
 

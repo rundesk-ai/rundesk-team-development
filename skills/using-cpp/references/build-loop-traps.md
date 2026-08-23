@@ -1,8 +1,5 @@
 # Build-loop traps
 
-Read this when a change has no effect, an incremental build does too much, a failure moves between
-runs, or the launched binary looks stale.
-
 ## Diagnose the artifact before the source
 
 | Symptom | Likely cause | Preferred replacement | Proof |
@@ -81,5 +78,4 @@ For CTest, passing output is normally suppressed unless verbose output is reques
 assertion that fails with the observed value; it both proves reachability and starts the regression
 test.
 
-See [the source basis](sources.md#build-loop-diagnostics) for Ninja maintainer guidance, CMake/CTest
 contracts, and pipeline status semantics.

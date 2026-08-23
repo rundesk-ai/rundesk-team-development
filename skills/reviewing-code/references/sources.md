@@ -88,6 +88,56 @@ an empirical claim; retain separate findings when triggers or corrections differ
 - Unsourced severity scales, arbitrary line-count limits, and claims that one check proves readiness.
 - Language-specific checklists presented as universal review practice.
 
+
+## Test adequacy
+
+- Google's [Code Coverage Best Practices](https://testing.googleblog.com/2020/08/code-coverage-best-practices.html)
+  states that coverage measures which code executed rather than whether it was verified, and warns
+  against coverage targets as a quality goal.
+- Martin Fowler, [TestCoverage](https://martinfowler.com/bliki/TestCoverage.html), makes the same
+  argument and suggests probing whether a test does any work by removing it and seeing whether
+  anything fails.
+- Petrović and Ivanković,
+  [State of Mutation Testing at Google](https://research.google/pubs/state-of-mutation-testing-at-google/),
+  reports surviving mutants as a signal of undetected defects and describes the cost that keeps the
+  technique targeted rather than universal.
+- Martin Fowler, [Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html), and
+  *Software Engineering at Google*, [Test Doubles](https://abseil.io/resources/swe-book/html/ch13.html),
+  support treating over-specified interaction assertions as brittle and as weaker evidence than state
+  assertions.
+- Luo et al., [An Empirical Analysis of Flaky Tests](https://mir.cs.illinois.edu/marinov/publications/LuoETAL14FlakyTestsAnalysis.pdf)
+  (FSE 2014), found that 24% of flaky-test fixes changed the code under test, 94% of those fixing a
+  real bug. It is the evidence for treating a timing-dependent assertion in a diff as a potential
+  defect report rather than a nuisance.
+- Google's [Code Review Developer Guide](https://google.github.io/eng-practices/review/) and
+  [What to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
+  list tests as a first-class review dimension and direct reviewers to check that tests are correct
+  and would fail when the code is broken.
+
+The signal table, the partition list, and the finding format are this package's operational
+conclusions. Links checked 23 August 2026.
+## Compatibility and migrations
+
+- Martin Fowler, [ParallelChange](https://martinfowler.com/bliki/ParallelChange.html), names the
+  expand–migrate–contract sequence and states its purpose: keeping old and new forms working
+  simultaneously so a change to a published interface can be made without a coordinated release. It
+  is the basis for treating a single-step add-and-remove as a finding.
+- Martin Fowler, [Consumer-Driven Contracts](https://martinfowler.com/articles/consumerDrivenContracts.html),
+  and [Pact](https://docs.pact.io/) establish that a provider change is safe only against a known set
+  of consumers and their expectations, supporting the consumer-inventory requirement.
+- [`ALTER TABLE`](https://www.postgresql.org/docs/current/sql-altertable.html) documents which forms
+  take an `ACCESS EXCLUSIVE` lock and which avoid a table rewrite, and
+  [MySQL's online DDL operations](https://dev.mysql.com/doc/refman/8.4/en/innodb-online-ddl-operations.html)
+  documents per-operation whether concurrent DML is permitted. Together they are why a migration is
+  reviewed as an operation with a lock profile at production row counts rather than as a script.
+- [gh-ost](https://github.com/github/gh-ost) documents the class of schema change that requires a
+  copy-and-cutover tool rather than an in-place alter, evidence that duration and locking are real
+  operational constraints rather than theoretical ones.
+
+Catalog conclusion: the overlap table, the migration-as-operation checklist, and the specific
+findings list are this package's operational judgments. The sources establish the mechanisms; they do
+not publish that list.
+
 ## Attribution
 
 This package adapts `skills/reviewing-code/` from the Rundesk skills catalog at

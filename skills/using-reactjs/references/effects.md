@@ -1,7 +1,5 @@
 # React effects
 
-Read this when an effect fires too often, fires at the wrong time, leaks, or should not exist.
-
 ## Ask first whether the effect is necessary
 
 Effects synchronize a component with a system outside React. If there is no external system, the
@@ -77,5 +75,3 @@ teardown. If the effect cannot be made idempotent, that is a signal it is doing 
 Fetching in an effect is legitimate but carries the problems above plus waterfalls and no caching.
 Where a framework or data library owns loading — a router loader, a Server Component, or a query
 cache — use it, and keep effects for genuine external synchronization.
-
-Claim-to-source mapping is in [sources.md](sources.md).

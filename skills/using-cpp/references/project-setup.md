@@ -1,7 +1,5 @@
 # Project setup
 
-Read this when creating a C++ project, adding a target, or changing its build.
-
 ## Model requirements on targets
 
 Declare what a target needs and what its consumers inherit:
@@ -81,5 +79,4 @@ Good: `tests -> core`, while `app -> core + renderer`.
 Bad: link the renderer into `core` tests to make a forbidden include compile; this removes the
 boundary instead of fixing the dependency.
 
-See [the source basis](sources.md#build-and-project-structure) for the CMake contracts and community
 practice behind these defaults.

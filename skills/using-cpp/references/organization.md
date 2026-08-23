@@ -1,7 +1,5 @@
 # Organization
 
-Read this when creating a header, splitting code, or defining dependency boundaries.
-
 ## Keep headers contractual and self-contained
 
 A header should expose only what callers need to compile. Extra includes and implementation details
@@ -88,5 +86,4 @@ drift fails at compile time.
 Follow the repository’s naming convention. If none exists, choose one consistent rule; reserve
 `ALL_CAPS` for macros so constants do not look like preprocessors.
 
-See [the source basis](sources.md#source-files-interfaces-and-pimpl) for guideline rules, IWYU, and
 the incomplete-type contract.

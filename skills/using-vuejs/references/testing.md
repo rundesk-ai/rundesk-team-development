@@ -1,7 +1,5 @@
 # Testing
 
-Read this when testing components, composables, or Pinia stores.
-
 ## Assert the public behavior
 
 Vue's rule is “test what a component does, not how it does it.” Assert rendered DOM from props and
@@ -49,5 +47,3 @@ loose test stub.
 
 Run `eslint-plugin-vue`'s essential preset and `vue-tsc` in CI. The linter catches prop mutation,
 computed side effects, and missing list keys before a behavioral test has to reproduce them.
-
-Evidence: [testing lessons in sources.md](sources.md#testing).

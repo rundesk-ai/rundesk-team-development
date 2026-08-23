@@ -1,8 +1,8 @@
 # React server and client boundaries
 
-Read this only when the application actually uses React Server Components. Confirm it first: a
-Server Component build, a framework that documents RSC support, or `'use client'` directives already
-in the tree. A plain client-rendered React app has no boundary and none of this applies.
+Applies only where React Server Components are actually in use — an RSC build, a framework that
+documents support, or `'use client'` already in the tree. A plain client-rendered app has no
+boundary and none of this applies.
 
 ## Understand what the directive does
 
@@ -70,5 +70,3 @@ route handler. Being defined next to the component that calls it is not access c
 Inspect the payload actually sent to the browser for fields that should not be there, confirm which
 modules ended up in the client bundle, and exercise a Server Function directly rather than only
 through the UI that normally calls it.
-
-Claim-to-source mapping is in [sources.md](sources.md).

@@ -168,6 +168,49 @@ import guard skipped a broken subject; and a synthetic process-group signal term
 The public contracts and issue reproductions above establish the general mechanisms; these records
 establish observed impact, not a universal frequency claim.
 
+
+## Anti patterns
+
+- [PEP 8](https://peps.python.org/pep-0008/) and [PEP 20](https://peps.python.org/pep-0020/) — the readability and consistency baseline
+- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) — explicit dos and don'ts on mutable global state, nesting, properties, focused functions, and import-safe entry points
+- [Python anti-patterns catalog](https://docs.quantifiedcode.com/python-anti-patterns/) — the community catalog behind the idiom and maintainability tables
+- [Stop Writing Classes](https://www.youtube.com/watch?v=o9pEzgHorH0) — **Jack Diederich**, PyCon 2012; the class-that-should-be-a-function case
+- [Subclassing in Python redux](https://hynek.me/articles/python-subclassing-redux/) — **Hynek Schlawack** on composition over inheritance
+- [Python Programming FAQ](https://docs.python.org/3/faq/programming.html) — string-concatenation cost, mutation semantics
+- [Ruff rules](https://docs.astral.sh/ruff/rules/) — `SIM`, `PERF`, `PTH`, `RET`, `ARG`, `PIE` encode much of the idiom table as checkable rules
+
+## Documented traps
+
+- [Python Programming FAQ](https://docs.python.org/3/faq/programming.html) — mutable defaults, late binding, assignment semantics, `is` vs `==`, scope, `+=` on tuple members, string-concatenation cost, circular imports
+- [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) — the `B0xx` catalog quoted throughout
+- [Ruff rules](https://docs.astral.sh/ruff/rules/) — `B`, `DTZ`, `LOG`, `G`, `ASYNC`, `S`, `SIM`, `PERF`, `PTH`, `TRY` families
+- [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) — default-factory, field ordering, `eq`/`frozen`/`hash`, `slots`, `replace`, `__post_init__`
+- [`asyncio` coroutines and tasks](https://docs.python.org/3/library/asyncio-task.html) and [Developing with asyncio](https://docs.python.org/3/library/asyncio-dev.html) — weak task references, blocking calls, un-awaited coroutines
+- [Deprecations index](https://docs.python.org/3/deprecations/index.html) — the removal schedule
+- [What's new in Python 3.13](https://docs.python.org/3/whatsnew/3.13.html) — the PEP 594 removals
+- [Facts and myths about Python names and values](https://nedbatchelder.com/text/names.html) — **Ned Batchelder**; the canonical model and the "mutable presto-chango"
+- [hasattr() — a dangerous misnomer](https://hynek.me/articles/hasattr/) · [Please fix your decorators](https://hynek.me/articles/decorators/) · [Subclassing in Python redux](https://hynek.me/articles/python-subclassing-redux/) — **Hynek Schlawack**, author of `attrs` and `structlog`
+
+## Security
+
+- [Ruff `flake8-bandit` (S) rules](https://docs.astral.sh/ruff/rules/#flake8-bandit-s) — the full rule catalog cited above
+- [Bandit](https://bandit.readthedocs.io/) — the original test set and its rationale
+- [`subprocess` — security considerations](https://docs.python.org/3/library/subprocess.html#security-considerations) — the `shell=True` warning, quoted
+- [`pickle`](https://docs.python.org/3/library/pickle.html) — the arbitrary-code warning
+- [`secrets`](https://docs.python.org/3/library/secrets.html) — "the most secure randomness" for tokens and secrets
+- [`hashlib`](https://docs.python.org/3/library/hashlib.html) — `scrypt`, `pbkdf2_hmac`, `usedforsecurity`
+- [`tempfile`](https://docs.python.org/3/library/tempfile.html) — why `mktemp` is deprecated
+- [`tarfile` extraction filters](https://docs.python.org/3/library/tarfile.html#extraction-filters) — the traversal fix
+- [`defusedxml`](https://pypi.org/project/defusedxml/) — the XML attack surface, enumerated
+- [Ruff `flake8-use-pathlib` (PTH)](https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth)
+
+## Typing
+
+- [`typing` — support for type hints](https://docs.python.org/3/library/typing.html) — deprecated aliases, `Protocol`, `@runtime_checkable` limits, `TypedDict`, `Self`, `Literal`, `Final`, `NewType`, and the runtime-enforcement note
+- [Typing best practices](https://typing.python.org/en/latest/reference/best_practices.html) — the typing council's guidance
+- [mypy documentation](https://mypy.readthedocs.io/) — `--strict` as a goal, incremental adoption flags, unannotated bodies going unchecked, `Any` hiding bugs, duck-typed parameters
+- [PEP 484 — Type hints](https://peps.python.org/pep-0484/) · [PEP 544 — Protocols](https://peps.python.org/pep-0544/) · [PEP 604 — Union types](https://peps.python.org/pep-0604/) · [PEP 649 — Deferred annotation evaluation](https://peps.python.org/pep-0649/) · [PEP 695 — Type parameter syntax](https://peps.python.org/pep-0695/)
+- [Ruff `flake8-type-checking` (TC)](https://docs.astral.sh/ruff/rules/#flake8-type-checking-tc) · [`flake8-annotations` (ANN)](https://docs.astral.sh/ruff/rules/#flake8-annotations-ann)
 ## Attribution
 
 This package adapts `skills/python-patterns/` from the Rundesk skills catalog at

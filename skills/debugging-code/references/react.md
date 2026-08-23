@@ -1,8 +1,7 @@
 # Debugging React
 
-Read this when a React application renders the wrong thing, renders too often, will not stop
-rendering, throws only in production, or fails to hydrate. This page is mechanics: where the evidence
-already is, and how to get more. Which rule the symptom violates belongs to `using-reactjs`.
+This page is mechanics: where the evidence already is, and how to get more. Which rule the symptom
+violates belongs to `using-reactjs`.
 
 ## See what actually happened
 
@@ -156,26 +155,3 @@ throws nothing. If a region never resolves, suspect the promise, not the compone
 - Do not disable Strict Mode, an error boundary, or a lint rule to make a symptom disappear.
 - Do not conclude from a development build alone when the report came from production.
 - Do not report a cause you have only inferred from the source without observing it in the tree.
-
-## Sources
-
-- [React Developer Tools](https://react.dev/learn/react-developer-tools) and
-  [`<Profiler>`](https://react.dev/reference/react/Profiler) establish the Components and Profiler
-  panels, render attribution, and that profiling adds overhead.
-- [`<StrictMode>`](https://react.dev/reference/react/StrictMode) establishes exactly what is
-  double-invoked and that it is development-only.
-- [`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore) establishes the
-  cached-snapshot requirement, the `getSnapshot should be cached` error and its loop, and the
-  server-snapshot contract behind the hydration case.
-- [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot) establishes hydration
-  mismatch reporting and per-element suppression.
-- [`createRoot`](https://react.dev/reference/react-dom/client/createRoot) establishes
-  `onUncaughtError` and `onCaughtError`, and the
-  [React 19 upgrade guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) establishes that
-  render errors are no longer re-thrown and now reach `window.reportError` or `console.error`.
-- [Error boundaries](https://react.dev/reference/react/Component#static-getderivedstatefromerror)
-  establish fallback capture, which is why a boundary can hide a failure.
-- The [error decoder](https://react.dev/errors) maps a minified production error code to its message.
-
-The symptom-ordering tables and the trap list are this package's operational conclusions, not claims
-made by those pages. Links checked 23 August 2026.

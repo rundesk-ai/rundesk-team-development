@@ -1,7 +1,5 @@
 # Reactivity
 
-Read this when state is stale, an effect runs at the wrong time, or memory grows after navigation.
-
 ## Start with `ref`
 
 Vue recommends `ref()` as the primary state API because `reactive()` only accepts objects, cannot be
@@ -71,5 +69,3 @@ logic.
 
 Use `shallowRef` only for large immutable structures or external-state objects where root replacement
 is the intended update. Mutating nested data will not trigger an update.
-
-Evidence: [reactivity lessons in sources.md](sources.md#reactivity-and-watchers).

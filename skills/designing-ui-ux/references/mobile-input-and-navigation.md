@@ -3,7 +3,6 @@
 Use these patterns when an on-screen keyboard, mobile form, compact navigation, or reachable action
 placement affects the task. Apply the universal target, gesture, and mixed-input rules from
 [interaction-and-actions.md](interaction-and-actions.md); this file owns only mobile consequences.
-Each pair is mapped in [sources.md](sources.md).
 
 ## Keep the task visible above the keyboard
 

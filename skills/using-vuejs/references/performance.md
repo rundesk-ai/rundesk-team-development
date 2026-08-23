@@ -1,7 +1,5 @@
 # Performance
 
-Read this after reproducing a load or update slowdown.
-
 ## Profile the failing dimension
 
 Use PageSpeed Insights or WebPageTest for load behavior. Use the browser performance panel with
@@ -39,5 +37,3 @@ is normally unnoticeable; it matters when multiplied across large lists.
 
 For load-sensitive content, do not assume a client-only SPA is the right delivery model. Vue's guide
 recommends SSR, SSG, or server-rendered HTML when time-to-content dominates.
-
-Evidence: [performance lessons in sources.md](sources.md#performance).

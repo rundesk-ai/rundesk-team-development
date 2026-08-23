@@ -1,8 +1,5 @@
 # React versions and migration
 
-Read this before applying version-gated guidance, upgrading a major version, or interpreting an
-online example that names an API the project does not have.
-
 ## Establish the version scope first
 
 ```sh
@@ -71,5 +68,3 @@ In TypeScript, `useRef` now requires an argument, ref callbacks may not return a
    hydration if the app renders on the server.
 
 Translate older advice only after checking it against the documentation for the installed version.
-
-Claim-to-source mapping is in [sources.md](sources.md).

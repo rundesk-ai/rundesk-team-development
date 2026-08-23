@@ -14,7 +14,6 @@ import unittest
 
 from calculator import Calculator
 
-
 class TestCalculator(unittest.TestCase):
     def setUp(self):
         self.calculator = Calculator()
@@ -23,7 +22,6 @@ class TestCalculator(unittest.TestCase):
     def test_dividing_by_zero_is_refused(self):
         with self.assertRaisesRegex(ValueError, "zero"):
             self.calculator.divide(10, 0)
-
 
 if __name__ == "__main__":
     unittest.main()
@@ -134,7 +132,6 @@ patch `billing.service.send_receipt`, not the module that originally defined it:
 ```python
 from unittest.mock import create_autospec, patch
 
-
 class TestCheckout(unittest.TestCase):
     @patch("billing.service.send_receipt", autospec=True)
     def test_sends_one_receipt_after_payment(self, send_receipt):
@@ -162,7 +159,6 @@ client.fetch.side_effect = [TimeoutError, {"status": "ready"}]
 
 ```python
 from unittest.mock import AsyncMock
-
 
 class TestFetcher(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):

@@ -115,22 +115,3 @@ Herd reinstall, or certificate-trust bypass as an opening move.
 4. Reproduce once without temporary dumps, debug extensions, or bypasses.
 5. Record whether the correction changed site mapping, runtime selection, service state, TLS, or
    application code; do not collapse those into “Herd was broken.”
-
-## Sources
-
-- Herd command line for [macOS](https://herd.laravel.com/docs/macos/advanced-usage/herd-cli) and
-  [Windows](https://herd.laravel.com/docs/windows/advanced-usage/command-line) — site, PHP, TLS,
-  debugging, logging, and service commands; verified against Herd 1.28.0 on August 7, 2026
-- [Sites](https://herd.laravel.com/docs/macos/getting-started/sites) and
-  [managing sites](https://herd.laravel.com/docs/macos/sites/managing-sites) — parked versus linked
-  directories, per-site isolation, and the destructive Site Manager delete action; the
-  [changelog](https://herd.laravel.com/docs/macos/changelog/index) records `herd link` updating
-  `.env` `APP_URL` and later adding `--update-env` to force that rewrite
-- [macOS common issues](https://herd.laravel.com/docs/macos/troubleshooting/common-issues) and
-  [Windows common issues](https://herd.laravel.com/docs/windows/troubleshooting/common-issues) —
-  platform-specific 404, bad gateway, DNS, helper, and log evidence
-- [Dumps](https://herd.laravel.com/docs/macos/debugging/dumps) — early PHP extension injection and
-  capture-feature isolation
-- [Browser-versus-CLI PHP mismatch](https://github.com/beyondcode/herd-community/issues/831) and
-  [CLI ini mismatch](https://github.com/beyondcode/herd-community/issues/267) — Herd maintainer
-  diagnoses of real failures caused by a different PHP or ini on the command path
