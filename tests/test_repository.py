@@ -313,6 +313,32 @@ class RepositoryContract(unittest.TestCase):
                 self.assertLessEqual(set(delegates), MEMBER_NAMES - {name})
                 self.assertIsInstance(member["self_improve"], bool)
 
+    def test_allowed_skills_are_reviewable_and_earned(self):
+        """A grant list is read in review, so it stays sorted and stays a subset.
+
+        A member holding the whole catalog is not an allowlist doing work; the
+        list exists so a member receives what its own routing needs.
+        """
+        catalog = self.skill_names()
+        for name, member in self.members().items():
+            allowed = member["skills"]
+            with self.subTest(member=name):
+                self.assertEqual(sorted(allowed), allowed)
+                self.assertLess(set(allowed), catalog)
+
+    def test_a_member_description_says_why_to_delegate(self):
+        """It is charged to every other agent's prompt, so it earns its length."""
+        for name, member in self.members().items():
+            description = member["description"]
+            with self.subTest(member=name):
+                self.assertTrue(description[0].isupper())
+                self.assertTrue(description.endswith("."))
+                self.assertEqual(1, description.count("."))
+                for other in set(self.members()) - {name}:
+                    self.assertNotIn(other, description.lower())
+                for skill in self.skill_names():
+                    self.assertNotIn(skill, description)
+
     def test_no_member_leads_the_team_or_keeps_weekly_upkeep(self):
         for name, member in self.members().items():
             with self.subTest(member=name):

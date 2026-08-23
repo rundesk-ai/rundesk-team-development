@@ -18,9 +18,15 @@ Four specialists, and no lead. A domain agent talks directly to the one it needs
 Each member is inbound-only: it does not hand work to another member and does not deliver outside
 the machine it runs on. Each is memoryless by contract — Rundesk replaces `AGENTS.md` and
 `CLAUDE.md` from this catalog and removes `MEMORY.md` on every reconciliation, so a member cannot
-quietly rewrite the instructions it is governed by. Weekly upkeep is off for all four, and every
-member's allowed-skill list is currently empty; the skill catalog below is granted to ordinary
-agents, not to team members.
+quietly rewrite the instructions it is governed by. Weekly upkeep is off for all four.
+
+Each member's allowed-skill list in `team.json` is the exact set it receives, and it follows that
+member's routing rather than the catalog as a whole. Forge, piper, and trace carry the technology
+packages because they work in whatever the repository already uses; forge adds the data-model,
+testing, and debugging method, piper adds review plus the contract and data-model lenses
+compatibility review needs, and trace adds debugging and reproduction. Vera writes no production
+code, so it carries only the design and styling packages. A grant outside a member's list is revoked
+on reconciliation.
 
 **Availability.** The team lifecycle is implemented by Rundesk CLI pull request #451, exact head
 `dd2778d5`. At the time of writing that pull request has not been merged into the CLI's main branch

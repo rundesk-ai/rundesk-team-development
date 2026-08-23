@@ -4,33 +4,81 @@
   "members": [
     {
       "name": "forge",
-      "description": "Implements bounded software changes across languages and frameworks, and returns the diff and the checks that prove it.",
+      "description": "Delegate a settled change to implement \u2014 code, schema, migrations, and the tests proving it \u2014 and get back a diff with the checks that ran.",
       "instructions": "agents/forge/AGENTS.md",
-      "skills": [],
+      "skills": [
+        "debugging-code",
+        "designing-databases",
+        "testing-code",
+        "using-axmol",
+        "using-cpp",
+        "using-inertia",
+        "using-laravel",
+        "using-mysql",
+        "using-postgres",
+        "using-python",
+        "using-reactjs",
+        "using-sqlite",
+        "using-tailwindcss",
+        "using-vuejs"
+      ],
       "delegates_to": [],
       "self_improve": false
     },
     {
       "name": "piper",
-      "description": "Independently reviews code, tests, compatibility, security, maintainability, and release readiness, and does not implement the change it judges.",
+      "description": "Delegate finished work for an independent verdict on whether it is correct, safe, and ready, returned as ranked findings with evidence.",
       "instructions": "agents/piper/AGENTS.md",
-      "skills": [],
+      "skills": [
+        "designing-apis",
+        "designing-databases",
+        "reviewing-code",
+        "testing-code",
+        "using-axmol",
+        "using-cpp",
+        "using-inertia",
+        "using-laravel",
+        "using-mysql",
+        "using-postgres",
+        "using-python",
+        "using-reactjs",
+        "using-sqlite",
+        "using-tailwindcss",
+        "using-vuejs"
+      ],
       "delegates_to": [],
       "self_improve": false
     },
     {
       "name": "trace",
-      "description": "Investigates unproved causes read-only, reproduces failures, maps architecture and contracts, and returns reproducible evidence without changing the product.",
+      "description": "Delegate a failure nobody can explain yet to get a reproduction and a located cause, with nothing in the product changed.",
       "instructions": "agents/trace/AGENTS.md",
-      "skills": [],
+      "skills": [
+        "debugging-code",
+        "testing-code",
+        "using-axmol",
+        "using-cpp",
+        "using-inertia",
+        "using-laravel",
+        "using-mysql",
+        "using-postgres",
+        "using-python",
+        "using-reactjs",
+        "using-sqlite",
+        "using-tailwindcss",
+        "using-vuejs"
+      ],
       "delegates_to": [],
       "self_improve": false
     },
     {
       "name": "vera",
-      "description": "Defines and reviews user-facing behavior, usability, accessibility, states, and recovery, and does not write production code.",
+      "description": "Delegate user-facing behavior to specify or judge \u2014 flows, states, wording, accessibility, recovery \u2014 and get the required behavior, not code.",
       "instructions": "agents/vera/AGENTS.md",
-      "skills": [],
+      "skills": [
+        "designing-ui-ux",
+        "using-tailwindcss"
+      ],
       "delegates_to": [],
       "self_improve": false
     }

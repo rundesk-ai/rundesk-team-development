@@ -19,9 +19,9 @@ Cases use stable IDs. `LIFE-##` covers the installed lifecycle.
 
 | ID | Case | Expected behavior |
 |---|---|---|
-| LIFE-01 | The repository is read as a team declaration | Recognized as a team; four members with the declared descriptions, instructions, empty allowlists, empty delegation, and upkeep off |
+| LIFE-01 | The repository is read as a team declaration | Recognized as a team; four members with the declared descriptions, instructions, allowlists, empty delegation, and upkeep off |
 | LIFE-02 | Install without `--confirm` | Every member effect previewed; no agent, no catalog, and no file created |
-| LIFE-03 | Install with `--confirm` | Four agents created; `AGENTS.md` and `CLAUDE.md` byte-equal to the catalog's member file; no `MEMORY.md`; descriptions, empty delegation scope, and upkeep off recorded; a gateway requested for every member |
+| LIFE-03 | Install with `--confirm` | Four agents created; `AGENTS.md` and `CLAUDE.md` byte-equal to the catalog's member file; no `MEMORY.md`; descriptions, allowed skills, empty delegation scope, and upkeep off recorded; a gateway requested for every member |
 | LIFE-04 | A member name already exists as an agent | Refused, naming the exact removal command for each collision; the existing agent and the install are unchanged |
 | LIFE-05 | A grant outside the positive allowlist | Revoked on reconciliation; Rundesk's own required skill survives |
 | LIFE-06 | Deliberate local drift in instructions, memory, description, delegation, upkeep, and grants | A confirmed update repairs every one of them |
