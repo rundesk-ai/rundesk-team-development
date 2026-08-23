@@ -65,6 +65,6 @@
 
 ## Agent
 
-<!-- Replace the placeholder with the filing agent's display name. Do not add provider, model, tool, session, or generated-by branding. -->
+<!-- Only for a named agent: replace the placeholder with its name and keep this section. Anyone else deletes the section entirely. Never add provider, model, tool, session, or generated-by branding. -->
 
 🤖 by <Agent>
