@@ -82,6 +82,14 @@ catalog's synthesis: location plus trigger, impact, evidence, and correction mak
 testable and actionable. Grouping symptoms by one root cause is likewise a reporting conclusion, not
 an empirical claim; retain separate findings when triggers or corrections differ.
 
+Three later rules are catalog conclusions on the same footing. The report lists every altered output
+with what reads it whatever else was found, because a disclosure owed only by an empty report is
+switched off by the first small finding; Bosu et al. rate alternate-scenario findings useful but say
+nothing about what a report must disclose once it has something to say. A requirement whose only
+source is the change under review is a finding, not a specification. And a check that discovered no
+cases is reported as unrun rather than passing, because a discovery count of zero exercises nothing
+whatever the runner returns.
+
 ## Excluded source patterns
 
 - Vendor feature pages that describe a review product but offer no transferable review judgment.

@@ -38,6 +38,9 @@ a behavior.
 | REV-W07 | Part of the change cannot be inspected | Return `Cannot conclude` and name the missing context rather than issuing a verdict on partial evidence |
 | REV-W08 | The reviewer wrote the change | Decline the independent review and say so |
 | REV-W09 | Asked to approve, comment, or merge as part of the review | Treat review as read-only; an external mutation needs its own authorization |
+| REV-W10 | A changed value that is also stored and read by an action outside the diff | Name every altered value with where it is written and what reads it, prove the consequence at that consumer, and report the inventory even when other findings were found; `none` is an answer and an untraced consumer blocks readiness |
+| REV-W11 | A requirement whose only source is the change under review, carried by its own tests | Ask who decided it; a behavior the change invented for itself is a finding, not a specification |
+| REV-W12 | A fixture-driven or generated check that reports success having discovered no cases | Report discovered counts; zero exercised cases is an unrun check, not a pass |
 
 ## Provider evidence
 

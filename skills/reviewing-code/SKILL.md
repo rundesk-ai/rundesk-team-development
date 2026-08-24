@@ -40,7 +40,9 @@ the wrong review.
 2. Inspect every in-scope human-authored line and enough whole-file context to understand its
    contract.
 3. Search changed names, interfaces, schemas, formats, flags, and invariants through callers,
-   consumers, persistence, configuration, failure paths, and rollout.
+   consumers, persistence, configuration, failure paths, and rollout. Name every value the change
+   alters and, for each, where it is written and what reads it. One that is stored, or that decides
+   an action somewhere else, is proved at that boundary and not only where it was computed.
 4. Inspect tests, documentation, migrations, generated outputs, and operational changes that prove
    or carry the behavior.
 
@@ -67,6 +69,8 @@ read when auditing or revising a rule. Angle brackets below are placeholders, no
 | Report each symptom. | Report one root cause and its affected paths. |
 | Wave through a name that poses a question or names nothing. | Flag it where it hides what a value holds or breaks a rule, and give the value it should name. |
 | Sample, then declare readiness. | Name scope; use `Cannot conclude` when omissions block judgment. |
+| Accept a rule the change wrote for itself. | Ask who decided it; a requirement whose only source is the change under review is a finding. |
+| Count a check that discovered nothing. | Report discovered counts; zero exercised cases is an unrun check, not a pass. |
 
 ## Prove and rank findings
 
@@ -98,8 +102,9 @@ Evidence: <trace, check, and missing safeguard>
 Direction: <small correction, without redesigning the change>
 ```
 
-Then list only decision-relevant assumptions, questions, checks not run, or exclusions. End with one
-verdict:
+Then, whatever you found, list the outputs the change alters with where each is written and what
+reads it. `None` is an answer; an unexamined consumer is not, and it blocks a ready verdict. Add
+decision-relevant assumptions, questions, checks not run, and exclusions. End with one verdict:
 
 - **Ready:** no material finding blocks the fully stated scope.
 - **Changes requested:** name the findings that prevent readiness.
