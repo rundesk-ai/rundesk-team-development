@@ -228,11 +228,35 @@ alongside the engine skill on an ownership defect; the earlier run rejected it, 
 skill covered the lifetime question. The clause distinguishing a language from the framework on top
 of it is what changed.
 
+**Against real repositories.** Synthetic fixtures cannot show whether a member survives a codebase it
+did not have explained to it. Each member was also run against a throwaway clone of a production
+Laravel application — its own `AGENTS.md`, its own knowledge base, its real history — with the remote
+removed and the environment pointed at a scratch database. The cloned repository was never written to.
+
+The results that only a real repository could produce:
+
+- A member read the repository's hard gate on persisted state, recognised that the assigned feature
+  could not avoid a migration, and refused the whole feature rather than shipping the half that would
+  have silently discarded user input. It also found that an unrecognised field is routed to a
+  different model by an existing service, so the half-change would have written to the wrong table.
+- A reviewer found, in a 7,348-line access-control change, that the authentication gate accepts a
+  wildcard-ability token through one method while the inventory and revoke commands match the ability
+  literally — a credential that no operator listing shows and no revoke command withdraws. It ranked
+  the finding by reachability after proving no committed path can mint such a token, and it verified
+  the framework's behaviour by reading the installed vendor source rather than asserting it.
+- A frontend QA pass found that three of four checkout refusals render nothing at all, traced it to a
+  flash key no public page reads, and showed that the requirement row claiming the opposite is proved
+  by a test that hands the component its prop directly — proving the component, not the path.
+
+Each of those rejected the obvious fix on the repository's own recorded grounds rather than applying
+it, and each returned the decisions that belong to an owner instead of choosing them.
+
 **Still unproved.** `P04` has never been observed positively: no member has spawned a subagent in any
-run. Every declining was correct on its own facts — each fixture's fan-out was a repeated identical
-pattern, where one verifiable scripted edit beats parallel summaries — so the fixture, not the
-instruction, is what is missing. A case whose sites genuinely differ from one another is needed
-before the rule can be called proved in both directions.
+run, including on a 7,348-line diff. The declines are increasingly well argued — the last one held
+that a wide-but-shallow diff is exactly where splitting the read loses the cross-file correlation the
+findings depend on. Treat the row as proved in one direction only: members no longer read the rule as
+a ban, and they weigh it. Whether any surface makes spawning the right call is still open, and may
+turn out to be rarer than the rule implies.
 
 ## The removal gap
 

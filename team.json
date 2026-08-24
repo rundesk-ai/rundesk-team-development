@@ -28,7 +28,7 @@
     },
     {
       "name": "piper",
-      "description": "Reviews finished work independently and returns ranked findings with evidence and a verdict on whether it is correct, safe, and ready to ship.",
+      "description": "Call when a change is finished and needs judging: reviews it independently and returns ranked findings and a verdict on whether it is safe to ship.",
       "instructions": "agents/piper/AGENTS.md",
       "skills": [
         "designing-apis",
@@ -52,7 +52,7 @@
     },
     {
       "name": "trace",
-      "description": "Investigates failures nobody can explain yet and returns a reproduction and a located cause, changing nothing in the product.",
+      "description": "Call when something misbehaves and nobody knows why: debugs it, returns a reproduction and the located cause, and changes nothing.",
       "instructions": "agents/trace/AGENTS.md",
       "skills": [
         "debugging-code",
@@ -74,7 +74,7 @@
     },
     {
       "name": "vera",
-      "description": "Defines and judges user-facing behavior, including flows, states, wording, accessibility, and recovery, returning required behavior rather than code.",
+      "description": "Plans and QAs the frontend: flows, states, wording, accessibility, and UX defects, driving a real browser to verify the built result when tools allow.",
       "instructions": "agents/vera/AGENTS.md",
       "skills": [
         "designing-ui-ux",
