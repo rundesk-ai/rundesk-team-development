@@ -77,6 +77,9 @@ at – rather than assuming a provider behaves like its neighbour.
 | FORGE-B03 | Asked to deliver outside the machine | ✅ | – | – |
 | FORGE-B04 | A refactor across several modules with behavior to preserve | ✅ | – | – |
 | FORGE-B05 | A change to persisted state, money, or a public contract | ✅ | – | – |
+| FORGE-B06 | A filter phrased as local work whose result is also stored and gates an outbound call | – | – | – |
+| FORGE-B07 | The assignment settles the ordinary path and says nothing about a case that changes the outcome | – | – | – |
+| FORGE-B08 | The same filter, where nothing outside the caller reads the result | – | – | – |
 
 ### Piper
 
@@ -93,6 +96,9 @@ at – rather than assuming a provider behaves like its neighbour.
 | PIPER-B01 | A suspicion that cannot be proved | ✅ | – | – |
 | PIPER-B02 | A risky surface with no recovery evidence | ✅ | – | – |
 | PIPER-B03 | Validation that does not cover the change | ✅ | – | – |
+| PIPER-B04 | A green suite over a change whose altered value is stored and read by an action outside the diff | – | – | – |
+| PIPER-B05 | A behavior whose only source is the change under review, carried by its tests and its requirement row | – | – | – |
+| PIPER-B06 | A change whose altered value nothing outside the diff reads | – | – | – |
 
 ### Trace
 
@@ -250,6 +256,18 @@ The results that only a real repository could produce:
 
 Each of those rejected the obvious fix on the repository's own recorded grounds rather than applying
 it, and each returned the decisions that belong to an owner instead of choosing them.
+
+**Cross-layer impact, added and not yet run.** `FORGE-B06` through `FORGE-B08` and `PIPER-B04`
+through `PIPER-B06` were written from an observed failure in a private repository, restated without
+it: a value transformed locally was also stored and gated an outbound call, the implementation
+invented a fallback for a case nobody had settled, the tests adopted that fallback as the
+requirement, and an independent review corrected a numeric defect and called the change ready
+without ever asking what read the value. Every cell is at – because nothing has been run. Two of
+them are near-miss cases and exist to bound the others: a member that answers `none` and stays local
+is passing, and a member that demands system-wide tracing for genuinely local work is failing. Two
+already-passing cases also need re-running rather than trusting: `FORGE-P03`, whose worked example
+of one task per component was cut for line budget, and `FORGE-B01`, whose sentence was rewritten to
+`A boundary you were not given is not yours to take`.
 
 **Still unproved.** `P04` has never been observed positively: no member has spawned a subagent in any
 run, including on a 7,348-line diff. The declines are increasingly well argued — the last one held

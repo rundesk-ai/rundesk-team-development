@@ -35,6 +35,11 @@ Prefer the narrowest boundary containing the risk. Add a wider case only when it
 question; do not replay every edge case through the full system. Report what ran and which
 dependencies were real because labels vary.
 
+The risk is not always where the code changed. When a local result is stored, or decides an action
+somewhere else, the narrowest boundary containing it reaches that consumer: prove the transformation
+in a unit and the consequence where it lands. A unit case alone reports a transformation as correct
+while the state or action it drives is wrong.
+
 ```text
 Good: use the real serializer to prove its stored format.
 Bad:  mock the serializer and call the result an integration test.
@@ -45,12 +50,16 @@ Bad:  mock the serializer and call the result an integration test.
 - Arrange only relevant state, perform one action, and assert the contract.
 - Name the condition and behavior; make failures print useful expected and actual values.
 - Cover only material partitions such as normal, empty, invalid, maximum, repeated, unauthorized,
-  partial, or concurrent behavior.
+  partial, or concurrent behavior. Take the values from what real producers emit and existing
+  consumers accept — alternate representations, missing and malformed among them — not from the
+  one example the assignment happened to give.
 - Keep causal values visible. Helpers hide noise, not why the case passes.
 - Use an independent expected value or oracle. Duplicating production logic can make both wrong.
 
 Never weaken an assertion merely to get green. When behavior changes intentionally, update it from
-the requirement—not current output.
+the requirement—not current output. Never write a case for behavior nobody specified: an assertion
+whose only source is the implementation records a guess as a requirement, and every later reader
+takes it for a decision someone made.
 
 ## Replace known traps
 
@@ -71,7 +80,9 @@ main signal temporarily; keep the failure visible and owned.
 1. For a regression, observe failure for the reported reason before the correction. If that is unsafe
    or impractical, state the limitation instead of claiming the defect was reproduced.
 2. Run the changed case, containing suite, then required broader checks.
-3. Read exit status, discovery/execution counts, skips, expected failures, retries, and warnings.
+3. Read exit status, discovery/execution counts, skips, expected failures, retries, and warnings. A
+   check that builds its cases from fixtures, generation, or discovery reports how many it exercised;
+   one that found none did not run, whatever it returned.
 
 ```text
 Good: exit 0; 37 discovered, 37 executed, 0 skipped; new regression passed.

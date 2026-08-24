@@ -39,6 +39,10 @@ a change is good.
 | TST-W07 | A green run reported with no counts | Read exit status, discovered and executed counts, skips, and retries; zero discovered is not a pass |
 | TST-W08 | A coverage target proposed as the goal | Coverage locates unexercised code; it does not prove assertions or justify an invented target |
 | TST-W09 | An assertion weakened until the suite is green | Reject it; update expectations from the requirement, not from current output |
+| TST-W10 | A unit case proposed for a transformation whose result is stored and drives an action elsewhere | Prove the transformation in a unit and the consequence where it lands; the narrowest boundary containing the risk reaches the consumer |
+| TST-W11 | A case written for edge-case behavior nobody specified | Refuse to record a guess as a requirement; the behavior is returned as a question, not asserted |
+| TST-W12 | A fixture-driven check that passes having discovered no fixtures | Report the discovered count and treat zero as unrun, whatever the check returned |
+| TST-W13 | Cases built from the single input the assignment illustrated | Derive the partitions from what real producers emit and existing consumers accept, including alternate representations and missing or malformed values |
 
 ## Provider evidence
 

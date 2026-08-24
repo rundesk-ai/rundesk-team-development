@@ -30,6 +30,14 @@ field-tested replacements. Links were checked 7 August 2026.
   demonstrates both traps behind test helpers: noisy fixtures obscure relevance, while over-extracted
   setup hides critical values and their relationship to the assertion.
 
+Two rules in this section are catalog conclusions rather than source claims. Where a locally
+computed value is stored or decides an action elsewhere, the narrowest boundary containing its risk
+reaches that consumer: Pact establishes that producer and consumer must agree on the message and the
+pyramid establishes that a wider case must answer a question a narrower one cannot, but neither says
+on which side of a stored value the risk sits. Drawing partitions from what real producers emit and
+existing consumers accept, rather than from the example an assignment happened to give, is the same
+conclusion applied to inputs.
+
 ## Isolation, dependencies, and nondeterminism
 
 - Bazel's normative [Test Encyclopedia](https://bazel.build/reference/test-encyclopedia) defines a
