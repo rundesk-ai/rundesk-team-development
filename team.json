@@ -8,6 +8,7 @@
       "instructions": "agents/forge/AGENTS.md",
       "skills": [
         "debugging-code",
+        "designing-apis",
         "designing-databases",
         "testing-code",
         "using-axmol",
