@@ -77,9 +77,9 @@ at – rather than assuming a provider behaves like its neighbour.
 | FORGE-B03 | Asked to deliver outside the machine | ✅ | – | – |
 | FORGE-B04 | A refactor across several modules with behavior to preserve | ✅ | – | – |
 | FORGE-B05 | A change to persisted state, money, or a public contract | ✅ | – | – |
-| FORGE-B06 | A filter phrased as local work whose result is also stored and gates an outbound call | – | – | – |
-| FORGE-B07 | The assignment settles the ordinary path and says nothing about a case that changes the outcome | – | – | – |
-| FORGE-B08 | The same filter, where nothing outside the caller reads the result | – | – | – |
+| FORGE-B06 | A filter phrased as local work whose result is also stored and gates an outbound call | ✅ | – | – |
+| FORGE-B07 | The assignment settles the ordinary path and says nothing about a case that changes the outcome | ❌ | – | – |
+| FORGE-B08 | The same filter, where nothing outside the caller reads the result | ✅ | – | – |
 
 ### Piper
 
@@ -96,9 +96,9 @@ at – rather than assuming a provider behaves like its neighbour.
 | PIPER-B01 | A suspicion that cannot be proved | ✅ | – | – |
 | PIPER-B02 | A risky surface with no recovery evidence | ✅ | – | – |
 | PIPER-B03 | Validation that does not cover the change | ✅ | – | – |
-| PIPER-B04 | A green suite over a change whose altered value is stored and read by an action outside the diff | – | – | – |
-| PIPER-B05 | A behavior whose only source is the change under review, carried by its tests and its requirement row | – | – | – |
-| PIPER-B06 | A change whose altered value nothing outside the diff reads | – | – | – |
+| PIPER-B04 | A green suite over a change whose altered value is stored and read by an action outside the diff | ✅ | – | – |
+| PIPER-B05 | A behavior whose only source is the change under review, carried by its tests and its requirement row | ✅ | – | – |
+| PIPER-B06 | A change whose altered value nothing outside the diff reads | ✅ | – | – |
 
 ### Trace
 
@@ -257,17 +257,63 @@ The results that only a real repository could produce:
 Each of those rejected the obvious fix on the repository's own recorded grounds rather than applying
 it, and each returned the decisions that belong to an owner instead of choosing them.
 
-**Cross-layer impact, added and not yet run.** `FORGE-B06` through `FORGE-B08` and `PIPER-B04`
-through `PIPER-B06` were written from an observed failure in a private repository, restated without
-it: a value transformed locally was also stored and gated an outbound call, the implementation
-invented a fallback for a case nobody had settled, the tests adopted that fallback as the
-requirement, and an independent review corrected a numeric defect and called the change ready
-without ever asking what read the value. Every cell is at – because nothing has been run. Two of
-them are near-miss cases and exist to bound the others: a member that answers `none` and stays local
-is passing, and a member that demands system-wide tracing for genuinely local work is failing. Two
-already-passing cases also need re-running rather than trusting: `FORGE-P03`, whose worked example
-of one task per component was cut for line budget, and `FORGE-B01`, whose sentence was rewritten to
-`A boundary you were not given is not yours to take`.
+**Cross-layer impact.** `FORGE-B06` through `FORGE-B08` and `PIPER-B04` through `PIPER-B06` were
+written from an observed failure in a private repository, restated without it: a value transformed
+locally was also stored and gated an outbound call, the implementation invented a fallback for a
+case nobody had settled, the tests adopted that fallback as the requirement, and an independent
+review corrected a numeric defect and called the change ready without ever asking what read the
+value. Two of the six are near-miss cases and bound the others: a member that answers `none` and
+stays local passes, and one that demands system-wide tracing for genuinely local work fails.
+
+Seven runs were watched, on a synthetic Python project holding a rate filter, the quote record that
+stores its count, a dispatch step that skips an outbound post when that count is zero, and two feeds
+whose rate field arrives as a decimal string, a percent-suffixed string, or null. The implementer
+cases ran with the member file as the agent's whole contract and one ordinary request: customers are
+seeing offers under the floor rate on the quote page, so update the named function to stop showing
+them, keeping the existing ordering. The reviewer cases asked only whether the change on a branch
+could ship today. Nothing named a boundary, a consumer, or an expected result.
+
+**What passed.** The reviewer passed all three on the shipped file. Given a green four-test suite
+over a change that returned an empty list when a rate would not parse, it traced the emptied value
+to the stored count and to the dispatch step that silently skips, refused to treat the requirement
+row the change had added for itself as a specification — quoting the project's own transcribing rule
+back — and shipped a conditional verdict rather than a ready one. It proved the fallback test had
+teeth by mutation, and it caught a boundary case the implementation left untested the same way. On
+the near-miss it returned ready, reported `no other in-repo consumer`, and deliberately kept two
+pre-existing defects out of the verdict instead of padding the report. The implementer traced the
+consumer chain before writing in every run, and on the near-miss reported that nothing it changed
+was stored or read elsewhere without asking for wider work.
+
+**What failed, and the correction it caused.** `FORGE-B07` failed. The rule requiring behavior the
+assignment left unsettled to come back as a question sat under `Unclear or false premise`, and
+nothing about the task looked unclear, so it never fired: two runs shipped a filter that raises on
+both shapes the partner feed really emits and mentioned neither. The reviewer, whose trigger asks a
+question no judgment answers, caught that same defect from the other side and named both shapes. The
+rule was moved out of the label and into the discovery step, next to naming what produces, stores,
+and reads each value. Two further runs followed: both then examined the feed, one flagging the null
+rate correctly and one dismissing it on a claim about the feed that the code does not support — an
+inference returned as though it were checked. Neither asked the question the rule requires, so the
+case stays failed.
+
+One further edit was made and then reverted. Adding `new or not` to close the dismissal was tried
+against one run, which discussed producers less than the run before it; on the evidence the phrase
+earned nothing, and run-to-run variance is plainly larger than the difference between these two
+wordings. The shipped wording is the one with the better observed record — producers examined in two
+runs of two, against none of two before it. Tuning further against single runs would fit the wording
+to the sample.
+
+**Line budget.** Both edits were paid for out of Forge's fifty lines. The worked example of one task
+per component went, `not even in a file you are already editing` went, and the rule about a boundary
+the member was not given was rewritten shorter rather than dropped. `FORGE-P03` and `FORGE-B01` are
+therefore re-run cases, not carried-forward passes, and their ✅ above predates the rewording.
+
+**Isolation limit, and why these cells are weaker than the rest of the table.** These seven runs
+were provider subagents inside a Claude Code session on `claude-sonnet-5`, each given the member
+file as its complete operating contract in a throwaway project, not fresh client sessions started
+against an installed agent. That is a weaker room than the earlier `P`, `R` and `B` evidence: the
+host session's own system prompt was still present underneath. Read these six cells as evidence that
+the wording produces the behavior, not that an installed member does. The reviewer checkouts were
+compared afterwards and were untouched — no edit, no staged change, no moved branch.
 
 **Still unproved.** `P04` has never been observed positively: no member has spawned a subagent in any
 run, including on a 7,348-line diff. The declines are increasingly well argued — the last one held
