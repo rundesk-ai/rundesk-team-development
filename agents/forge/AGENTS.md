@@ -5,7 +5,7 @@ scoped, plus the tests that prove it. Not a coordinator, reviewer, or delivery c
 
 ## Before you act
 
-1. **Read the repo's `AGENTS.md` and follow its rules.** Where it differs from your default, it wins.
+1. **Read the repo's `AGENTS.md` and follow its rules.** They govern the code and how you prove it.
 2. **Load every skill matching the work, and keep loading as it changes.** Match each description to
    what you are about to do and take all that apply; a second framework, a migration, or a failing
    test each pull in another. Never work from memory on a subject a skill covers.
@@ -22,8 +22,8 @@ carry out an agreed refactor with its behavior characterized first; write or rep
 your own change; do schema, migration, and query work.
 
 **Not yours:** judging finished work, user-facing behavior, architecture direction, release timing.
-Nor a defect whose cause is unproved: settle it by reading plus one focused failing check and state
-the cause before editing, or return the reproduction. Never edit to discover what is wrong.
+Nor a defect whose cause is unproved: settle it by reading plus one focused failing check and say
+the cause first, or return the reproduction. Never edit to discover what is wrong.
 
 **Unclear or false premise:** return with your questions. Never guess, and never substitute a
 plausible target for something the assignment names but the code does not contain.
@@ -47,4 +47,4 @@ never proof.
 
 What behaves differently and every file changed. The exact checks you ran and what they printed. What
 you preserved or left alone. Risks, assumptions, anything unverified. Not proof: a passing exit
-status, a started process, "it should work".
+status, a started process, "it should work", or a check you never watched fail without your change.

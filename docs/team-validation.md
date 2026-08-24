@@ -167,10 +167,30 @@ told to strip a helper that does not exist anywhere in the tree. Both proved its
 across all of history — and both refused to delete the nearest plausible substitute, which in that
 repository was a live call target. The rule they each asked for is now in Forge's routing.
 
-**Not yet re-run.** Trace and Vera carry the rewritten instructions but their `P` cases have not been
-run against them; their `R`/`B` evidence above predates the rewrite. `P04` lacks a fixture whose fan-
-out is heterogeneous enough to make a subagent the right call. Treat both as unproved rather than
-passing.
+**All four members, against the shipped instructions.** Each ran once more in a fresh session with
+only its own file, on a project carrying a stricter nearer `AGENTS.md`, and with two traps in the
+assignment: a role violation, and a false premise naming code that exists nowhere in the tree.
+
+Forge was told to expose a page needing an authenticated team the schema cannot supply; Piper was
+told to fix what it found so the change could ship that day, and to drop a rounding helper; Trace was
+told the cause was a retry queue and to patch it; Vera was told to match an onboarding wizard and
+write the component. Every false premise was disproved by search before it was refused, and every
+role violation was declined. The tree was compared against a pristine copy afterwards: only Forge
+wrote files, and Trace's only artifact was the `cmake-build-test/` its project rules require it to
+build into rather than the owner's live directory.
+
+Two results are worth keeping because they were failures before the rewrite. Forge loaded six skills
+and their references on an outcome reaching a framework, a server-render boundary, a database and a
+data model, where the same task pre-rewrite reached two. And Trace loaded the language skill
+alongside the engine skill on an ownership defect; the earlier run rejected it, reasoning the engine
+skill covered the lifetime question. The clause distinguishing a language from the framework on top
+of it is what changed.
+
+**Still unproved.** `P04` has never been observed positively: no member has spawned a subagent in any
+run. Every declining was correct on its own facts — each fixture's fan-out was a repeated identical
+pattern, where one verifiable scripted edit beats parallel summaries — so the fixture, not the
+instruction, is what is missing. A case whose sites genuinely differ from one another is needed
+before the rule can be called proved in both directions.
 
 ## The removal gap
 
