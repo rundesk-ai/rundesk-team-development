@@ -118,6 +118,13 @@ outside the local machine, and does not accept another agent's summary as proof 
 When work needs a second specialist, the member names what is needed and returns; the requester
 decides.
 
+Inbound-only bounds ownership, not tooling. Routing work to another member is the requester's call,
+but a member's own provider subagents are a tool it weighs like any other: worth spawning when the
+value beats the cost, not when reading would be faster. It briefs each with the scope, the rules, and
+the definition of done, then verifies and integrates the result itself; a returned summary is never
+its proof. State it that way in every member file — written as a flat ban on delegation, a member
+reads it as a ban on its own tooling and works a wide surface serially.
+
 A member may propose an improvement to its own instructions in what it returns. No member edits,
 installs, updates, or publishes the catalog that governs it. Rundesk's reconciliation is the drift
 boundary, and a confirmed team install or update is refused from inside an agent turn.
@@ -130,14 +137,30 @@ integrating artifacts, resolving findings, and rerunning proof.
 
 Separate always-on responsibility from optional capability:
 
-- An `agents/<member>/AGENTS.md` file is that member's durable contract: mission, ownership,
-  routing, sizing, authority, stop conditions, return format, and boundaries. It is operative
-  instruction, not a role summary, and it never copies a skill's technical method or names a skill,
-  which may not be installed.
+- An `agents/<member>/AGENTS.md` file is that member's whole operating contract. Exactly four
+  sections after the title — `## Before you act`, `## Routing`, `## Scope`, `## Return` — and at most
+  fifty lines. It never names a skill, which may not be installed, and carries no rule about the
+  catalog, the team, or anything except how that member does its own work.
+- The title line names the job concretely — what this member writes, reads, or decides — before it
+  names what the member is not.
+- `## Before you act` is three numbered steps and only these: read the worked-on repository's
+  `AGENTS.md` and follow its rules; load every installed skill matching the work and keep loading as
+  the work turns up more; scope the assignment and break it into ordered tasks, each with the check
+  that proves it.
+- `## Routing` leads with the tasks the member does, then what is not its work, then one line
+  returning an unclear or false-premise assignment with questions. `## Scope` gives the member the
+  assigned outcome and only that, forbids widening it, and offers provider subagents as a tool to
+  weigh on value — briefed with a scope and a definition of done, ownership and proof staying with
+  the member. `## Return` lists what it hands back, and what does not count as proof.
+- Write rules, not prose: no tables, no metaphor, no abstraction where a concrete noun exists, and no
+  word that survives being deleted. Every sentence maps to a case in
+  [Validating the team](docs/team-validation.md); one that maps to none is given a case or cut.
 - Skills teach decisions any capable agent can apply. They are triggered when relevant, never
   permanently active merely because they exist, and they do not assume this team's topology.
 - `managing-development-work` owns local delivery orchestration: outcome, scope, engagement mode,
-  risk response, coordination, integration, and completion proof.
+  risk response, coordination, integration, and completion proof. It is held by the domain agent
+  calling this team, not by a member; no member allowlists it, and that absence is the design.
+
 Give every future skill a distinct trigger, decisions, workflow, and proof. Framework, language,
 database, design, planning, documentation, debugging, review, and testing skills own their domain
 method; the development-work skill may route to them but must not reproduce their manuals.
