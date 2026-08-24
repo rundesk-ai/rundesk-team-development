@@ -40,15 +40,15 @@ README_SKILL_HEADINGS = (
     "### Languages and engines",
 )
 MEMBER_HEADINGS = (
-    "## Mission",
-    "## What routes to you",
-    "## What does not route to you",
-    "## How to size the work",
-    "## Authority and stop conditions",
-    "## Working with the agent that called you",
-    "## What to return",
-    "## Boundaries",
+    "## Before you act",
+    "## Routing",
+    "## Scope",
+    "## Return",
 )
+
+#: A member's instructions are always-on context in every one of its turns, so
+#: length is a cost paid on each. Fifty lines is the ceiling.
+MEMBER_LINE_LIMIT = 50
 MEMBER_NAMES = {"forge", "piper", "trace", "vera"}
 ALLOWED_PACKAGE_ROOTS = {"SKILL.md", "references"}
 FORBIDDEN_PACKAGE_FILES = {"README.md", "CHANGELOG.md", "rundesk.json"}
@@ -411,20 +411,21 @@ class RepositoryContract(unittest.TestCase):
                 self.assertEqual(0, page.stat().st_mode & 0o111)
                 headings = tuple(re.findall(r"^#{1,2} .+$", text, re.MULTILINE))
                 self.assertEqual((f"# {name.title()}",) + MEMBER_HEADINGS, headings)
-                self.assertLessEqual(len(text.splitlines()), 200)
+                self.assertLessEqual(len(text.splitlines()), MEMBER_LINE_LIMIT)
                 for skill in self.skill_names():
                     self.assertNotIn(skill, text)
 
-    def test_member_instructions_forbid_self_governance_and_onward_handoff(self):
-        required = (
-            "you do not delegate",
-            "never edit, install, update, or publish",
-        )
+    def test_member_instructions_offer_subagents(self):
+        """Every member is told its provider subagents are available to it.
+
+        Stated as a bare prohibition on delegation, a member reads the rule as a
+        ban on its own tooling and works a wide surface serially. The file has to
+        say the tool exists and leave the member to weigh it.
+        """
         for name in MEMBER_NAMES:
             page = (ROOT / "agents" / name / "AGENTS.md").read_text(encoding="utf-8")
-            for phrase in required:
-                with self.subTest(member=name, phrase=phrase):
-                    self.assertIn(phrase, page.lower())
+            with self.subTest(member=name):
+                self.assertIn("subagent", page.lower())
 
     def test_the_superseded_role_model_is_gone(self):
         stale = (
