@@ -26,7 +26,7 @@ last_verified: YYYY-MM-DD
 
 |    | ID | Requirement | Evidence |
 |:--:|---|---|---|
-| ✅ | R-NS-1 | <the behavior that must hold, under 25 words> | `test_case_name` |
+| ✅ | R-NS-1 | <one assertion, in the language of the product> | `test_case_name` |
 | ❌ | R-NS-2 | <built, but nothing proves it> | src/thing.ext:88 — no test |
 | ❌ | R-NS-3 | <nothing exists yet> | — |
 
@@ -40,7 +40,10 @@ Four `##` headings, that order, nothing else. `last_verified` is present when at
 
 ## Wording a requirement
 
-One assertion, present tense, under 25 words, in the language of the product rather than the code.
+One assertion, present tense, in the language of the product rather than the code. Keep it short
+enough to hold in one thought — but length is a smell, not a limit. A long requirement that names one
+condition is fine; a short one hiding two is not, and rewording an existing contract to hit a word
+count risks changing what it promises.
 
 - **No implementation symbols.** A requirement that names a class or a function is describing a
   design, and it will be wrong after the next refactor while still reading as true.
@@ -76,16 +79,16 @@ There is no third glyph. "Partly" is two rows.
 
 - **One namespace per file, one file per namespace.** A second namespace means a second file, and so
   does a table much past fifteen rows.
-- **Numbers run unbroken from 1.** A gap means a row was deleted without renumbering, or was
-  mis-numbered from the start. Either way an ID resolves to nothing, or to the wrong thing.
+- **An ID is never reused and never renumbered.** Withdraw a requirement by deleting its row and
+  leaving the number missing. A gap records a withdrawal; it does not need closing.
 - **A contract holds what is true now**, so a withdrawn requirement is erased rather than kept as
   struck history. Git has the history.
-- **Erasing a row is one change that also updates every citation at or after it.** Erase `R-THING-7`
-  and the old `R-THING-8` becomes `R-THING-7`; every reference to either now points somewhere new,
-  in the other requirements files and in the code comments that name their IDs. Nothing warns you —
-  the ID still resolves and the reader gets a confident wrong answer. Grep the whole repository for
-  the namespace before erasing, and if a citation is somewhere you cannot change in the same commit,
-  stop and ask.
+- **Renumbering is the thing to refuse.** Erase `R-THING-7`, close the gap, and the old `R-THING-8`
+  becomes `R-THING-7`; every reference to either now points somewhere new, in the other contracts, in
+  code comments, and in tests that name their requirement. Nothing warns you — the ID still resolves
+  and the reader gets a confident wrong answer. Leaving the gap costs one question and no wrong
+  answers. Grep the namespace across the repository before withdrawing anything, and if a citation is
+  somewhere you cannot change in the same commit, stop and ask.
 - **Never compound an ID.** `R-A-2 / R-B-2` is not a requirement, it is two requirements or one that
   belongs a layer up.
 

@@ -118,6 +118,27 @@ home's removal happened inside one shell invocation, so both trees existed for p
 package tells you to retire the old home in its own change, which a fixture with no version control
 cannot do.
 
+## What the first conversion established
+
+The layout was carried through a mature documentation tree on 2026-08-25 — an index, thirteen topic
+pages, a published surface, ten requirement contracts and thirty-three research notes. The layout,
+the homes, the index discipline and the closed schema all held. Two rules in this package did not,
+and both have been corrected here rather than defended:
+
+- **The unbroken-numbering rule was actively dangerous.** Four requirement numbers were missing in
+  that tree, and its requirement IDs are cited from shipped source and test docstrings. Closing the
+  gaps would have repointed every citation at or after each gap at a different requirement, silently.
+  The rule now forbids renumbering and treats a gap as a withdrawal.
+- **The 25-word ceiling did not survive contact.** Fifty-seven of 161 rows exceeded it, including six
+  in that repository's best-evidenced contract, one of them 97 words. Rewording contracts to satisfy
+  a count risks changing what they promise. Length is now a smell rather than a limit.
+
+Two placement judgments the cases did not anticipate also came up and were resolved the way the
+package would want: 288 lines inside one requirements file were describing how a subsystem works
+rather than asserting anything, and became a topic page; and evidence was recovered by finding which
+tests cite each requirement ID and running them, rather than by trusting the prose already in the
+evidence column.
+
 ## Next validation
 
 Run every case in fresh supported provider sessions, with and without the package installed, using

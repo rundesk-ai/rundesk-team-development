@@ -122,7 +122,7 @@ last_verified: YYYY-MM-DD
 
 |    | ID | Requirement | Evidence |
 |:--:|---|---|---|
-| ✅ | R-NS-1 | <the behavior that must hold, under 25 words> | `test_case_name` |
+| ✅ | R-NS-1 | <one assertion, in the language of the product> | `test_case_name` |
 | ❌ | R-NS-2 | <built, but nothing proves it> | src/thing.ext:88 — no test |
 | ❌ | R-NS-3 | <nothing exists yet> | — |
 
@@ -131,13 +131,14 @@ last_verified: YYYY-MM-DD
 
 The glyph is the first column and its header stays empty. A ✅ means a named check was observed to
 pass; a source path is not evidence, and neither is a test that exists but was never run. Requirement
-IDs are `R-<NS>-<n>`, one namespace per file, numbered unbroken from 1.
+IDs are `R-<NS>-<n>`, one namespace per file. **An ID is never reused and never renumbered.**
 
-**Erasing a row renumbers every row below it, and that is one change that also rewrites every
-citation of every affected ID** — in the other requirements files and in the code comments that name
-them. Nothing will warn you: the ID still resolves, and the reader gets a confident wrong answer.
-Grep the whole repository for the namespace before erasing anything, and if a citation sits somewhere
-you cannot change in the same commit, stop and ask.
+Withdraw a requirement by deleting its row and leaving the number missing. A gap is information — it
+says something was withdrawn — and it costs a reader one question. Closing the gap costs them a
+confident wrong answer: renumbering repoints every citation of every ID at or after it, in the other
+contracts, in code comments, and in tests that name their requirement, and nothing fails when it
+happens. Grep the namespace across the whole repository before withdrawing anything, and if a
+citation sits somewhere you cannot change in the same commit, stop and ask.
 
 Read [references/requirements.md](references/requirements.md) for how to word a requirement, where to
 put the urge to explain, and how a document that is not a current promise is marked as one.
@@ -165,7 +166,8 @@ deliberate:
    resolves to a file that exists.
 2. Follow every relative link in every changed page.
 3. Confirm no home was created empty, and no fact acquired a second home.
-4. For each namespace, confirm the IDs run unbroken from 1 and every ✅ names a check that exists.
+4. For each namespace, confirm no ID is duplicated and every ✅ names a check that exists. A
+   missing number is a withdrawal, not a defect.
 5. Read `BRIEF.md` as somebody who has never seen the repository. If a section reads as invented
    rather than sourced, mark it rather than leaving it level with the rest.
 6. Say which of these you did not do.
