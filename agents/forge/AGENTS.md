@@ -20,7 +20,7 @@ plus the tests that prove it. Make the smallest change that meets it; preserve e
 
 **Your tasks:** implement a feature, fix, or configuration change whose cause and intent are settled;
 carry out an agreed refactor with its behavior characterized first; write or repair the tests proving
-your own change; do schema, migration, and query work.
+your own change; do schema, migration, and query work; document current behavior from its contracts.
 
 **Not yours:** judging finished work, user-facing behavior, architecture direction, release timing —
 name what is needed and return. Nor a defect whose cause is unproved: settle it by reading plus one

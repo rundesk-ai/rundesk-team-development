@@ -1,0 +1,55 @@
+# Writing Technical Docs Validation
+
+This is the current validation record for `writing-technical-docs`; the repository-wide method is in
+[Validating Skills](../../../docs/validation.md).
+
+No provider matrix has been run since this package moved into this catalog, so no case below is
+marked passed. Record a case only from a run someone watched.
+
+## Boundary under test
+
+The skill should activate for creating, revising, or auditing documentation of software that already
+exists — developer or consumer guides, API and CLI reference, how-it-works explanations, architecture
+notes, troubleshooting, extension guides, and maintainer documentation. It should not activate for
+planning work that has not been built, for writing code comments alone, or for describing a design
+that exists only as an intention.
+
+Documentation asks **what does this software do now, and how would someone verify that**. A plan asks
+what should be built; a requirements document asks what the product must do for a user. The dividing
+question is what falsifies the page: for documentation it is the code, and for the other two it is
+nothing yet.
+
+## Trigger and exclusion cases
+
+| ID | Request shape | Expected behavior | Claude | Codex |
+|---|---|---|---|---|
+| DOC-T01 | Document this API for the people who will call it | Load | – | – |
+| DOC-T02 | The README is out of date after the refactor | Load | – | – |
+| DOC-T03 | Write the troubleshooting page for these failures | Load | – | – |
+| DOC-T04 | Explain how this subsystem fits together, for maintainers | Load | – | – |
+| DOC-T05 | Write the plan for the feature we are about to build | Do not load; work not yet built | – | – |
+| DOC-T06 | Add comments to this function | Do not load; code comments alone | – | – |
+| DOC-T07 | Write the requirements for the new tier | Do not load; product requirements, not current behavior | – | – |
+| DOC-T08 | Document the endpoint we are going to add next sprint | Do not load; nothing exists to verify against | – | – |
+
+## Evidence and accuracy cases
+
+| ID | Request shape | Expected behavior | Claude | Codex |
+|---|---|---|---|---|
+| DOC-W01 | An existing page describes behavior the code no longer has | Correct it against the current contract and say what changed, rather than preserving the old claim | – | – |
+| DOC-W02 | A parameter's behavior is not obvious from its signature | Trace it to the implementation or a test before describing it; do not infer from the name | – | – |
+| DOC-W03 | An example is requested for a flow with no test covering it | Verify the example by running it, or mark it unverified; do not present an untested example as working | – | – |
+| DOC-W04 | The request asks for the happy path only | Include the failure paths and their causes; a reference that documents only success is incomplete | – | – |
+| DOC-W05 | Two sources disagree — a comment says one thing, the code another | Report the code as the contract and flag the stale comment; never average them into a hedge | – | – |
+| DOC-W06 | Asked to document a private or unstable internal as though it were public | Name the stability boundary rather than promoting an internal to a contract | – | – |
+| DOC-W07 | The codebase is unfamiliar and spans several layers | Establish what it can reach and trace the path before writing, rather than describing structure from file names | – | – |
+| DOC-W08 | Asked to document why a design decision was made, with no record of it | Return the missing rationale as unknown; do not invent a justification that reads as history | – | – |
+
+## Next validation
+
+Run every case in fresh supported provider sessions, with and without the skill installed, using
+ordinary requests that never name the boundary under test. Point each run at a real codebase and
+establish the current contract independently first, so a claim traced to the code can be told apart
+from one that merely reads plausibly. Record activation, whether each claim was traced to a contract,
+test, or executed example, whether failure paths appear, and whether anything unverifiable was
+returned as unverified rather than smoothed over.

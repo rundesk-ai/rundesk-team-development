@@ -4,7 +4,7 @@
   "members": [
     {
       "name": "forge",
-      "description": "Implements code: features, fixes, refactors, schema and migrations, and the tests that prove them, returning the diff and the checks that ran.",
+      "description": "Implements code: features, fixes, refactors, schema and migrations, the documentation of what it built, and the tests that prove them, returning the diff and the checks that ran.",
       "instructions": "agents/forge/AGENTS.md",
       "skills": [
         "debugging-code",
@@ -21,7 +21,8 @@
         "using-reactjs",
         "using-sqlite",
         "using-tailwindcss",
-        "using-vuejs"
+        "using-vuejs",
+        "writing-technical-docs"
       ],
       "delegates_to": [],
       "self_improve": false
