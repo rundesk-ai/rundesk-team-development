@@ -1,6 +1,6 @@
 ---
 name: testing-code
-description: Use when designing, adding, repairing, or assessing automated tests in any codebase, choosing the boundary a test should sit at, reproducing a defect as a failing case, or diagnosing flaky, brittle, or falsely green results. It supplies a runner-neutral workflow for deterministic cases, trustworthy assertions, and auditable evidence, including proving a test fails without the change it claims to cover. Do not use it for a framework's test syntax alone, to review a completed change, or to diagnose a failure whose cause is unknown.
+description: Use when designing, adding, repairing, or assessing automated tests in any codebase, identifying what an existing suite leaves untested, choosing the boundary a test should sit at, reproducing a defect as a failing case, or diagnosing flaky, brittle, or falsely green results. It supplies a runner-neutral workflow for deterministic cases, trustworthy assertions, and auditable evidence, including proving a test fails without the change it claims to cover. Do not use it for a framework's test syntax alone, to review a completed change, or to diagnose a failure whose cause is unknown.
 ---
 
 # Test code
@@ -21,6 +21,17 @@ Bad:  assert a private collaborator was called before another, although users ca
 
 Assert an interaction only when it is required behavior, such as emitting an event or avoiding an
 expensive boundary.
+
+## Load the stack's own mechanics
+
+This skill supplies the method — the boundary, the assertion, and the proof. A runner's fixtures,
+doubles, isolation, cleanup, and the idioms a reviewer of that stack expects belong to the package
+that owns it: `using-laravel`, `using-inertia`, `using-vuejs`, `using-reactjs`, `using-python`,
+`using-cpp`, `using-axmol`, `using-postgres`, `using-mysql`, `using-sqlite`, and their neighbours.
+
+Read the package for every language, framework, and data store the code under test uses, as soon as
+you know what they are. A framework and the database under it are two packages, not one. None of them
+needs to be installed for the method here to work.
 
 ## Choose the boundary that contains the risk
 
@@ -102,5 +113,7 @@ not claim more than the evidence covers.
   causes it, and fixing by category.
 - [proving-teeth.md](references/proving-teeth.md) — breaking the code to prove the test detects it,
   safely, and what a false pass looks like.
+- [assessing-a-suite.md](references/assessing-a-suite.md) — judging what an existing suite protects
+  and what it leaves unguarded, when the task is to assess coverage rather than to add a case.
 
 Read [the source map](references/sources.md) when auditing, changing, or extending these rules.
