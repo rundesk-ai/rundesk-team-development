@@ -64,10 +64,29 @@ For understanding and maintenance, name responsibilities, boundaries, runtime fl
 failure behavior, extension points, and invariants. Link to stable files and symbols when repository
 readers need to continue into code. Do not narrate every directory or infer why a design exists.
 
-Use descriptive headings and links, defined terms, direct language, and correctly tagged code
-blocks. Put one main question or task under each heading. Give diagrams titles, scope, labeled
+Put one main question or task under each heading. Give diagrams titles, scope, labeled
 relationships, legends, and an equivalent text explanation; never make a screenshot or diagram the
 only carrier of a contract.
+
+Accuracy is not enough on its own: a correct page still fails when the reader cannot scan it, or
+when its words drift from the words the software uses. Hold these while drafting, and read
+[references/language-and-naming.md](references/language-and-naming.md) for the full set with its
+worked cases.
+
+- **Use the software's own words.** The term the interface uses is the term the page uses. A
+  synonym reads as a distinction and sends the reader looking for one. Document the identifier that
+  exists; a page is not a rename.
+- **One verb per meaning**, held across the page — `raises`, `propagates`, `calls`, `returns`.
+- **Name the meaning, not the mechanism.** Headings and column labels identify; the explanation goes
+  in the cell or the sentence beneath.
+- **Write about what exists, in the present**, and delete "currently", "new", and "will soon"; a
+  version-bound fact belongs in a compatibility field where it can be checked.
+- **Name the actor.** Passive voice hides which component raises, writes, or retries, which is
+  usually the fact the reader came for.
+- **Match the register to the reader** and hold it. Reference is dense and factual; consumer-product
+  voice does not transfer to a contract page.
+- **Delete hedging, minimizers, marketing adjectives, and "note that".** State what was verified, or
+  mark the claim unverified.
 
 Humans and agents should reach the same canonical technical truth. Keep agent instruction files to
 short routing and workflow constraints; do not copy the full documentation into provider-specific

@@ -131,6 +131,32 @@ Verified 7 August 2026 against the linked pages.
   discrepancy must remain visible.
 - No rule requires documenting every directory, class, endpoint, or runtime path.
 
+## Language, naming, and register
+
+Retrieved and read directly in August 2026.
+
+- [Google, Field names (AIP-140)](https://google.aip.dev/140) states that a field name intuitive to
+  its author can baffle a reader, that readers rarely use one API in isolation, and that using one
+  name for different things — or different names for the same thing — is a cost the reader pays. It
+  establishes the rule that a page uses the software's own term and does not coin a synonym.
+- [Google, Timeless documentation](https://developers.google.com/style/timeless-documentation)
+  establishes that time-sensitive language costs accuracy and longevity, that words such as "now"
+  and "new" become outdated quickly, and that such terms belong in time-bound content like blog
+  posts rather than in product documentation.
+- [Google, Active voice](https://developers.google.com/style/voice) establishes that passive
+  constructions make it difficult for a reader to see who is responsible for an action, while
+  recording that passive voice remains acceptable where the object is the emphasis or the actor is
+  irrelevant.
+- [Microsoft, Top 10 tips for style and voice](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)
+  prescribes "write like you speak", contractions, and projected friendliness. It is cited here as
+  the boundary case rather than as a rule to follow: it is written for interface and marketing
+  surfaces, and this package's position is that the register does not transfer to reference or
+  troubleshooting pages.
+
+The verb table, the term-ledger format, the delete-on-sight list, and the two reading passes are
+catalog conclusions. They are consistent with the sources above but stated by none of them, and the
+specific verb choices are a local convention rather than an external standard.
+
 ## Attribution
 
 This package adapts `skills/writing-technical-docs/` from the Rundesk skills catalog at

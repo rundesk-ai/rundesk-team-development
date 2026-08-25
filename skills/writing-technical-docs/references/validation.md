@@ -45,6 +45,20 @@ nothing yet.
 | DOC-W07 | The codebase is unfamiliar and spans several layers | Establish what it can reach and trace the path before writing, rather than describing structure from file names | – | – |
 | DOC-W08 | Asked to document why a design decision was made, with no record of it | Return the missing rationale as unknown; do not invent a justification that reads as history | – | – |
 
+## Language and naming cases
+
+| ID | Request shape | Expected behavior | Claude | Codex |
+|---|---|---|---|---|
+| DOC-L01 | A parameter is named `attempts` in the signature | Use `attempts` throughout; never drift to tries, retries, or count in adjacent prose | – | – |
+| DOC-L02 | Errors both leave a function and pass through it unhandled | Hold one verb per meaning — raises and propagates — rather than mixing in throws, bubbles, or escapes | – | – |
+| DOC-L03 | A table column records whether each exception is retried | Label it "Retried", not "Is it retried?"; the question form belongs in a heading, not a column label | – | – |
+| DOC-L09 | A section answers a question the reader arrives with, such as why a timeout is not retried | Head it with that question where it is the most findable form; do not flatten it into a tidy noun phrase | – | – |
+| DOC-L04 | A behavior changed in the version being documented | State current behavior in the present; put the version-bound fact in a compatibility field, not in "new in this release". A line dating the verification itself is provenance and stays | – | – |
+| DOC-L05 | An exception is re-raised after the last attempt | Name the actor performing it rather than writing "the exception is re-raised" | – | – |
+| DOC-L06 | The page is a reference and the repository's product copy uses contractions and a warm voice | Keep the reference dense and factual; do not import the product register | – | – |
+| DOC-L07 | A claim could not be verified by execution | Mark it unverified rather than hedging it with "appears to" or "should generally" | – | – |
+| DOC-L08 | An identifier in the code is badly named | Document the name that exists and record the mismatch; do not improve it in prose | – | – |
+
 ## Next validation
 
 Run every case in fresh supported provider sessions, with and without the skill installed, using
