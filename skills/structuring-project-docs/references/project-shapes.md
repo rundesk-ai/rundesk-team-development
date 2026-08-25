@@ -20,6 +20,17 @@ it with something that does not belong.
 `requirements/` and `research/` are not tied to a project kind. Add them when there is a contract to
 assert or a finding to date.
 
+## The three-file rule governs docs/, not the repository root
+
+`README.md`, `LICENSE`, `CONTRIBUTING.md`, `RELEASING.md`, `CHANGELOG.md`, `SECURITY.md`, and the
+agent instruction files stay where consumers and tooling expect them. They are ecosystem conventions,
+not documentation pages, and moving them into a home breaks the expectation without organizing
+anything. The rule is about the root of `docs/`.
+
+A root file that is genuinely a page in disguise — a long setup walkthrough, an environment contract,
+a deep architecture note — belongs in a home. The test is whether anything outside the repository
+looks for it by name.
+
 ## The edge cases
 
 **A repository with two audiences.** A published product with an internal build process has consumer
@@ -46,6 +57,12 @@ page a reader scrolls instead of searching has failed at its only job.
 **A repository with no code.** A specification, a dataset, a design system. `CODEMAP.md` maps
 whatever the artifacts are — schemas, tokens, tables — and `api/` holds the published shape if
 anything consumes it.
+
+**A catalog of packages.** The packages are the product and each carries its own documentation, so
+the repository needs orientation rather than homes: what the catalog is for, who it serves, what it
+refuses, and where a package's parts live. Adding homes to hold three files is the mistake here.
+Resist duplicating any package's own guidance at the repository level — a rule written in both places
+is a rule that will disagree with itself.
 
 **A fork or a rewrite.** The predecessor's documentation is research, not truth. Date it, mark what
 it was true of, and never let it sit at the same level as pages describing what runs now.
