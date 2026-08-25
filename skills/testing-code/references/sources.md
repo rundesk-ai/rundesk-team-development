@@ -164,6 +164,27 @@ package's operational conclusions. Links checked 23 August 2026.
 
 The break/observe/restore ordering, the false-pass table, and the copy-not-`git checkout` rule are
 this package's operational conclusions. Links checked 23 August 2026.
+
+## Assessing a suite
+
+No new source underlies this reference; it applies the coverage sources already cited above to the
+task of judging an existing suite rather than one change.
+
+- Fowler's [TestCoverage](https://martinfowler.com/bliki/TestCoverage.html) establishes the one fact
+  the whole reference rests on: coverage "is a useful tool for finding untested parts of a codebase"
+  and "of little use as a numeric statement of how good your tests are", because "high coverage
+  numbers are too easy to reach with low quality testing". That is why the assessment maps behaviors
+  to cases rather than reading a percentage. The Google coverage post cited above makes the same
+  argument; its body could not be retrieved on the check date, so nothing here rests on it alone.
+- [Google Engineering Practices: what to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
+  states that tests do not test themselves and asks whether a test would fail when the code is
+  broken. It is the basis for probing the load-bearing mappings instead of accepting them.
+
+Catalog conclusions, and local heuristics rather than sourced findings: working from a behavior
+inventory instead of the test directory, the three mapping outcomes, treating a case that executes
+the line while asserting something else as the failure a percentage cannot show, ranking by the cost
+of the defect, and the list of absences not worth reporting. Links checked 24 August 2026.
+
 ## Attribution
 
 This package adapts `skills/testing-code/` from the Rundesk skills catalog at
@@ -171,5 +192,7 @@ This package adapts `skills/testing-code/` from the Rundesk skills catalog at
 `680e3d720547dbb563e6e15808e15c8f5bdd4083`, published by Rundesk AI under the MIT License.
 
 Material modifications: the routing description narrowed against its neighbouring packages in this
-catalog, and a maintainer validation record added. The boundary table, trap replacements, and
-run-evidence rules are carried forward unchanged.
+catalog; a maintainer validation record added; the consumer-reaching boundary rule, the
+partition-derivation rule, and the unspecified-behavior rule added; and the stack-mechanics step and
+the suite-assessment reference added. The boundary table, trap replacements, and run-evidence rules
+are carried forward unchanged.
