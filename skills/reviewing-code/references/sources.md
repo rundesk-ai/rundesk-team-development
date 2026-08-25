@@ -124,6 +124,7 @@ whatever the runner returns.
 
 The signal table, the partition list, and the finding format are this package's operational
 conclusions. Links checked 23 August 2026.
+
 ## Compatibility and migrations
 
 - Martin Fowler, [ParallelChange](https://martinfowler.com/bliki/ParallelChange.html), names the
@@ -146,6 +147,59 @@ Catalog conclusion: the overlap table, the migration-as-operation checklist, and
 findings list are this package's operational judgments. The sources establish the mechanisms; they do
 not publish that list.
 
+## Review depth, duplication, and simplicity
+
+Added and checked on **2026-08-24**.
+
+- [What to look for in a code review — Complexity](https://google.github.io/eng-practices/review/reviewer/looking-for.html) —
+  Google names over-engineering as a kind of complexity in its own right: code "made more generic
+  than it needs to be, or added functionality that isn't presently needed by the system", and it
+  directs reviewers to "encourage developers to solve the problem they know needs to be solved
+  *now*, not the problem that the developer speculates *might* need to be solved in the future". It
+  also supplies the threshold this package uses for all three depth passes: "'Too complex' usually
+  means 'can't be understood quickly by code readers.'" That makes complexity a property of the
+  reader rather than a metric, and it is why an unearned abstraction is a review dimension here and
+  not a preference.
+- [The standard of code review](https://google.github.io/eng-practices/review/reviewer/standard.html) —
+  "there is no such thing as 'perfect' code — there is only *better* code", and reviewers "should not
+  require the author to polish every tiny piece of a CL before granting approval". It also settles
+  where a convention comes from: aspects of design "are based on underlying principles and should be
+  weighed on those principles, not simply by personal opinion", while "any purely style point
+  (whitespace, etc.) that is not in the style guide is a matter of personal preference". This is the
+  basis for grounding a convention finding in a stated repository rule and for the worth-fixing bar.
+- [How to write code review comments](https://google.github.io/eng-practices/review/reviewer/comments.html) —
+  Google labels non-blocking feedback explicitly, with `Nit:`, `Optional (or Consider):` and `FYI:`,
+  so it is not mistaken for a blocker, and it asks the reviewer to explain *why*. This supports
+  reporting a depth finding as Optional by default and requiring its cost to be stated.
+- Dave Thomas and Andy Hunt, *The Pragmatic Programmer, 20th Anniversary Edition* — the publisher's
+  excerpt of [The Evils of Duplication](https://media.pragprog.com/titles/tpp20/dry.pdf) states the
+  DRY principle as "Every piece of knowledge must have a single, unambiguous, authoritative
+  representation within a system", and its section *Not All Code Duplication is Knowledge
+  Duplication* supplies the boundary directly, in a review setting: given two validators with
+  identical bodies checking an age and a quantity, "during code review, the resident know-all bounces
+  this code, claiming it's a DRY violation … They are wrong. The code is the same, but the knowledge
+  they represent is different … That's a coincidence, not a duplication." The change-together test in
+  this package is that passage restated as a question a reviewer can ask.
+- Sandi Metz, [The Wrong Abstraction](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction),
+  20 January 2016 — "duplication is far cheaper than the wrong abstraction". The article traces how an
+  extraction acquires a parameter for the third caller and a conditional for the fourth until it is
+  harder to read than what it replaced, and recommends re-inlining before extracting again. It is the
+  evidence for treating a premature consolidation as the more expensive error.
+- Martin Fowler, [Yagni](https://martinfowler.com/bliki/Yagni.html), 26 May 2015 — a presumptive
+  feature is one "we presume our software needs in the future", and Fowler separates its costs into
+  build, delay, carry, and repair, noting that delay and carry land even when the guess turns out
+  right. This is the cost model behind the speculation pass, and the reason a present caller is the
+  test rather than plausibility.
+- The Bosu, Greiler and Bird study cited above supplies the empirical half: unrelated future work and
+  low-value comments were the categories developers rated not useful. That is what the do-not-report
+  list encodes.
+
+Catalog conclusions on this material: the trigger table that decides which pass a change earns, the
+three-way separation of duplication from simplicity from speculation, the Optional-by-default
+severity for a depth finding, the do-not-report list as a list, and the rule that a second pass over
+unchanged code should find nothing new. The sources establish the dimensions and the thresholds; none
+of them publishes this routing.
+
 ## Attribution
 
 This package adapts `skills/reviewing-code/` from the Rundesk skills catalog at
@@ -153,5 +207,7 @@ This package adapts `skills/reviewing-code/` from the Rundesk skills catalog at
 `680e3d720547dbb563e6e15808e15c8f5bdd4083`, published by Rundesk AI under the MIT License.
 
 Material modifications: the routing description narrowed against its neighbouring packages in this
-catalog, and a maintainer validation record added. The workflow, trap table, evidence requirement,
-severity definitions, and verdict format are carried forward unchanged.
+catalog; a maintainer validation record added; the cross-layer impact rules, the trap rows covering a
+self-ratified requirement and a check that discovered nothing, and the owed consumer inventory added;
+and the depth references and the trigger table that routes to them added. The evidence requirement,
+the severity definitions, and the verdict format are carried forward unchanged.

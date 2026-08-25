@@ -70,6 +70,31 @@ matter. Do not report a percentage as a finding, and do not accept one as an ans
 is high-risk and the team runs mutation testing, a surviving mutant on the changed surface is a much
 stronger signal than any coverage number.
 
+## Name the kind of gap, not the quantity
+
+A gap is easier to act on when it is classified, because the classification implies the case that
+closes it:
+
+| Kind | What is missing | The case that closes it |
+|---|---|---|
+| Unexercised unit | The change adds a module, class, or command with no test at all | One case per behavior it decides |
+| Unexercised entry point | A tested file gained a public function, endpoint, or handler nothing calls in a test | A case at the boundary a caller uses |
+| Missing ordinary use | The behavior is tested, but not the way it is actually called | A case built from what a real producer sends |
+| Unexercised wiring | Two changed parts meet — a handler and a store, a producer and a consumer — and only each side is tested | One case across the join, with the real boundary |
+| Unexercised failure | The change adds a way to fail and only the success path is asserted | A case that triggers the failure and asserts what the caller sees |
+
+Rank them by what a defect there would cost, not by how many there are: a missing refusal case on an
+authorization path outranks a dozen untested display helpers. A report of three gaps that all matter
+is worth more than one of thirty.
+
+Some absences are not gaps, and reporting them costs the report its authority:
+
+- A private helper already exercised through the public behavior that uses it.
+- An accessor or pass-through with no decision in it.
+- Generated code, scaffolding, and framework wiring the repository does not customize.
+- An input so unusual that no producer in the system can emit it.
+- A case that would assert what an existing case already asserts.
+
 ## Report it as a finding, not as a preference
 
 Test gaps follow the same evidence bar as any other finding: name the behavior, the path that reaches
