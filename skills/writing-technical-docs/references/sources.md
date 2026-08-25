@@ -163,8 +163,9 @@ This package adapts `skills/writing-technical-docs/` from the Rundesk skills cat
 <https://github.com/rundesk-ai/rundesk-skills>, commit
 `826953197c01c7816fdd480e1eb91ee4fe708a8b`, published by Rundesk AI under the MIT License.
 
-Material modifications: a maintainer validation record added for this catalog. The workflow, the
-evidence requirements, the documentation types, and the API and architecture references are carried
+Material modifications: a maintainer validation record and language-and-naming guidance were added
+for this catalog, `SKILL.md` routes the new guidance, and this source map records its sources. The
+core workflow and the evidence, documentation-type, API, and architecture references are carried
 forward unchanged. The package moved here from the Rundesk marketing catalog, which shipped it until
 v0.5.0; a document verified against the code belongs with the code, because the codebase is what
 falsifies it.
