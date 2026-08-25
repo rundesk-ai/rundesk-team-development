@@ -33,40 +33,61 @@ migrating away from another produces exactly that state for however long the mig
 
 ## Place every document in one home
 
+**Three files sit at the root of `docs/`. Everything else is in a home.** A root that collects
+pages stops being an index and becomes the pile it was meant to organize.
+
 ```text
 docs/
-  README.md            the index — every page and home, with the question it answers
+  README.md            the index
   BRIEF.md             what this is, who it serves, what it refuses
   CODEMAP.md           where each layer lives, with counts
-  api/                 the surface this repository publishes
-    README.md
+  api/                 the published surface, one page per group + an index of every verb
+  concepts/            how a subsystem works, and how it fails
+  guides/              how to perform one task, start to finish
+  extending/           how to write something against a published contract
   requirements/        what must be true, and whether anything proves it
-    README.md
-  research/            dated findings about the world outside this repository
-    README.md
-  references/          material from elsewhere that this repository is measured against
-    README.md
+  research/            dated findings about the world outside
+  references/          material from elsewhere you are measured against
   assets/<topic>/      images the pages embed
-  <topic>.md           one page per subsystem, the source of truth for that subsystem
 ```
+
+Each home carries a `README.md` listing what is in it.
 
 `api/` and `references/` sit next to each other and are constantly confused. The distinction is one
 line: **`api/` is the surface you publish; `references/` is material from outside that you compare
 yourself against.** A screenshot of a competitor's settings page is a reference. Your own command
 list is api.
 
-**Required:** `README.md`, `BRIEF.md`, `CODEMAP.md`, `requirements/`, and `research/`. Add `api/` for
-any repository that publishes a surface somebody else calls — a CLI, an HTTP API, a library, a
-plugin contract.
+**Required:** the three root files, `requirements/`, and `research/`. Add `api/` when the repository
+publishes a surface somebody else calls. Add `concepts/`, `guides/`, and `extending/` when there is a
+page for them.
 
-**On demand:** `references/` and `assets/` exist once there is a set or an image to put in them.
-Never create an empty home. A directory holding only a placeholder teaches the next reader that the
-layout is decoration.
+**Never create an empty home.** A directory holding a placeholder teaches the reader that the layout
+is decoration.
 
-Topic pages carry the subsystems. One page per subsystem, named for the thing a reader is looking
-for, and it is the source of truth for that subsystem — not a summary of a source of truth kept
-elsewhere. Read [references/layout.md](references/layout.md) for what belongs in each home, what to
-do with material that fits none of them, and the order to convert an existing tree in.
+Sort a page by what the reader wants:
+
+| They want | Home |
+|---|---|
+| To look up a verb, endpoint, or field | `api/` |
+| To understand how something works, and how it fails | `concepts/` |
+| To get one task done | `guides/` |
+| To write an adapter, plugin, or catalog against your contract | `extending/` |
+
+**One page per subsystem, and that page is the source of truth for it** — not a summary of a truth
+kept elsewhere.
+
+**Split a reference page before it stops being one.** A surface page you scroll rather than search
+has failed at its only job. Give each group its own page and keep one index listing every verb on one
+line, so completeness stays checkable.
+
+Read [references/layout.md](references/layout.md) for what belongs in each home, material that fits
+none of them, and the order to convert an existing tree.
+
+Not every project has every home. A library, a game, a monorepo, and a repository that publishes its
+own documentation site each need a different subset. Read
+[references/project-shapes.md](references/project-shapes.md) before deciding which homes exist, and
+before inventing one the table does not cover.
 
 ## Date anything that came from outside
 
@@ -157,6 +178,24 @@ layout: files land, the index does not move, and nothing complains.
   after it is written, and unlike a stale row, nobody re-reads a summary to catch it.
 - When a page is deleted, delete its row and say so.
 
+## Keep every page scannable
+
+Placing a page well is wasted if the page is a wall. Documentation is read by somebody hunting one
+fact, not by somebody starting at the top.
+
+- **Lead with the answer.** The first line of a section is the fact; reasoning comes after.
+- **Use a table whenever the content is tabular** — states, flags, fields, exit codes. Prose
+  describing six parallel things is six rows badly formatted.
+- **One idea per paragraph, one question per heading.** A section past a screen has become two.
+- **Cut the run-up, the restatement, the tour, and the hedge.** They are most of the length.
+- **Split a page over its budget** rather than trimming it evenly. A long page is usually two pages.
+
+Character is not the enemy of concision. A line carrying both an invariant and the failure it
+prevents earns its length; a line carrying only tone does not.
+
+Read [references/page-shape.md](references/page-shape.md) for the budgets, the full cut list, and
+worked before-and-after.
+
 ## Verify the layout
 
 Nothing here is enforced by a machine unless the repository chooses to enforce it, so the check is
@@ -170,6 +209,7 @@ deliberate:
    missing number is a withdrawal, not a defect.
 5. Read `BRIEF.md` as somebody who has never seen the repository. If a section reads as invented
    rather than sourced, mark it rather than leaving it level with the rest.
-6. Say which of these you did not do.
+6. Check the longest page against its budget. If it is over, it is usually two pages.
+7. Say which of these you did not do.
 
 Read [references/sources.md](references/sources.md) before changing a rule in this package.

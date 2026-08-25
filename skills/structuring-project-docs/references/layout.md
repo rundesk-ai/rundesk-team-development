@@ -7,30 +7,37 @@ converting a repository that already carries a documentation system.
 
 | Home | Holds | The question it answers |
 |---|---|---|
-| `docs/README.md` | the index over everything below | what is written down here, and where |
-| `docs/BRIEF.md` | the project itself | what is this, who is it for, what does it refuse |
-| `docs/CODEMAP.md` | the structural inventory | where does each kind of thing live |
-| `docs/api/` | the published surface | what can a caller invoke, and what is guaranteed |
-| `docs/requirements/` | contracts and their evidence | what must be true, and does anything prove it |
-| `docs/research/` | dated external findings | what is true outside this repository, and when was that established |
-| `docs/references/` | comparison material | what are we measuring ourselves against |
-| `docs/assets/` | images the pages embed | — |
-| `docs/<topic>.md` | one subsystem each | how does this part work, and how does it fail |
+| `README.md` | the index over everything below | what is written down here, and where |
+| `BRIEF.md` | the project itself | what is this, who is it for, what does it refuse |
+| `CODEMAP.md` | the structural inventory | where does each kind of thing live |
+| `api/` | the published surface | what can a caller invoke, and what is guaranteed |
+| `concepts/` | one subsystem each | how does this work, and how does it fail |
+| `guides/` | one task each | how do I do this, start to finish |
+| `extending/` | one contract each | how do I write one of these against your seam |
+| `requirements/` | contracts and their evidence | what must be true, and does anything prove it |
+| `research/` | dated external findings | what is true outside here, and when was that established |
+| `references/` | comparison material | what are we measured against |
+| `assets/` | images the pages embed | — |
 
-## Topic pages carry the weight
+Only `README.md`, `BRIEF.md`, and `CODEMAP.md` sit at the root of `docs/`.
 
-Most of a mature `docs/` directory is topic pages, and they are where the layout succeeds or fails.
+## Concepts carry the weight
 
-- **One page per subsystem**, named for the thing a reader is hunting, not for the shape of the
-  document. `gateways.md`, not `architecture-overview.md`.
-- **The page is the source of truth for its subsystem.** Not a summary of a truth held elsewhere. If
-  a fact about gateways lives in two places, one of them is going to be wrong and neither reader
-  will know which.
-- **A page appears when the thing it describes is built and works** — not when it is planned. A
-  document written ahead of its feature is one nobody can check, and the first thing a reader learns
-  from it is not to trust the rest of the directory.
-- Say how a subsystem fails, and every state it can get stuck in. That is the part readers arrive
-  for and the part that is usually missing.
+Most of a mature tree is `concepts/`, and it is where the layout succeeds or fails.
+
+- **One page per subsystem**, named for the thing a reader is hunting. `gateways.md`, not
+  `architecture-overview.md`.
+- **The page is the source of truth for its subsystem** — not a summary of a truth held elsewhere.
+  A fact in two places means one is wrong and no reader knows which.
+- **A page appears when the thing it describes works**, not when it is planned. A document written
+  ahead of its feature cannot be checked, and teaches readers to distrust the rest.
+- **Say how it fails, and every state it can get stuck in.** That is what readers arrive for, and
+  what is usually missing.
+
+A guide is a task with an end: numbered steps, the expected observation after each meaningful one,
+then the failures and how to get out of them. An `extending/` page is a guide whose reader is
+building against your contract, so it carries the contract's bounds and refusals as well as the
+steps.
 
 ## `api/` is reference, not explanation
 
