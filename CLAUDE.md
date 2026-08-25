@@ -19,7 +19,8 @@ release readiness, validation evidence, or internal task memory in consumer copy
 
 ## Before you work
 
-1. Read this file, `README.md`, `team.json`, every affected `agents/<member>/AGENTS.md`, and every
+1. Read `docs/BRIEF.md` and `docs/CODEMAP.md` for what this is and where its parts are,
+   then this file, `README.md`, `team.json`, every affected `agents/<member>/AGENTS.md`, and every
    complete file you may change. For skill work, also read that package's `SKILL.md` and
    `references/sources.md`.
 2. Search the repository before adding a member, skill, term, field, workflow, or rule. Extend the
@@ -46,6 +47,10 @@ release readiness, validation evidence, or internal task memory in consumer copy
 ├── agents/<member>/AGENTS.md
 ├── assets/readme/
 ├── docs/
+│   ├── README.md        the index
+│   ├── BRIEF.md         what this team is for, and what it refuses
+│   ├── CODEMAP.md       where each part lives, with counts
+│   └── guides/          validating a skill, and validating the team
 ├── skills/<name>/
 │   ├── SKILL.md
 │   └── references/
@@ -154,7 +159,7 @@ Separate always-on responsibility from optional capability:
   the member. `## Return` lists what it hands back, and what does not count as proof.
 - Write rules, not prose: no tables, no metaphor, no abstraction where a concrete noun exists, and no
   word that survives being deleted. Every sentence maps to a case in
-  [Validating the team](docs/team-validation.md); one that maps to none is given a case or cut.
+  [Validating the team](docs/guides/team-validation.md); one that maps to none is given a case or cut.
 - Skills teach decisions any capable agent can apply. They are triggered when relevant, never
   permanently active merely because they exist, and they do not assume this team's topology.
 - `managing-development-work` owns local delivery orchestration: outcome, scope, engagement mode,
@@ -175,11 +180,19 @@ and verify every relied-on link.
 Adding, removing, or renaming a skill updates `README.md`, package tests, and compatibility notes.
 Changing the team schema, member list, description, instructions, allowed skills, delegation, or
 weekly upkeep updates `team.json`, every affected member instruction file, README claims, and
-focused tests together.
+focused tests together.Keep `docs/` in its layout. Only `README.md`, `BRIEF.md`, and `CODEMAP.md` sit at its root; a home is
+added when there is a page for it and never left empty. Use the `structuring-project-docs` skill
+before adding a home, moving a page, or changing the shape of one. Ecosystem root files stay at the
+repository root, where consumers and tooling look for them.
 
-Keep reusable validation method under `docs/`. Keep a skill's cases and current provider evidence in
+Update `docs/CODEMAP.md` when a count, a layer, or a file it names changes, and `docs/BRIEF.md` only
+when the purpose, audience, or refusals actually move. Keep pages thin: lead with the fact, use a
+table wherever the content is tabular, and never restate a package's own guidance at the repository
+level.
+
+Keep reusable validation method under `docs/guides/`. Keep a skill's cases and current provider evidence in
 its own `references/validation.md`, and the team's member cases and evidence in
-[Validating the team](docs/team-validation.md). Validation records are maintainer artifacts, not
+[Validating the team](docs/guides/team-validation.md). Validation records are maintainer artifacts, not
 operational references; do not route agents to them from a `SKILL.md` or a member instruction file.
 Do not create dated run logs. Stable case IDs preserve comparability; add or supersede a materially
 different case instead of silently changing its meaning.

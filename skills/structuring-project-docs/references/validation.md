@@ -1,7 +1,7 @@
 # Structuring Project Docs Validation
 
 This is the current validation record for `structuring-project-docs`; the repository-wide method is
-in [Validating Skills](../../../docs/validation.md).
+in [Validating Skills](../../../docs/guides/validation.md).
 
 Two runs were observed on 2026-08-25 against a fixture whose documentation was split across three
 homes — an `.ai/` orientation trio, a `docs/` directory holding both a surface reference and a survey

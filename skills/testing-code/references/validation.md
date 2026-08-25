@@ -1,7 +1,7 @@
 # Testing Code Validation
 
 This is the current validation record for `testing-code`; the repository-wide method is in
-[Validating Skills](../../../docs/validation.md).
+[Validating Skills](../../../docs/guides/validation.md).
 
 ## Boundary under test
 

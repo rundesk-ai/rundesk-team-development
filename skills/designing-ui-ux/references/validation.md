@@ -1,7 +1,7 @@
 # Designing UI and UX Validation
 
 This is the current validation record for `designing-ui-ux`; the repository-wide method is in
-[Validating Skills](../../../docs/validation.md).
+[Validating Skills](../../../docs/guides/validation.md).
 
 ## Boundary under test
 
