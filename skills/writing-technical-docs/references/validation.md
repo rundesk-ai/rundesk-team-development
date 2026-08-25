@@ -3,8 +3,11 @@
 This is the current validation record for `writing-technical-docs`; the repository-wide method is in
 [Validating Skills](../../../docs/validation.md).
 
-No provider matrix has been run since this package moved into this catalog, so no case below is
-marked passed. Record a case only from a run someone watched.
+Four runs were observed on 2026-08-25 against a fixture whose documentation deliberately contradicts
+its code, with the correct behavior established by execution before any run. Cases those runs
+exercised carry a result; every other case remains unrun. The language cases were written after
+those runs and are unrun, and the two corrections made to them came from a run rather than from
+review.
 
 ## Boundary under test
 
@@ -23,7 +26,7 @@ nothing yet.
 
 | ID | Request shape | Expected behavior | Claude | Codex |
 |---|---|---|---|---|
-| DOC-T01 | Document this API for the people who will call it | Load | – | – |
+| DOC-T01 | Document this API for the people who will call it | Load | ✅ | – |
 | DOC-T02 | The README is out of date after the refactor | Load | – | – |
 | DOC-T03 | Write the troubleshooting page for these failures | Load | – | – |
 | DOC-T04 | Explain how this subsystem fits together, for maintainers | Load | – | – |
@@ -36,14 +39,14 @@ nothing yet.
 
 | ID | Request shape | Expected behavior | Claude | Codex |
 |---|---|---|---|---|
-| DOC-W01 | An existing page describes behavior the code no longer has | Correct it against the current contract and say what changed, rather than preserving the old claim | – | – |
-| DOC-W02 | A parameter's behavior is not obvious from its signature | Trace it to the implementation or a test before describing it; do not infer from the name | – | – |
-| DOC-W03 | An example is requested for a flow with no test covering it | Verify the example by running it, or mark it unverified; do not present an untested example as working | – | – |
-| DOC-W04 | The request asks for the happy path only | Include the failure paths and their causes; a reference that documents only success is incomplete | – | – |
-| DOC-W05 | Two sources disagree — a comment says one thing, the code another | Report the code as the contract and flag the stale comment; never average them into a hedge | – | – |
+| DOC-W01 | An existing page describes behavior the code no longer has | Correct it against the current contract and say what changed, rather than preserving the old claim | ✅ | – |
+| DOC-W02 | A parameter's behavior is not obvious from its signature | Trace it to the implementation or a test before describing it; do not infer from the name | ✅ | – |
+| DOC-W03 | An example is requested for a flow with no test covering it | Verify the example by running it, or mark it unverified; do not present an untested example as working | ✅ | – |
+| DOC-W04 | The request asks for the happy path only | Include the failure paths and their causes; a reference that documents only success is incomplete | ✅ | – |
+| DOC-W05 | Two sources disagree — a comment says one thing, the code another | Report the code as the contract and flag the stale comment; never average them into a hedge | ✅ | – |
 | DOC-W06 | Asked to document a private or unstable internal as though it were public | Name the stability boundary rather than promoting an internal to a contract | – | – |
 | DOC-W07 | The codebase is unfamiliar and spans several layers | Establish what it can reach and trace the path before writing, rather than describing structure from file names | – | – |
-| DOC-W08 | Asked to document why a design decision was made, with no record of it | Return the missing rationale as unknown; do not invent a justification that reads as history | – | – |
+| DOC-W08 | Asked to document why a design decision was made, with no record of it | Return the missing rationale as unknown; do not invent a justification that reads as history | ✅ | – |
 
 ## Language and naming cases
 
@@ -58,6 +61,27 @@ nothing yet.
 | DOC-L06 | The page is a reference and the repository's product copy uses contractions and a warm voice | Keep the reference dense and factual; do not import the product register | – | – |
 | DOC-L07 | A claim could not be verified by execution | Mark it unverified rather than hedging it with "appears to" or "should generally" | – | – |
 | DOC-L08 | An identifier in the code is badly named | Document the name that exists and record the mismatch; do not improve it in prose | – | – |
+
+### What those runs observed
+
+All four discrepancies planted between the code and its documentation were found: a default of five
+attempts against a documented three, a documented `timeout` parameter that does not exist, a
+docstring claiming any exception is retried where only `ConnectionError` is, and a fixed delay that
+is exponential. The third is the one the fixture was built to catch, because repeating the docstring
+is both plausible and the cause of the misuse.
+
+Each run also produced findings the fixture did not plant, and every one reproduced when checked
+independently: a positional argument in the documented parameter position becomes `backoff`, turning
+"give up after 30 seconds" into a ninety-second schedule; `attempts=0` reaches `raise` with nothing
+assigned and never calls `fn`; rebinding the module default after import has no effect because it is
+bound at definition; an `async def` callable returns a coroutine that is never awaited or retried;
+and the exhausted call re-raises only the last exception, with `__cause__` and `__context__` both
+unset.
+
+Both documenting runs declined to correct the stale README, on the ground that it does not merely
+misdescribe the function but describes a different one — so whether the code or the documentation is
+wrong is a product decision, not a documentation one. Each flagged the conflict on its own page
+instead.
 
 ## Next validation
 
