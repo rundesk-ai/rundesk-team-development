@@ -398,6 +398,16 @@ class RepositoryContract(unittest.TestCase):
         self.assertIn("hero as a decision region", architecture)
         self.assertIn("CTA as an action contract", architecture)
 
+    def test_game_engine_skills_match_member_responsibilities(self):
+        forge = self.members()["forge"]
+        self.assertNotIn("using-axmol", forge["skills"])
+        self.assertNotIn("using-cpp", forge["skills"])
+        for name in ("piper", "trace"):
+            with self.subTest(member=name):
+                member = self.members()[name]
+                self.assertIn("using-axmol", member["skills"])
+                self.assertIn("using-cpp", member["skills"])
+
     def test_allowed_skills_are_reviewable_and_earned(self):
         """A grant list is read in review, so it stays sorted and stays a subset.
 
