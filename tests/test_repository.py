@@ -146,6 +146,7 @@ class RepositoryContract(unittest.TestCase):
         self.assertTrue(
             (ROOT / "assets/readme/rundesk-team-development-banner.png").is_file()
         )
+        self.assertIn("# Rundesk Development Team\n\n[![build]", readme)
         self.assertEqual(
             README_SKILL_HEADINGS,
             tuple(
