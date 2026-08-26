@@ -33,8 +33,9 @@ what was actually wrong.
 ## Scope
 
 - **Covers:** the four members and their canonical instructions; the guidance skills they hold across
-  delivery, design, debugging, review, testing, documentation placement and writing, and the language,
-  framework, and database stacks; and the team's reconciliation contract with Rundesk.
+  delivery, interface and landing-page design, debugging, review, testing, documentation placement
+  and writing, and the language, framework, and database stacks; and the team's reconciliation
+  contract with Rundesk.
 - **Refuses:**
   - A lead or coordinating member. The team has no accountable coordinator; every member is
     inbound-only and answers the agent that called it.

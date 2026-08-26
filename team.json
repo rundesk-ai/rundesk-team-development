@@ -79,6 +79,7 @@
       "description": "Plans and QAs the frontend: flows, states, wording, accessibility, and UX defects, driving a real browser to verify the built result when tools allow.",
       "instructions": "agents/vera/AGENTS.md",
       "skills": [
+        "designing-landing-pages",
         "designing-ui-ux",
         "using-tailwindcss"
       ],
