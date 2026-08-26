@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/readme/rundesk-team-development-banner.png" alt="Rundesk Development Team — Forge, Piper, Vera, and Trace." width="100%">
+</p>
+
 <h1 align="center">Rundesk Development Team</h1>
 
 <p align="center">
@@ -13,16 +17,12 @@
   &nbsp;·&nbsp;
   <a href="#-install"><strong>🚀 Install</strong></a>
   &nbsp;·&nbsp;
-  <a href="#-development"><strong>🛠️ Development</strong></a>
+  <a href="#️-development"><strong>🛠️ Development</strong></a>
 </p>
 
 <p align="center">
   A versioned Rundesk team for software delivery, product and interface design, debugging, and review.<br>
   Four specialists, their canonical instructions, and reusable development skills.
-</p>
-
-<p align="center">
-  <img src="assets/readme/rundesk-team-development-banner.png" alt="Rundesk Development Team — Forge, Piper, Vera, and Trace." width="100%">
 </p>
 
 ## 👥 Team
