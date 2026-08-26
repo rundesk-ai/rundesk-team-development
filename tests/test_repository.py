@@ -146,7 +146,14 @@ class RepositoryContract(unittest.TestCase):
         self.assertTrue(
             (ROOT / "assets/readme/rundesk-team-development-banner.png").is_file()
         )
-        self.assertIn("# Rundesk Development Team\n\n[![build]", readme)
+        self.assertTrue(readme.startswith('<h1 align="center">Rundesk Development Team</h1>'))
+        self.assertIn('<p align="center">\n  <a href="https://github.com/rundesk-ai/', readme)
+        for anchor in ("#-team", "#-skills", "#-install", "#-development"):
+            self.assertIn(f'href="{anchor}"', readme)
+        description = "A versioned Rundesk team for software delivery, product and interface design"
+        banner = "assets/readme/rundesk-team-development-banner.png"
+        self.assertLess(readme.index(description), readme.index(banner))
+        self.assertLess(readme.index(banner), readme.index("## 👥 Team"))
         self.assertEqual(
             README_SKILL_HEADINGS,
             tuple(

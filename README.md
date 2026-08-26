@@ -1,16 +1,29 @@
+<h1 align="center">Rundesk Development Team</h1>
+
+<p align="center">
+  <a href="https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml?query=branch%3Amain"><img src="https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml/badge.svg?branch=main" alt="Build and tests"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/catalog-v0.8.0-blue" alt="Catalog version 0.8.0"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"></a>
+</p>
+
+<p align="center">
+  <a href="#-team"><strong>👥 Team</strong></a>
+  &nbsp;·&nbsp;
+  <a href="#-skills"><strong>🧠 Skills</strong></a>
+  &nbsp;·&nbsp;
+  <a href="#-install"><strong>🚀 Install</strong></a>
+  &nbsp;·&nbsp;
+  <a href="#-development"><strong>🛠️ Development</strong></a>
+</p>
+
+<p align="center">
+  A versioned Rundesk team for software delivery, product and interface design, debugging, and review.<br>
+  Four specialists, their canonical instructions, and reusable development skills.
+</p>
+
 <p align="center">
   <img src="assets/readme/rundesk-team-development-banner.png" alt="Rundesk Development Team — Forge, Piper, Vera, and Trace." width="100%">
 </p>
-
-# Rundesk Development Team
-
-[![build](https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml?query=branch%3Amain)
-[![catalog v0.8.0](https://img.shields.io/badge/catalog-v0.8.0-blue)](manifest.json)
-[![license MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-
-A versioned Rundesk development team: four specialists, their canonical instructions, and the
-skills they use. Built for the [Rundesk CLI](https://github.com/rundesk-ai/rundesk-cli) agent
-system, this repository is both an installable skill catalog and a team declaration.
 
 ## 👥 Team
 
