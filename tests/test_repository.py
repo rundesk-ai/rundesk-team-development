@@ -359,6 +359,34 @@ class RepositoryContract(unittest.TestCase):
         raw = (ROOT / "team.json").read_text(encoding="utf-8")
         self.assertNotIn("\\u", raw)
 
+    def test_vera_owns_landing_page_design(self):
+        vera = self.members()["vera"]
+        self.assertIn("designing-landing-pages", vera["skills"])
+
+        page = (ROOT / "skills/designing-landing-pages/SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("# Design landing pages", page)
+        self.assertIn("page design", page)
+        self.assertIn("accepted page CVR", page)
+        self.assertIn("rendered page", page)
+        self.assertIn("Do not invent brand direction", page)
+        self.assertNotIn("lead-compliance-gates", page)
+
+        measurement = (
+            ROOT
+            / "skills/designing-landing-pages/references/measurement-and-experimentation.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("Translate CTR and CVR into one funnel ledger", measurement)
+        self.assertIn("first-party measurement owner", measurement)
+
+        architecture = (
+            ROOT
+            / "skills/designing-landing-pages/references/page-architecture-and-conversion-flows.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("hero as a decision region", architecture)
+        self.assertIn("CTA as an action contract", architecture)
+
     def test_allowed_skills_are_reviewable_and_earned(self):
         """A grant list is read in review, so it stays sorted and stays a subset.
 
