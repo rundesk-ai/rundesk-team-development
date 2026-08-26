@@ -132,7 +132,7 @@ git diff --check
 ```
 
 Skill changes also require verified source links and realistic forward tests. See
-[skill validation](docs/validation.md) and [team validation](docs/team-validation.md).
+[skill validation](docs/guides/validation.md) and [team validation](docs/guides/team-validation.md).
 
 ## 🤝 Contributing
 

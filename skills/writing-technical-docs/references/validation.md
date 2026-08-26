@@ -1,7 +1,7 @@
 # Writing Technical Docs Validation
 
 This is the current validation record for `writing-technical-docs`; the repository-wide method is in
-[Validating Skills](../../../docs/validation.md).
+[Validating Skills](../../../docs/guides/validation.md).
 
 Four runs were observed on 2026-08-25 against a fixture whose documentation deliberately contradicts
 its code, with the correct behavior established by execution before any run. Cases those runs

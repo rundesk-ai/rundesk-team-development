@@ -1,7 +1,7 @@
 # Managing Development Work Validation
 
 This is the current validation plan for `managing-development-work`; the repository-wide method is
-in [Validating Skills](../../../docs/validation.md). No live Codex and Claude provider matrix has been
+in [Validating Skills](../../../docs/guides/validation.md). No live Codex and Claude provider matrix has been
 run for this skill yet, so none of the cases below is marked passed.
 
 ## Boundary under test
