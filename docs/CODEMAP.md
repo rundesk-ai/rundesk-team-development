@@ -7,7 +7,7 @@ Two things share one tree: a guidance-only skill catalog, and the declaration of
 Rundesk creates from it. Every package is a directory under `skills/`; every member is a single
 instruction file under `agents/`.
 
-## Packages (skills/ — 21, 213 reference files)
+## Packages (skills/ — 21, 214 reference files)
 
 Each holds `SKILL.md` for routing and core procedure, and `references/` for detail loaded on demand.
 `references/sources.md` is required in every touched package.
@@ -22,7 +22,7 @@ Each holds `SKILL.md` for routing and core procedure, and `references/` for deta
 | `managing-development-work` | 2 | — |
 | `reviewing-code` | 6 | — |
 | `structuring-project-docs` | 8 | — |
-| `testing-code` | 6 | — |
+| `testing-code` | 7 | — |
 | `using-axmol` | 9 | — |
 | `using-cpp` | 9 | — |
 | `using-inertia` | 6 | — |
@@ -54,7 +54,7 @@ which skills it holds and who it may delegate to.
 
 | File | What it is |
 |---|---|
-| `manifest.json` | schema, name, version (`0.8.0`), and description |
+| `manifest.json` | schema, name, version (`0.9.0`), and description |
 | `README.md` | the consumer contract: the team, its skills, and how to install both |
 | `team.json` | the declaration Rundesk reconciles against: members, grants, delegation, upkeep |
 | `agents/<member>/AGENTS.md` | one member`s whole operating contract, four sections and at most fifty lines |

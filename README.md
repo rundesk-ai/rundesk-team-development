@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml?query=branch%3Amain"><img src="https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml/badge.svg?branch=main" alt="Build and tests"></a>
-  <a href="manifest.json"><img src="https://img.shields.io/badge/catalog-v0.8.0-blue" alt="Catalog version 0.8.0"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/catalog-v0.9.0-blue" alt="Catalog version 0.9.0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"></a>
 </p>
 
@@ -57,7 +57,7 @@ Rundesk keeps each member's instructions and skill access aligned with this cata
 - `debugging-code` — Reproduce failures, isolate causes, and prove safe corrections.
 - `reviewing-code` — Judge completed changes and return ranked findings.
 - `structuring-project-docs` — Place documentation in one home and keep its indexes true.
-- `testing-code` — Choose reliable test boundaries and prove test sensitivity.
+- `testing-code` — Build accurate tests, prove their sensitivity, and speed up local and CI feedback.
 - `writing-technical-docs` — Document what software does now, traced to its current contracts.
 
 ### Frameworks and interfaces

@@ -185,6 +185,71 @@ inventory instead of the test directory, the three mapping outcomes, treating a 
 the line while asserting something else as the failure a percentage cannot show, ranking by the cost
 of the defect, and the list of absences not worth reporting. Links checked 24 August 2026.
 
+## Test and CI performance
+
+### Measurement and stack mechanics
+
+- [Pytest: profiling test execution duration](https://docs.pytest.org/en/stable/how-to/usage.html#profiling-test-execution-duration)
+  documents `--durations` and `--durations-min` and reports setup, call, and teardown durations. It
+  establishes the Python profiling example, not a universal slow-test threshold.
+- [`pytest-xdist`: running tests across multiple CPUs](https://pytest-xdist.readthedocs.io/en/stable/distribution.html)
+  documents worker selection and the `load`, `loadscope`, `loadfile`, `loadgroup`, and `worksteal`
+  schedulers. The fixture-reuse and balancing tradeoff is bounded to projects that already use or
+  are authorized to add this plugin.
+- Python's [`unittest` class and module fixtures](https://docs.python.org/3/library/unittest.html#class-and-module-fixtures)
+  documents `setUpClass()` and `addClassCleanup()`, including cleanup after setup failure; the same
+  manual documents `--durations` as added in Python 3.12. The read-only restriction is this catalog's
+  isolation rule, not a promise made by `unittest`.
+- Pest's [Optimizing Tests](https://pestphp.com/docs/optimizing-tests) documents `--profile`,
+  `--parallel`, explicit process counts, parallel-isolation requirements, and time-balanced CI
+  shards based on recorded durations.
+- Laravel's [Testing: Getting Started](https://laravel.com/docs/12.x/testing) documents parallel
+  process counts, per-process databases and tokens, persistent parallel databases, and explicit
+  recreation. Laravel's [Database Testing](https://laravel.com/docs/12.x/database-testing) says
+  migration and truncation resets are significantly slower than `RefreshDatabase`, whose behavior
+  depends on schema state and transactions.
+- PHPUnit's [CLI options](https://docs.phpunit.de/en/12.5/cli-options.html) documents result caching,
+  duration and defect execution order, reproducible random-order seeds, and failure on zero tests.
+  Ordering changes time to a particular result; the documentation does not claim it reduces total
+  work, so the reference states that limit explicitly.
+- Vitest's [Improving Performance](https://vitest.dev/guide/improving-performance.html) separates
+  isolation, file parallelism, pools, caching, directory search, and sharding, and warns through its
+  distinct controls that they solve different costs. Its example report separates transform, setup,
+  import, environment, and test time.
+- Jest's [Troubleshooting](https://jestjs.io/docs/troubleshooting#tests-are-extremely-slow-on-docker-andor-continuous-integration-ci-server)
+  documents that constrained Docker or CI environments may improve with `--runInBand` or a limited
+  `--maxWorkers`. Its reported percentages are environment examples, not expected gains, and are not
+  carried into the skill.
+- Playwright's [Parallelism](https://playwright.dev/docs/test-parallel) documents worker isolation,
+  worker limits, sharding, and maximum-failure controls. The requirement to preserve and merge
+  complete reports is this catalog's proof rule.
+- CMake's [`ctest(1)`](https://cmake.org/cmake/help/latest/manual/ctest.1.html) documents focused
+  selection, parallel level, processor accounting, job-server integration, load limits, resource
+  specifications, and JUnit output. It establishes why C++ build time, test time, and constrained
+  resources need separate attribution.
+
+### CI mechanics
+
+- GitHub's [Dependency caching reference](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching)
+  documents exact and partial key matching, automatic save after a successful job, setup-action
+  support for common package managers, branch scope, cache-poisoning boundaries, and the prohibition
+  on storing secrets. The complete-key and clean-regeneration checks are catalog conclusions from
+  that invalidation and trust model.
+- GitHub's [workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
+  documents matrix jobs and `strategy.fail-fast`, including cancellation of queued and in-progress
+  matrix jobs. This supports distinguishing reduced failure-path work from a faster successful path.
+- GitHub's [workflow artifact guidance](https://docs.github.com/en/actions/tutorials/store-and-share-data)
+  documents sharing build and test outputs between jobs and retaining failure artifacts. Whether
+  transfer beats rebuilding must still be measured for the repository.
+
+Operational synthesis rather than a sourced universal ranking: optimize trustworthy feedback rather
+than a runner's smallest duration; measure focused local, full local, CI critical-path, and
+first-failure latency separately; distinguish queue time and phase timing; compare cold and warm
+caches; remove duplicate proof before tuning workers; isolate before parallelizing; balance shards by
+duration; prove the shard union; optimize the CI graph after test work; and accept a speed claim only
+when comparable before/after runs preserve discovery, assertion strength, failure sensitivity, and
+clean regeneration. Links checked 26 August 2026.
+
 ## Attribution
 
 This package adapts `skills/testing-code/` from the Rundesk skills catalog at
@@ -193,6 +258,6 @@ This package adapts `skills/testing-code/` from the Rundesk skills catalog at
 
 Material modifications: the routing description narrowed against its neighbouring packages in this
 catalog; a maintainer validation record added; the consumer-reaching boundary rule, the
-partition-derivation rule, and the unspecified-behavior rule added; and the stack-mechanics step and
-the suite-assessment reference added. The boundary table, trap replacements, and run-evidence rules
-are carried forward unchanged.
+partition-derivation rule, and the unspecified-behavior rule added; the stack-mechanics step and the
+suite-assessment reference added; and measured local and CI performance guidance added. The boundary
+table, trap replacements, and run-evidence rules are carried forward unchanged.

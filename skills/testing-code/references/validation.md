@@ -5,10 +5,11 @@ This is the current validation record for `testing-code`; the repository-wide me
 
 ## Boundary under test
 
-The skill should activate for designing, adding, repairing, or assessing automated tests, choosing a
-test boundary, reproducing a defect as a failing case, or diagnosing flaky, brittle, or falsely green
-results. It should not activate for a framework's test syntax alone, for reviewing a completed
-change, or for diagnosing a failure whose cause is unknown.
+The skill should activate for designing, adding, repairing, assessing, or speeding up automated
+tests and their local or CI feedback loop, choosing a test boundary, reproducing a defect as a
+failing case, or diagnosing flaky, brittle, slow, or falsely green results. It should not activate
+for production performance, a framework's test syntax alone, reviewing a completed change, or
+diagnosing a failure whose cause is unknown.
 
 Testing asks **what proves this behavior**. Debugging asks why a failure happens; review asks whether
 a change is good.
@@ -26,6 +27,10 @@ a change is good.
 | TST-T07 | Laravel feature tests using factories and fakes | Compose with `using-laravel`; that package supplies the framework mechanics, this one the method | ✅ | – |
 | TST-T08 | Python unittest isolation and cleanup | Compose with `using-python` | ✅ | – |
 | TST-T09 | "What are we not testing here?" pointed at an existing suite | Load; assessing what a suite leaves unguarded is inside the boundary | ✅ | – |
+| TST-T10 | "Our pull-request suite takes 18 minutes; make the feedback faster without dropping checks" | Load and read `performance.md` | – | ✅ |
+| TST-T11 | "Profile this slow production endpoint" | Do not load; production performance belongs to the stack and debugging packages | – | – |
+| TST-T12 | "The container build takes 14 of our 16 CI minutes; tests take one" | Do not load for CI wording alone; the measured bottleneck is outside test execution | – | – |
+| TST-T13 | "Review this completed pull request that parallelizes PHPUnit" | Do not own the task; `reviewing-code` owns completed-change review | – | – |
 
 ## Workflow and authority cases
 
@@ -48,18 +53,32 @@ a change is good.
 | TST-W15 | A case that executes the changed line while asserting something else | Report it as unguarded, not covered; execution is not verification and a percentage cannot show the difference | ✅ | – |
 | TST-W16 | An assessment covering a surface larger than the risk in it | Rank by what a defect costs and stop; a complete list of trivia is not the deliverable | ✅ | – |
 | TST-W17 | Work in a stack whose own package is installed | Load it for the runner's fixtures, doubles, and isolation while this package supplies the method | ✅ | – |
+| TST-W18 | A slow suite with no timing evidence | Record a comparable baseline and attribute collection, setup, call, teardown, build, or CI phase time before proposing a fix | – | ✅ |
+| TST-W19 | `--parallel` proposed for cases sharing one database and fixed port | Isolate every mutable resource, then benchmark worker counts on the actual runner | – | – |
+| TST-W20 | A warm cache makes one CI run look fast | Separate cold and warm results, prove cache invalidation inputs and miss regeneration, and keep mutable test state out of the cache | – | – |
+| TST-W21 | Two identical CI jobs run in parallel and settle together | Removing one reduces runner cost, not proven feedback latency; claim latency only when the critical path, queue, or contention improves in observed CI runs | – | ✅ |
+| TST-W22 | A faster run discovers fewer cases after changing selection | Reject the speed claim unless the missing cases are an explained, authorized gate change | – | – |
+| TST-W23 | Four equal-count shards finish in 3, 4, 5, and 14 minutes | Balance from representative durations, account deterministically for new cases, merge reports, and prove the shard union matches full discovery | – | – |
+| TST-W24 | More workers slow a memory-constrained CI runner | Measure worker counts and choose the fastest stable level within CPU, memory, I/O, connection, and resource limits | – | – |
+| TST-W25 | A browser journey repeats a decision table covered at lower levels | Move repeated partitions to narrow cases but retain the real journey that proves browser or protocol wiring | – | – |
+| TST-W26 | A proposed improvement cuts time but weakens a load-bearing assertion | Reject it; comparable before/after time is valid only when the protected behavior still fails under a safe break probe | – | – |
 
 ## Provider evidence
 
 A column per provider, because a rule that governs one model is not thereby proved on another. ✅
 passed, ❌ failed, – not run. Record a cell only from a run you watched.
 
-Last verified: 2026-08-24. Client: Claude Code 2.1.241, headless (`claude -p`), one fresh session per
-case. Model reported by the client: `claude-opus-5[1m]`. Each case ran in a throwaway project outside
-any workspace carrying a competing catalog, with this package placed at `.claude/skills/<name>/` and
-nothing naming the skill, the expected behavior, or the boundary under test. Skill and reference
-loading were graded from the run's own tool-call trace, not from what the response claimed. Only the
-cases marked above were run; every other cell is untouched because nothing was observed.
+Claude last verified: 2026-08-24. Client: Claude Code 2.1.241, headless (`claude -p`), one fresh
+session per case. Model reported by the client: `claude-opus-5[1m]`.
+
+Codex last verified: 2026-08-26. Client: Codex CLI 0.148.0, headless (`codex exec --ephemeral
+--ignore-user-config`), one fresh session per run. Model reported by the client: `gpt-5.6-sol`.
+
+Each case ran in a throwaway project outside any workspace carrying a competing catalog, with this
+package placed at `.claude/skills/<name>/` or `.agents/skills/<name>/` and nothing naming the skill,
+the expected behavior, or the boundary under test. Skill and reference loading were graded from the
+run's own tool-call trace, not from what the response claimed. Only cells marked above were run;
+every other cell is untouched because nothing was observed.
 
 **What the assessment runs showed.** Two independent runs were given an ordinary request — "our tests
 here feel thin, what are we not covering?" — against a four-method ledger whose three tests read as
@@ -75,6 +94,26 @@ real in-memory store. That is the reference's central claim working — the gap 
 the test names, and the behavior inventory is what exposed it.
 
 Both runs left the project byte-identical to a pristine copy taken beforehand.
+
+**What the performance comparison showed.** The fixture had five Python `unittest` cases rebuilding
+one expensive read-only catalog per case and two CI jobs running the same full command concurrently.
+The natural task asked for faster local and pull-request feedback without dropping checks. One fresh
+baseline without the skill measured once, safely moved the immutable setup to `setUpClass`, retained
+5/5 cases, and removed the duplicate CI job. It did not test non-default order or test sensitivity,
+and it incorrectly called removal of a parallel duplicate a CI feedback-time improvement.
+
+The first skill-enabled draft measured five comparable runs before and after, rejected an accidental
+zero-discovery command, passed a non-default order, and temporarily changed a catalog value to prove
+the load-bearing assertion failed before restoring it. It still grouped lower runner consumption
+under CI feedback improvement. That observed failure added the explicit critical-path and claim-
+separation rules in `SKILL.md` and `performance.md`.
+
+In the final fresh run, the provider loaded both files, measured three valid 5/5 baselines and three
+5/5 results, and reported mean local wall time moving from 0.90 seconds to 0.15 seconds. It also ran
+normal and error cases independently, verified all five methods remained, and compiled the files.
+Its final report called the workflow edit reduced duplicate runner work and explicitly refused to
+claim equivalent pull-request wall-clock improvement because hosted CI was not observed. The fixture
+files, raw commands, outputs, and final diff were inspected directly after every run.
 
 ## Limits
 
@@ -92,3 +131,8 @@ TST-W06 is this package's central claim and the hardest to verify from a transcr
 model can describe observing a failure it did not observe. Grade it on whether the run and its
 result are reported, not on the narration. TST-T03 and TST-T04 are the exclusion cases most likely
 to misfire.
+
+TST-T10, TST-W18, and TST-W21 are proved only for the small Python fixture described above. The
+parallel-resource, cache, shard, worker-limit, browser-boundary, and weakened-assertion cases remain
+unverified as direct prompts. A fluent list of generic speed tips does not pass TST-W19 through
+TST-W26.
