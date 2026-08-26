@@ -1,6 +1,6 @@
 ---
 name: testing-code
-description: Use when designing, adding, repairing, or assessing automated tests in any codebase, identifying what an existing suite leaves untested, choosing the boundary a test should sit at, reproducing a defect as a failing case, or diagnosing flaky, brittle, or falsely green results. It supplies a runner-neutral workflow for deterministic cases, trustworthy assertions, and auditable evidence, including proving a test fails without the change it claims to cover. Do not use it for a framework's test syntax alone, to review a completed change, or to diagnose a failure whose cause is unknown.
+description: Use when designing, adding, repairing, assessing, or speeding up automated tests and their local or CI feedback loop, including choosing a boundary, finding untested behavior, reproducing a defect, or diagnosing flaky, brittle, slow, or falsely green results. It supplies a runner-neutral workflow for deterministic cases, trustworthy assertions, measured performance changes, and auditable evidence. Do not use it for a framework's test syntax alone, to review a completed change, or to diagnose a failure whose cause is unknown.
 ---
 
 # Test code
@@ -102,6 +102,11 @@ Bad:  "green"; 0 discovered, or the relevant case skipped because its dependency
 
 Coverage locates unexercised code; it does not prove assertions or justify an invented target.
 
+For performance work, keep local duration, hosted CI latency, time to first failure, and runner
+consumption as separate claims. Name only the metric observed: a local benchmark cannot prove hosted
+CI latency, and removing parallel duplicate work reduces cost rather than the critical path unless
+queue or resource contention was measured.
+
 Report the behavior, boundary, command, result, counts, real dependencies, and unresolved paths. Do
 not claim more than the evidence covers.
 
@@ -115,5 +120,7 @@ not claim more than the evidence covers.
   safely, and what a false pass looks like.
 - [assessing-a-suite.md](references/assessing-a-suite.md) — judging what an existing suite protects
   and what it leaves unguarded, when the task is to assess coverage rather than to add a case.
+- [performance.md](references/performance.md) — measuring and reducing local test and CI feedback
+  time without weakening coverage, isolation, or failure evidence.
 
 Read [the source map](references/sources.md) when auditing, changing, or extending these rules.
