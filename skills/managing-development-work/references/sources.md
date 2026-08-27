@@ -50,3 +50,10 @@ universal development ceremony.
 - GitHub delivery is a separate authority boundary because externally stored mutations have a
   different target, account, and verification contract from local development. This separation is
   a catalog design conclusion, not a claim made by the sources above.
+- Repository and material-risk boundaries are treated as verification boundaries, so dependent
+  implementation phases remain separate even when they cannot run in parallel. The atomic-outcome
+  exception preserves Google's guidance to keep behavior with the proof that establishes it; its
+  wording and application are catalog conclusions.
+- Implementation and completed-change review require different role fit and evidence. The exact
+  finished-change review brief is a catalog conclusion derived from measurable acceptance, retained
+  evidence, and the team's separation of implementation from independent judgment.

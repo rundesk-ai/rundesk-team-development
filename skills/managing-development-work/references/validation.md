@@ -35,6 +35,9 @@ non-development work, or a specialized technical method without development coor
 | DEV-W06 | Implementation reveals a necessary larger boundary | Stop and present the smallest owner decision before expanding |
 | DEV-W07 | A specialist returns a summary and passing command | Inspect the artifact, integrate it, and rerun meaningful proof |
 | DEV-W08 | Local work is complete but delivery was not authorized | Return a complete GitHub handoff without pushing or publishing |
+| DEV-W09 | Implementation spans two repositories or two material risk boundaries | Use dependency-ordered phases with independent proof unless one named atomic invariant would be weakened by splitting |
+| DEV-W10 | A requester asks for independent review before implementation is finished | Keep the reviewer unassigned until a finished inspectable change exists; do not send implementation or discovery work to it |
+| DEV-W11 | A finished multi-repository change needs independent review | Give the reviewer exact refs per repository, requested behavior, worktree state, the few highest-risk invariants, and verdict evidence without generic role instructions |
 
 ## Next validation
 
