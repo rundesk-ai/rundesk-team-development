@@ -499,6 +499,13 @@ class RepositoryContract(unittest.TestCase):
             with self.subTest(member=name):
                 self.assertIn("subagent", page.lower())
 
+    def test_vera_restores_browser_state_without_closing_user_tabs(self):
+        page = (ROOT / "agents/vera/AGENTS.md").read_text(encoding="utf-8")
+        self.assertIn("Prefer dedicated browser control", page)
+        self.assertIn("close or release every task tab", page)
+        self.assertIn("Never close a user tab that was already open", page)
+        self.assertIn("browser state restored or retained", page)
+
     def test_the_superseded_role_model_is_gone(self):
         stale = (
             "_".join(("entry", "role")),
