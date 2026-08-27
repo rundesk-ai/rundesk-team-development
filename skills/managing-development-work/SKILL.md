@@ -102,8 +102,21 @@ characterize preserved behavior first and split work into reversible increments.
 ## Coordinate without duplicating work
 
 Keep decisions, dependency order, integration, and final communication with one responsible agent.
-Use one implementer by default. Split work only into independent outcomes with non-overlapping edit
-boundaries whose parallel value exceeds the coordination cost.
+Use one implementer per implementation phase by default. Before handing off implementation,
+identify its repository and material-risk verification boundaries. Work spanning more than one
+repository or more than one material risk boundary normally becomes separate dependency-ordered
+phases, each leaving a coherent result with its own observable proof. Keep it in one handoff only
+when one atomic outcome cannot be safely implemented or verified in phases; state the shared
+invariant and why splitting would weaken the result. Similar changes in separate repositories are
+not atomic merely because their implementations resemble each other. Parallelize only independent
+phases with non-overlapping edit boundaries when the value exceeds the coordination cost.
+
+Choose role fit before writing a handoff. Send implementation only to an implementer. Send
+independent review only to a reviewer and only after the integrated change is finished and
+inspectable. A review handoff names the exact base and head for every repository or the precise dirty
+diff, requested behavior and acceptance criteria, working-tree state, the few change-specific
+highest-risk invariants, and the evidence needed for a verdict. Omit the reviewer's generic role and
+checklist.
 
 A handoff states:
 

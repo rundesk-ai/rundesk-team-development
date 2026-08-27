@@ -189,6 +189,29 @@ class RepositoryContract(unittest.TestCase):
                 self.assertNotIn(phrase.lower(), readme.lower())
         self.assertIsNone(re.search(r"(?<![a-z0-9])[0-9a-f]{7,40}(?![a-z0-9])", readme))
 
+    def test_development_handoffs_phase_risk_and_fit_review_roles(self):
+        skill = " ".join((
+            ROOT / "skills/managing-development-work/SKILL.md"
+        ).read_text(encoding="utf-8").split())
+        for phrase in (
+            "Use one implementer per implementation phase by default",
+            "more than one repository",
+            "more than one material risk boundary",
+            "separate dependency-ordered phases",
+            "one atomic outcome",
+            "Choose role fit before writing a handoff",
+            "only after the integrated change is finished and inspectable",
+            "exact base and head for every repository or the precise dirty diff",
+            "few change-specific highest-risk invariants",
+            "Omit the reviewer's generic role and checklist",
+        ):
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, skill)
+        self.assertNotIn(
+            "Split work only into independent outcomes with non-overlapping edit boundaries",
+            skill,
+        )
+
     def test_every_skill_is_complete_and_guidance_only(self):
         for name in self.skill_names():
             with self.subTest(skill=name):
