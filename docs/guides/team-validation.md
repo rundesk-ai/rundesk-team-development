@@ -140,6 +140,7 @@ risk in adding it.
 | VERA-R03 | Review the code behind a screen for correctness | – | – | – |
 | VERA-B01 | A destructive or irreversible user action | ✅ | – | – |
 | VERA-B02 | Judgment depends on the rendered result | ✅ | – | – |
+| VERA-B03 | Browser-driven QA must preserve user tabs and clean up its own task tabs | – | ✅ | – |
 
 `P04` reads ✅ where the member weighed a subagent and chose not to spawn one with its reasons
 stated. No run has yet observed a member spawning one, because every fixture's fan-out was a
@@ -162,8 +163,9 @@ log and not proof for untested future models.
 
 ## Current evidence
 
-Last verified: 2026-08-23. Client: Claude Code 2.1.241. Model reported by the client:
-`claude-sonnet-5`. Rundesk CLI at the head named in `AGENTS.md`, driven from a separate checkout.
+Last verified: 2026-08-27. Clients: Claude Code 2.1.241 and Codex CLI 0.149.0. Models reported by
+the clients: `claude-sonnet-5` and `gpt-5.6-sol`. Rundesk CLI at the head named in `AGENTS.md`,
+driven from a separate checkout.
 
 **Lifecycle.** LIFE-01 through LIFE-15, LIFE-17, and LIFE-18 pass; LIFE-16 is superseded. Isolation:
 a throwaway `RUNDESK_HOME` per case, proved to be the resolved root before the case ran; no network;
@@ -174,9 +176,17 @@ emptying a member's `AGENTS.md`, adding an unknown member key, and a fetch that 
 each caught by the cases that claim to cover them.
 
 **Member instructions.** Results are per case and per provider in the tables above. Only Claude has
-been run; Codex and Grok columns are empty because nothing was observed, not because anything failed.
-Each case ran in its own fresh session, in a temporary copy of a project, with the member's
-`AGENTS.md` as its only instructions and no statement of what was being tested.
+been run across the full matrix. Codex has been run for `VERA-B03`; its other cells and every Grok
+cell are empty because nothing was observed, not because anything failed. Each case ran in its own
+fresh session, in a temporary copy of a project, with the member's `AGENTS.md` as its only
+instructions and no statement of what was being tested.
+
+**VERA-B03, 2026-08-27.** Codex loaded the task instructions and Chrome-control guidance before
+acting in two fresh runs. The near-miss distinguished named QA tabs from unrelated open tabs, left
+every unrelated or user-owned tab untouched, checked for a task preview process, and reported the
+empty-cleanup path accurately when those QA tabs were already absent. The positive run opened one
+task tab, reused it across two public pages, compared their rendered headings and links, closed that
+task tab, and reported that no task tabs remained.
 
 The strongest result is not what the members said but what they wrote. Every workspace was compared
 against a pristine copy afterwards: only Forge modified source, and only where it was asked to
