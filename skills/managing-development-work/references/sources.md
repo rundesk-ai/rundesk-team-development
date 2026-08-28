@@ -1,8 +1,8 @@
 # Sources
 
-Checked 2026-08-23. These sources support the general delivery safeguards synthesized in
-`SKILL.md`. They do not prescribe this package's names, numeric thresholds, role model, or one
-universal development ceremony.
+Existing sources checked 2026-08-23; the GOV.UK user-needs source was checked 2026-08-27. These
+sources support the general delivery safeguards synthesized in `SKILL.md`. They do not prescribe
+this package's names, numeric thresholds, role model, or one universal development ceremony.
 
 ## Small, coherent scope
 
@@ -26,6 +26,13 @@ universal development ceremony.
   recommends documented, measurable criteria that give stakeholders a shared basis for readiness.
   This supports defining observable proof before implementation and distinguishing completion from
   a plausible report. Its scope is aerospace assurance, not a universal software process.
+- The GOV.UK Service Manual's
+  [Learning about users and their needs](https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs)
+  requires teams to establish who users are, what they are trying to do, how they currently do it,
+  and what frustrates or constrains them. It recommends sharing that evidence through experience
+  maps, user profiles or personas, and traceable user stories with acceptance criteria and
+  dependencies. This supports the required product-review handoff context; it does not require one
+  persona format or permit unsupported demographic detail.
 
 ## Risk and independent evidence
 
@@ -57,3 +64,7 @@ universal development ceremony.
 - Implementation and completed-change review require different role fit and evidence. The exact
   finished-change review brief is a catalog conclusion derived from measurable acceptance, retained
   evidence, and the team's separation of implementation from independent judgment.
+- Product and interface review requires the intended user, journey, scenarios, and supporting
+  evidence because a rendered screen cannot establish who it serves or what outcome it must support.
+  The exact handoff fields are a catalog conclusion based on the GOV.UK user-needs guidance and this
+  package's measurable-acceptance contract.

@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml?query=branch%3Amain"><img src="https://github.com/rundesk-ai/rundesk-team-development/actions/workflows/build.yml/badge.svg?branch=main" alt="Build and tests"></a>
-  <a href="manifest.json"><img src="https://img.shields.io/badge/catalog-v0.9.2-blue" alt="Catalog version 0.9.2"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/catalog-v0.9.3-blue" alt="Catalog version 0.9.3"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"></a>
 </p>
 
@@ -50,7 +50,7 @@ Rundesk keeps each member's instructions and skill access aligned with this cata
 - `designing-apis` — Design HTTP resources, contracts, errors, evolution, and security.
 - `designing-databases` — Design data models, constraints, relationships, and growth.
 - `designing-landing-pages` — Design and review campaign destinations, conversion paths, and their measurement handoffs.
-- `designing-ui-ux` — Design flows, states, accessibility, interface text, and recovery.
+- `designing-ui-ux` — Ground personas and journeys, then design flows, states, accessibility, interface text, and recovery.
 
 ### Engineering practice
 

@@ -212,6 +212,41 @@ class RepositoryContract(unittest.TestCase):
             skill,
         )
 
+    def test_product_review_handoffs_carry_user_and_journey_context(self):
+        development = " ".join((
+            ROOT / "skills/managing-development-work/SKILL.md"
+        ).read_text(encoding="utf-8").split())
+        for phrase in (
+            "evidence-backed user or persona",
+            "trigger and starting point",
+            "observable success condition",
+            "expected journey",
+            "exact scenarios and states to exercise",
+            "approved product decisions",
+            "screenshots, observations, or accessibility evidence",
+            "Do not make a handoff look complete by inventing a persona",
+            "does not prove the user's role, permission, knowledge, situation, goal, or success condition",
+            "do not prepare an acceptance handoff",
+            "Keep plausible adjacent paths as unscored observations",
+        ):
+            with self.subTest(skill="managing-development-work", phrase=phrase):
+                self.assertIn(phrase, development)
+
+        design = " ".join((
+            ROOT / "skills/designing-ui-ux/SKILL.md"
+        ).read_text(encoding="utf-8").split())
+        for phrase in (
+            "Identify the evidence-backed user or persona",
+            "Map the end-to-end journey",
+            "map the UI flow as the ordered interface steps and decisions",
+            "define scenarios as that journey under named",
+            "Separate supplied facts, observed product evidence, assumptions, and unknowns",
+            "return the question instead of inventing a persona",
+            "Do not promote a plausible adjacent path into the accepted journey",
+        ):
+            with self.subTest(skill="designing-ui-ux", phrase=phrase):
+                self.assertIn(phrase, design)
+
     def test_every_skill_is_complete_and_guidance_only(self):
         for name in self.skill_names():
             with self.subTest(skill=name):

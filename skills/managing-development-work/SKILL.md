@@ -118,6 +118,25 @@ diff, requested behavior and acceptance criteria, working-tree state, the few ch
 highest-risk invariants, and the evidence needed for a verdict. Omit the reviewer's generic role and
 checklist.
 
+A product or interface review handoff also gives the reviewer the experience to judge. Include:
+
+- the evidence-backed user or persona, limited to the role, knowledge, permissions, abilities,
+  device or input constraints, and situation that affect this task;
+- the trigger and starting point, the user's goal, and the observable success condition;
+- the expected journey from that starting point through completion, including required decisions,
+  handoffs, and next steps outside the changed screen;
+- the exact scenarios and states to exercise, with the highest-impact interruption, failure, and
+  recovery paths named; and
+- approved product decisions, known evidence, open questions, environment or fixture access, and
+  the screenshots, observations, or accessibility evidence required in return.
+
+Do not make a handoff look complete by inventing a persona or intended journey. A URL, screen title,
+record type, control label, or requested click sequence does not prove the user's role, permission,
+knowledge, situation, goal, or success condition. If any required user or journey fact is missing
+and could change the verdict, do not prepare an acceptance handoff; return the missing questions or
+scope a discovery assignment with the source material to inspect. Keep plausible adjacent paths as
+unscored observations unless the accepted journey or scenarios name them.
+
 A handoff states:
 
 - one testable outcome and why it is needed;
