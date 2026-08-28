@@ -13,18 +13,31 @@ system, content, and constraints.
 
 Before implementation:
 
-1. Identify the user, their primary task, the page or flow's outcome, and evidence behind the brief.
-2. Read the current interface and trace the real data, permissions, navigation, terminology, and
+1. Identify the evidence-backed user or persona. Keep only characteristics that affect the task:
+   role, relevant knowledge, permissions, abilities, device or input constraints, and situation.
+   Do not infer these from a URL, screen title, record type, control label, or common product pattern,
+   and do not invent demographic detail, motivation, or proficiency to make the brief feel complete.
+2. Establish what triggered the need, where the user starts, what they already know or have done,
+   the goal they are pursuing, and the observable condition that means they succeeded.
+3. Map the end-to-end journey from trigger through outcome and continuation. Within it, map the UI
+   flow as the ordered interface steps and decisions; define scenarios as that journey under named
+   permissions, data, device, interruption, or failure conditions.
+4. Read the current interface and trace the real data, permissions, navigation, terminology, and
    tests. Do not invent content, capabilities, metrics, or states.
-3. Map the shortest successful path and the decisions, interruptions, and recovery points along it.
-4. Inventory initial, loading, empty, partial, success, error, disabled, and permission-limited
+5. Map the shortest successful path and the decisions, interruptions, handoffs, next steps, and
+   recovery points along it. Include consequential work before or after the changed screen.
+6. Inventory initial, loading, empty, partial, success, error, disabled, and permission-limited
    states. Include long content, translation, narrow viewports, zoom, keyboard, and touch.
-5. Derive a visual thesis from the subject's real language, materials, artifacts, and environment.
+7. Derive a visual thesis from the subject's real language, materials, artifacts, and environment.
    Turn it into typography roles, palette roles, composition, density, imagery, and motion choices.
    When appropriate, choose one signature element; let everything else support the task.
 
-When evidence is missing, state the assumption and choose a reversible direction. Do not turn a
-personal preference or current aesthetic trend into a user requirement.
+Separate supplied facts, observed product evidence, assumptions, and unknowns. Use a reversible
+assumption only when changing it would not alter the reviewed journey or verdict. When the intended
+user, goal, starting point, or success condition is missing and material, return the question instead
+of inventing a persona or approving the interface against one. Do not turn a personal preference or
+current aesthetic trend into a user requirement. Do not promote a plausible adjacent path into the
+accepted journey; record it separately unless the brief or product evidence places it in scope.
 
 ## Make actions obvious and predictable
 

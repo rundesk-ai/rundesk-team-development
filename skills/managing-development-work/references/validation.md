@@ -1,8 +1,8 @@
 # Managing Development Work Validation
 
 This is the current validation plan for `managing-development-work`; the repository-wide method is
-in [Validating Skills](../../../docs/guides/validation.md). No live Codex and Claude provider matrix has been
-run for this skill yet, so none of the cases below is marked passed.
+in [Validating Skills](../../../docs/guides/validation.md). The focused evidence below does not
+replace the pending complete Codex and Claude provider matrix.
 
 ## Boundary under test
 
@@ -38,6 +38,22 @@ non-development work, or a specialized technical method without development coor
 | DEV-W09 | Implementation spans two repositories or two material risk boundaries | Use dependency-ordered phases with independent proof unless one named atomic invariant would be weakened by splitting |
 | DEV-W10 | A requester asks for independent review before implementation is finished | Keep the reviewer unassigned until a finished inspectable change exists; do not send implementation or discovery work to it |
 | DEV-W11 | A finished multi-repository change needs independent review | Give the reviewer exact refs per repository, requested behavior, worktree state, the few highest-risk invariants, and verdict evidence without generic role instructions |
+| DEV-W12 | Delegate a finished interface for UX review with only a URL and “test the flow” | Do not infer the user from the URL, screen, records, controls, or click sequence and do not hand it off as acceptance review; return the missing user, trigger, starting point, goal, success condition, expected journey, scenarios, product decisions, environment access, and evidence questions, or explicitly scope discovery first |
+
+## Provider evidence
+
+Last focused verification: 27 August 2026.
+
+- Codex CLI 0.148.0, `gpt-5.6-sol`, natural-task suite: `DEV-W12` passed in an isolated temporary
+  workspace containing only `managing-development-work` and `designing-ui-ux`, with a read-only
+  sandbox and no site inspection. Given only an invoice-review URL and `Open invoice → Approve →
+  Done`, it refused to prepare an accept/reject handoff and returned the missing role, trigger, prior
+  knowledge, success, fixture, failure, interruption, and recovery questions.
+- The first draft failed the same case: it labeled context as unspecified but inferred an
+  “authorized invoice reviewer” and promoted rejection into the acceptance scope. The added
+  no-inference and unscored-adjacent-path rules produced the passing rerun.
+- Instrumented Codex and all Claude cases remain unrun. No complete provider compatibility is
+  claimed.
 
 ## Next validation
 

@@ -27,7 +27,7 @@ interface, for marketing or brand copy, or for standalone image and asset produc
 
 | ID | Request shape | Expected behavior |
 |---|---|---|
-| UIX-W01 | A brief with no stated user or task | Establish user, task, and outcome first; state the assumption and choose a reversible direction rather than inventing requirements |
+| UIX-W01 | A brief with no stated user or task | Establish the evidence-backed user context, trigger, starting point, goal, and success condition first; if any is material and unavailable, return the question rather than inventing a persona or verdict |
 | UIX-W02 | Only the success path designed | Inventory loading, empty, partial, error, disabled, and permission-limited states, plus long content, zoom, keyboard, and touch |
 | UIX-W03 | A list screen with one empty state | Require both: never-had-data and filtered-to-zero, and name showing the wrong one as a defect |
 | UIX-W04 | Buttons labelled `Submit`, `Confirm`, `Yes` | Rename to verb plus object and keep the same words through control, confirmation, loading, and result |
@@ -36,16 +36,25 @@ interface, for marketing or brand copy, or for standalone image and asset produc
 | UIX-W07 | The current interface, design system, or tokens cannot be inspected | Read the interface and its tokens, or stop and name the unknown; do not invent content, capabilities, metrics, or states |
 | UIX-W08 | Automated accessibility checks pass | Keep the limit: automated checks find defects but cannot prove a task is understandable or operable; record what was actually tested |
 | UIX-W09 | A raw stored value such as `PENDING_REVIEW` shown to a user | Map it to a display term, and keep the machine value out of the interface |
+| UIX-W10 | A review brief gives one screen and a happy-path click sequence | Distinguish the end-to-end journey from the UI flow, then add the trigger, prior state, handoffs, continuation, and named scenarios for permissions, data, device, interruption, failure, and recovery |
+| UIX-W11 | A persona contains unsupported age, motivation, proficiency, and device claims | Keep only evidence-backed characteristics that affect the task; label the rest as assumptions and do not use them to determine the verdict |
+| UIX-W12 | An invoice screen and `Approve` control are the only clues to the user | Do not infer an authorized invoice reviewer, their knowledge, goal, or success condition from interface nouns; return the material questions before judging acceptance |
+| UIX-W13 | A supplied approval journey does not mention rejection | Keep rejection as an unscored adjacent observation unless the brief or product evidence places it in the accepted journey or scenarios |
 
 ## Provider evidence
 
-Last verification: not yet run against a live provider matrix.
+Last focused verification: 27 August 2026.
 
-- Claude Code: pending. This package was added after the sampled run performed for the ten
-  technology packages, so no case here has been executed.
-- Codex: not run.
-
-No case below is marked passed.
+- Codex CLI 0.148.0, `gpt-5.6-sol`, natural-task suite: `UIX-W01`, `UIX-W12`, and `UIX-W13` passed in
+  an isolated temporary workspace containing only `designing-ui-ux` and
+  `managing-development-work`, with a read-only sandbox and no rendered interface. Given only an
+  invoice-review URL and `Open invoice → Approve → Done`, it returned the material user and journey
+  questions, did not infer an authorized invoice reviewer, and did not add rejection to the
+  acceptance scope.
+- The first draft failed by inferring that reviewer and adding rejection despite labeling the
+  context unspecified. The no-inference and unscored-adjacent-path rules produced the passing rerun.
+- Instrumented Codex and all Claude cases remain unrun. No complete provider compatibility is
+  claimed.
 
 ## Limits
 

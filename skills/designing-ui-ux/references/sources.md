@@ -1,9 +1,10 @@
 # Sources
 
-Accessed 7 August 2026. Standards establish minimum behavior; maintained design systems and
-practitioner research show how teams apply those contracts and where users encounter failures.
-External cursor conventions disagree. This catalog therefore records `cursor: pointer` for every
-enabled activation target as its own universal UI standard, not as a WCAG or CSS requirement.
+Existing sources accessed 7 August 2026; the GOV.UK user-needs source was accessed 27 August 2026.
+Standards establish minimum behavior; maintained design systems and practitioner research show how
+teams apply those contracts and where users encounter failures. External cursor conventions
+disagree. This catalog therefore records `cursor: pointer` for every enabled activation target as
+its own universal UI standard, not as a WCAG or CSS requirement.
 
 ## Upstream adaptation
 
@@ -15,6 +16,13 @@ enabled activation target as its own universal UI standard, not as a WCAG or CSS
 
 ## Core UX workflow
 
+- The GOV.UK Service Manual's
+  [Learning about users and their needs](https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs)
+  requires teams to learn who likely users are, what they are trying to do, how they currently do
+  it, what frustrates them, and what they need to reach the right outcome. It treats stakeholder
+  opinions as assumptions until research supports them and recommends sharing evidence through
+  experience maps and user profiles or personas. This supports evidence-backed user context,
+  journey mapping, and refusing invented personas; it does not prescribe one persona template.
 - [Jakob Nielsen, “10 Usability Heuristics for User Interface Design”](https://www.nngroup.com/articles/ten-usability-heuristics/)
   was last reviewed in 2024 and traces the heuristics to a factor analysis of 249 usability problems.
   It supports visible system status, user control and undo, internal and external consistency, error
@@ -201,6 +209,9 @@ omitted; the public sources above define the auditable platform and accessibilit
   for intentional edge-to-edge layouts, and viewport units do not solve every keyboard behavior.
 - WCAG conformance cannot be inferred from source inspection or automated checks alone. Verify the
   rendered task with keyboard and representative assistive technology, and report the tested scope.
+- A persona is useful only as a compact, evidence-backed description of shared behavior and needs.
+  Demographic detail, motivation, proficiency, or device constraints that are not supported by
+  research remain assumptions and cannot determine a review verdict.
 
 ## Attribution
 
