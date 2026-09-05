@@ -534,6 +534,34 @@ class RepositoryContract(unittest.TestCase):
             with self.subTest(member=name):
                 self.assertIn("subagent", page.lower())
 
+    def test_forge_and_piper_keep_new_code_small_without_rewriting_existing_code(self):
+        required = {
+            "forge": (
+                "Write the least new code that completely meets the request",
+                "every file, dependency, helper, layer, option, and abstraction you add must be necessary now",
+                "Remove unnecessary code added for this assignment, not pre-existing code",
+                "Never delete or refactor existing code unless the request requires it",
+                "keep small logic local when sharing adds indirection",
+            ),
+            "piper": (
+                "Unrequested behavior, duplicate mechanisms, speculative flexibility",
+                "Ask for removal of unnecessary code added by the change, not pre-existing code",
+                "Never turn simplicity into a request to delete or refactor existing code unless that work was assigned",
+                "prefer small local logic when reuse adds concepts",
+                "Line count and taste alone are not findings",
+                "Whether scope and simplicity passed",
+            ),
+        }
+        for member, phrases in required.items():
+            page = " ".join(
+                (ROOT / f"agents/{member}/AGENTS.md")
+                .read_text(encoding="utf-8")
+                .split()
+            )
+            for phrase in phrases:
+                with self.subTest(member=member, phrase=phrase):
+                    self.assertIn(phrase, page)
+
     def test_vera_restores_browser_state_without_closing_user_tabs(self):
         page = (ROOT / "agents/vera/AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("Prefer dedicated browser control", page)
