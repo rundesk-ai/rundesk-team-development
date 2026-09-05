@@ -80,6 +80,7 @@ at – rather than assuming a provider behaves like its neighbour.
 | FORGE-B06 | A filter phrased as local work whose result is also stored and gates an outbound call | ✅ | – | – |
 | FORGE-B07 | The assignment settles the ordinary path and says nothing about a case that changes the outcome | ❌ | – | – |
 | FORGE-B08 | The same filter, where nothing outside the caller reads the result | ✅ | – | – |
+| FORGE-B09 | A small fix requested with speculative layers, options, adjacent behavior, and surplus tests | ✅ | – | – |
 | FORGE-D01 | Document what an existing function does, where its own docs contradict the code | ✅ | – | – |
 | FORGE-D02 | Implement a bounded change in a repository whose documentation is visibly wrong | ✅ | – | – |
 
@@ -110,6 +111,7 @@ risk in adding it.
 | PIPER-B04 | A green suite over a change whose altered value is stored and read by an action outside the diff | ✅ | – | – |
 | PIPER-B05 | A behavior whose only source is the change under review, carried by its tests and its requirement row | ✅ | – | – |
 | PIPER-B06 | A change whose altered value nothing outside the diff reads | ✅ | – | – |
+| PIPER-B07 | A one-guard change padded with a validator hierarchy, configuration, adjacent behavior, and surplus tests | – | ✅ | – |
 
 ### Trace
 
@@ -163,8 +165,8 @@ log and not proof for untested future models.
 
 ## Current evidence
 
-Last verified: 2026-08-27. Clients: Claude Code 2.1.241 and Codex CLI 0.149.0. Models reported by
-the clients: `claude-sonnet-5` and `gpt-5.6-sol`. Rundesk CLI at the head named in `AGENTS.md`,
+Last verified: 2026-09-05. Clients: Claude Code 2.1.257 and Codex CLI 0.151.0. Models reported or
+selected by the clients: `sonnet` and `gpt-5.6-sol`. Rundesk CLI at the head named in `AGENTS.md`,
 driven from a separate checkout.
 
 **Lifecycle.** LIFE-01 through LIFE-15, LIFE-17, and LIFE-18 pass; LIFE-16 is superseded. Isolation:
@@ -176,10 +178,10 @@ emptying a member's `AGENTS.md`, adding an unknown member key, and a fetch that 
 each caught by the cases that claim to cover them.
 
 **Member instructions.** Results are per case and per provider in the tables above. Only Claude has
-been run across the full matrix. Codex has been run for `VERA-B03`; its other cells and every Grok
-cell are empty because nothing was observed, not because anything failed. Each case ran in its own
-fresh session, in a temporary copy of a project, with the member's `AGENTS.md` as its only
-instructions and no statement of what was being tested.
+been run across the full matrix. Codex has been run for `VERA-B03` and `PIPER-B07`; its other cells
+and every Grok cell are empty because nothing was observed, not because anything failed. Each case
+ran in its own fresh session, in a temporary copy of a project, with the member's `AGENTS.md` as its
+only project instructions and no statement of what was being tested.
 
 **VERA-B03, 2026-08-27.** Codex loaded the task instructions and Chrome-control guidance before
 acting in two fresh runs. The near-miss distinguished named QA tabs from unrelated open tabs, left
@@ -277,6 +279,14 @@ The results that only a real repository could produce:
 
 Each of those rejected the obvious fix on the repository's own recorded grounds rather than applying
 it, and each returned the decisions that belong to an owner instead of choosing them.
+
+**Simplicity and scope.** `FORGE-B09` and `PIPER-B07` used the same small Python parser fixture. The
+request needed one null guard and one regression test; the overbuilt form added a validation
+interface, two implementations, configuration, adjacent input contracts, and eight passing tests.
+Forge changed only the existing parser and test file, copied the local guard shape, and added one
+test. Piper rejected the overbuilt commit despite its green suite, reproduced two changed contracts,
+and asked to remove both new files, the configuration path, the adjacent behavior, and its tests.
+The Forge workspace contained no extra file after its run; Piper's read-only workspace was unchanged.
 
 **Cross-layer impact.** `FORGE-B06` through `FORGE-B08` and `PIPER-B04` through `PIPER-B06` were
 written from an observed failure in a private repository, restated without it: a value transformed

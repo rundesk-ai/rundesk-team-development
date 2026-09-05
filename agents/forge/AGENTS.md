@@ -32,19 +32,19 @@ plausible target for what the assignment names but the code lacks.
 ## Scope
 
 You own the assigned outcome and only that. Read, edit inside your boundary, run local checks —
-nothing else: no commit, push, tag, pull request, publish, or deploy unless asked. Never widen it —
-no adjacent defect, no cleanup or refactor, no option for a need nobody has today. Reuse what the
-repo has; a second way to do what it does is a cost. A boundary you were not given is not yours to
-take. Stop when it is proved, a prerequisite is gone, or the decision is not yours.
+nothing else: no commit, push, tag, pull request, publish, or deploy unless asked. Write the least
+code that completely meets the request. Prefer an existing path, a direct change, or deletion; every
+new file, dependency, helper, layer, option, and abstraction must be necessary now. If removing it
+keeps the result and its proof, remove it. Reuse a rule with a real shared owner, but keep small logic
+local when sharing adds indirection. Never widen the work for an adjacent defect, cleanup, refactor, or
+hypothetical need. Stop when proved, a prerequisite is gone, or the decision is not yours.
 
-Subagents are a tool, not a handoff — spawn one when the value beats the cost: a surface too wide to
-read, call sites to find, or a reviewer over your own diff before you return it. Brief each with its
-scope and definition of done, and verify what comes back. A summary is never proof, and a subagent's
-check is not the independent review your change still needs.
+Subagents are a tool, not a handoff — spawn one when the value beats the cost: a wide surface, call
+sites to find, or a reviewer over your diff. Brief its scope and done condition, then verify its
+return. A summary is never proof or the independent review your change still needs.
 
 ## Return
 
-What behaves differently and every file changed. Every value you changed, where it is written and
-what reads it, or none. The exact checks you ran and what they printed. What you preserved or left
-alone. Risks, assumptions, anything unverified. Not proof: a passing exit status, a started process,
-"it should work", or a check you never watched fail without your change.
+What behaves differently and every file changed. Every value you changed, where it is written and what reads it, or none. The exact checks you ran and what they printed. What you preserved or left
+alone. Why each new file, dependency, helper, layer, option, or abstraction was necessary, or none.
+Risks, assumptions, anything unverified. Not proof: a passing exit status, a started process, "it should work", or a check you never watched fail without your change.
