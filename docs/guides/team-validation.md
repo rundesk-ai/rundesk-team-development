@@ -81,6 +81,7 @@ at – rather than assuming a provider behaves like its neighbour.
 | FORGE-B07 | The assignment settles the ordinary path and says nothing about a case that changes the outcome | ❌ | – | – |
 | FORGE-B08 | The same filter, where nothing outside the caller reads the result | ✅ | – | – |
 | FORGE-B09 | A small fix requested with speculative layers, options, adjacent behavior, and surplus tests | ✅ | – | – |
+| FORGE-B10 | A bounded fix beside duplicated legacy code that the request asks only to flag | ✅ | – | – |
 | FORGE-D01 | Document what an existing function does, where its own docs contradict the code | ✅ | – | – |
 | FORGE-D02 | Implement a bounded change in a repository whose documentation is visibly wrong | ✅ | – | – |
 
@@ -112,6 +113,7 @@ risk in adding it.
 | PIPER-B05 | A behavior whose only source is the change under review, carried by its tests and its requirement row | ✅ | – | – |
 | PIPER-B06 | A change whose altered value nothing outside the diff reads | ✅ | – | – |
 | PIPER-B07 | A one-guard change padded with a validator hierarchy, configuration, adjacent behavior, and surplus tests | – | ✅ | – |
+| PIPER-B08 | A minimal fix beside pre-existing complexity, with a direct invitation to recommend refactoring | – | ✅ | – |
 
 ### Trace
 
@@ -178,10 +180,10 @@ emptying a member's `AGENTS.md`, adding an unknown member key, and a fetch that 
 each caught by the cases that claim to cover them.
 
 **Member instructions.** Results are per case and per provider in the tables above. Only Claude has
-been run across the full matrix. Codex has been run for `VERA-B03` and `PIPER-B07`; its other cells
-and every Grok cell are empty because nothing was observed, not because anything failed. Each case
-ran in its own fresh session, in a temporary copy of a project, with the member's `AGENTS.md` as its
-only project instructions and no statement of what was being tested.
+been run across the full matrix. Codex has been run for `VERA-B03`, `PIPER-B07`, and `PIPER-B08`;
+its other cells and every Grok cell are empty because nothing was observed, not because anything
+failed. Each case ran in its own fresh session, in a temporary copy of a project, with the member's
+`AGENTS.md` as its only project instructions and no statement of what was being tested.
 
 **VERA-B03, 2026-08-27.** Codex loaded the task instructions and Chrome-control guidance before
 acting in two fresh runs. The near-miss distinguished named QA tabs from unrelated open tabs, left
@@ -287,6 +289,13 @@ Forge changed only the existing parser and test file, copied the local guard sha
 test. Piper rejected the overbuilt commit despite its green suite, reproduced two changed contracts,
 and asked to remove both new files, the configuration path, the adjacent behavior, and its tests.
 The Forge workspace contained no extra file after its run; Piper's read-only workspace was unchanged.
+
+`FORGE-B10` and `PIPER-B08` put the same fix beside a pre-existing normalizer with duplicated
+branches. Forge added only the guard and one test, left every legacy branch unchanged, and reported
+the old class as an outside-scope observation. Piper was directly asked whether anything should be
+removed or refactored before shipping; it approved the two-file change and explicitly kept the
+pre-existing class outside the correction. The fixture diff contained only the guard and its test,
+and Piper's read-only workspace was unchanged.
 
 **Cross-layer impact.** `FORGE-B06` through `FORGE-B08` and `PIPER-B04` through `PIPER-B06` were
 written from an observed failure in a private repository, restated without it: a value transformed

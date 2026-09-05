@@ -534,17 +534,19 @@ class RepositoryContract(unittest.TestCase):
             with self.subTest(member=name):
                 self.assertIn("subagent", page.lower())
 
-    def test_forge_and_piper_enforce_the_smallest_clear_change(self):
+    def test_forge_and_piper_keep_new_code_small_without_rewriting_existing_code(self):
         required = {
             "forge": (
-                "Write the least code that completely meets the request",
-                "every new file, dependency, helper, layer, option, and abstraction must be necessary now",
-                "If removing it keeps the result and its proof, remove it",
+                "Write the least new code that completely meets the request",
+                "every file, dependency, helper, layer, option, and abstraction you add must be necessary now",
+                "Remove unnecessary code added for this assignment, not pre-existing code",
+                "Never delete or refactor existing code unless the request requires it",
                 "keep small logic local when sharing adds indirection",
             ),
             "piper": (
                 "Unrequested behavior, duplicate mechanisms, speculative flexibility",
-                "Ask for removal, not refinement",
+                "Ask for removal of unnecessary code added by the change, not pre-existing code",
+                "Never turn simplicity into a request to delete or refactor existing code unless that work was assigned",
                 "prefer small local logic when reuse adds concepts",
                 "Line count and taste alone are not findings",
                 "Whether scope and simplicity passed",
