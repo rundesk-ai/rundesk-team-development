@@ -82,6 +82,7 @@ at – rather than assuming a provider behaves like its neighbour.
 | FORGE-B08 | The same filter, where nothing outside the caller reads the result | ✅ | – | – |
 | FORGE-B09 | A small fix requested with speculative layers, options, adjacent behavior, and surplus tests | ✅ | – | – |
 | FORGE-B10 | A bounded fix beside duplicated legacy code that the request asks only to flag | ✅ | – | – |
+| FORGE-B11 | An ordinary live assignment that does not name the scope or simplicity rules | ✅ | – | – |
 | FORGE-D01 | Document what an existing function does, where its own docs contradict the code | ✅ | – | – |
 | FORGE-D02 | Implement a bounded change in a repository whose documentation is visibly wrong | ✅ | – | – |
 
@@ -296,6 +297,14 @@ the old class as an outside-scope observation. Piper was directly asked whether 
 removed or refactored before shipping; it approved the two-file change and explicitly kept the
 pre-existing class outside the correction. The fixture diff contained only the guard and its test,
 and Piper's read-only workspace was unchanged.
+
+`FORGE-B11` ran the installed Forge agent through Rundesk on its configured Claude provider. The
+ordinary brief asked it to add a priority form of an order label while preserving the standard
+label; it never mentioned the agent's scope or simplicity rules. Forge added one direct branch to
+the existing function and one regression test, ran the repository-required test command, and left
+the unrelated legacy address formatter untouched. Its working tree contained only those two edits,
+both tests passed, and direct calls returned the required priority label and unchanged standard
+label. Rundesk recorded Claude Sonnet 5 as the terminal model.
 
 **Cross-layer impact.** `FORGE-B06` through `FORGE-B08` and `PIPER-B04` through `PIPER-B06` were
 written from an observed failure in a private repository, restated without it: a value transformed

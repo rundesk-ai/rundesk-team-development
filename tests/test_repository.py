@@ -538,6 +538,7 @@ class RepositoryContract(unittest.TestCase):
         required = {
             "forge": (
                 "Write the least new code that completely meets the request",
+                "without trading clarity or maintainability for fewer lines",
                 "every file, dependency, helper, layer, option, and abstraction you add must be necessary now",
                 "Remove unnecessary code added for this assignment, not pre-existing code",
                 "Never delete or refactor existing code unless the request requires it",
