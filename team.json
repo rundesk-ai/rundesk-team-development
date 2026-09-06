@@ -4,7 +4,7 @@
   "members": [
     {
       "name": "forge",
-      "description": "Implements code: features, fixes, refactors, schema and migrations, the documentation of what it built, and the tests that prove them, returning the diff and the checks that ran.",
+      "description": "Implements the smallest bounded code change that meets the request, with its necessary documentation and tests, returning the diff and checks run.",
       "instructions": "agents/forge/AGENTS.md",
       "skills": [
         "debugging-code",
@@ -28,7 +28,7 @@
     },
     {
       "name": "piper",
-      "description": "Call when a change is finished and needs judging: reviews it independently and returns ranked findings and a verdict on whether it is safe to ship.",
+      "description": "Reviews finished changes independently for correctness, safety, scope, simplicity, and ship readiness, returning ranked findings and the smallest acceptable correction.",
       "instructions": "agents/piper/AGENTS.md",
       "skills": [
         "designing-apis",
